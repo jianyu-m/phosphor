@@ -1,25 +1,9 @@
 package edu.columbia.cs.psl.phosphor.runtime;
 
 import edu.columbia.cs.psl.phosphor.Configuration;
-import edu.columbia.cs.psl.phosphor.struct.ControlTaintTagStack;
-import edu.columbia.cs.psl.phosphor.struct.LazyCharArrayIntTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyCharArrayObjTags;
-import edu.columbia.cs.psl.phosphor.struct.TaintedBooleanWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedBooleanWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedByteWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedByteWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedDoubleWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedDoubleWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedFloatWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedFloatWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedIntWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedIntWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedLongWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedLongWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedShortWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedShortWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedWithObjTag;
+import edu.columbia.cs.psl.phosphor.struct.*;
+
+import java.lang.reflect.Field;
 
 public class RuntimeBoxUnboxPropogator {
 	public static Long valueOf(int t, long l)
@@ -917,7 +901,40 @@ public class RuntimeBoxUnboxPropogator {
 	private static int getTaint(Object o) {
 		if(o == null)
 			return 0;
-		return ((TaintedWithIntTag) o).getPHOSPHOR_TAG();
+		/*
+		return ((TaintedWithIntTag)o).getPHOSPHOR_TAG();
+		*/
+
+		/**
+		 * Also get taint in the fields
+		*/
+
+		int taint = 0;
+		Field[] fields = o.getClass().getDeclaredFields();
+		for (Field f :
+				fields) {
+			try {
+				f.setAccessible(true);
+				Object ob = f.get(o);
+				if (ob == null)
+					continue;
+				int tag;
+				if (LazyArrayIntTags.class.isAssignableFrom(ob.getClass())) {
+					tag = (((LazyArrayIntTags)ob).taints == null)? 0 : ((LazyArrayIntTags)ob).taints[0];
+				} else if (TaintedPrimitiveWithIntTag.class.isAssignableFrom(ob.getClass())) {
+					tag = ((TaintedPrimitiveWithIntTag)ob).taint;
+				} else if (ob instanceof TaintedWithIntTag) {
+					tag = ((TaintedWithIntTag) ob).getPHOSPHOR_TAG();
+				} else {
+					continue;
+				}
+				taint =  tag | taint;
+			} catch (IllegalAccessException e) {
+				//Ignore
+			}
+		}
+		taint = ((TaintedWithIntTag)o).getPHOSPHOR_TAG() | taint;
+		return taint;
 	}
 
 	public static TaintedBooleanWithIntTag parseBoolean$$PHOSPHORTAGGED(String s, TaintedBooleanWithIntTag ret) {

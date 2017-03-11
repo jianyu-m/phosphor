@@ -5,12 +5,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import edu.columbia.cs.psl.phosphor.struct.*;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
@@ -19,28 +21,6 @@ import edu.columbia.cs.psl.phosphor.runtime.ArrayHelper;
 import edu.columbia.cs.psl.phosphor.runtime.Taint;
 import edu.columbia.cs.psl.phosphor.runtime.TaintSentinel;
 import edu.columbia.cs.psl.phosphor.runtime.UninstrumentedTaintSentinel;
-import edu.columbia.cs.psl.phosphor.struct.ControlTaintTagStack;
-import edu.columbia.cs.psl.phosphor.struct.LazyArrayIntTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyArrayObjTags;
-import edu.columbia.cs.psl.phosphor.struct.TaintedBooleanWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedBooleanWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedByteWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedByteWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedCharWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedCharWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedDoubleWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedDoubleWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedFloatWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedFloatWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedIntWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedIntWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedLongWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedLongWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedPrimitiveWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedShortWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedShortWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedWithObjTag;
 import edu.columbia.cs.psl.phosphor.struct.multid.MultiDTaintedArray;
 import edu.columbia.cs.psl.phosphor.struct.multid.MultiDTaintedArrayWithIntTag;
 import edu.columbia.cs.psl.phosphor.struct.multid.MultiDTaintedArrayWithObjTag;
@@ -536,7 +516,27 @@ public class TaintUtils {
 	}
 	
 	public static void arraycopy(Object srcTaint, Object src, int srcPosTaint, int srcPos, Object dest, int destPosTaint, int destPos, int lengthTaint, int length) {
-		throw new ArrayStoreException("Can't copy from src with taint to dest w/o taint!");
+		//A pretty tricky modification >_< , do not grantee correctness
+//		System.out.println("Result " + srcTaint + " " + srcPos + " " + destPos + " " + src + " " + ((LazyArrayIntTags)dest).getVal() + " " + length + " " + ((LazyArrayIntTags)dest).taints);
+		if(!src.getClass().isArray() && !dest.getClass().isArray())
+		{
+//			System.out.println("tag 1");
+			System.arraycopy(((LazyArrayIntTags)src).getVal(), srcPos, ((LazyArrayIntTags)dest).getVal(), destPos, length);
+		}
+		else if(!dest.getClass().isArray())
+		{
+//			System.out.println("tag 2 " + length);
+			System.arraycopy(src, srcPos, ((LazyArrayIntTags)dest).getVal(), destPos, length);
+			if (((LazyArrayIntTags)dest).taints == null)
+				((LazyArrayIntTags)dest).taints = new int[((LazyArrayIntTags)dest).getLength()];
+			System.out.println("tag 2 " + ((LazyArrayIntTags)dest).getLength());
+		}
+		else {
+//			System.out.println("tag 3");
+			System.arraycopy(src, srcPos, dest, destPos, length);
+		}
+		System.out.println("finish");
+//		throw new ArrayStoreException("Can't copy from src with taint to dest w/o taint!");
 	}
 
 	public static void arraycopy(Object src, int srcPosTaint, int srcPos, Object destTaint, Object dest, int destPosTaint, int destPos, int lengthTaint, int length) {

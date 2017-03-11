@@ -1,23 +1,8 @@
 package edu.columbia.cs.psl.phosphor.runtime;
 
-import edu.columbia.cs.psl.phosphor.struct.LazyArrayIntTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyBooleanArrayIntTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyByteArrayIntTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyCharArrayIntTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyDoubleArrayIntTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyFloatArrayIntTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyIntArrayIntTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyLongArrayIntTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyShortArrayIntTags;
-import edu.columbia.cs.psl.phosphor.struct.TaintedBooleanWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedByteWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedCharWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedDoubleWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedFloatWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedIntWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedLongWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedShortWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedWithIntTag;
+import edu.columbia.cs.psl.phosphor.struct.*;
+
+import java.lang.reflect.Field;
 
 public class Tainter {
 	public static void taintedObject(Object obj, int tag)
@@ -30,6 +15,32 @@ public class Tainter {
 			obj = ((LazyArrayIntTags) obj).getVal();
 		if(obj instanceof TaintedWithIntTag)
 			((TaintedWithIntTag) obj).setPHOSPHOR_TAG(tag);
+		Field[] fields = obj.getClass().getDeclaredFields();
+		for (Field f:
+			 fields) {
+			try {
+				f.setAccessible(true);
+				Object ob = f.get(obj);
+
+				if (ob == null) continue;
+
+				// Do nothing for normal fields
+				if (f.getName().contains("PHOSPHOR_TAG")) {
+					Class t = f.getType();
+					if (t == int.class) {
+						f.set(obj, tag);
+					} else if (LazyArrayIntTags.class.isAssignableFrom(t)) {
+						((LazyArrayIntTags)ob).setTaints(tag);
+						f.set(obj, ob);
+					}
+					Object m = f.get(obj);
+				}
+			} catch (IllegalAccessException e) {
+				//ignore
+			} catch (IllegalArgumentException k) {
+				//ignore
+			}
+		}
 	}
 	public static int getTaint(Object obj)
 	{
@@ -37,8 +48,46 @@ public class Tainter {
 	}
 	public static TaintedIntWithIntTag getTaint$$PHOSPHORTAGGED(Object obj,TaintedIntWithIntTag ret)
 	{
+		/*
 		if(obj instanceof TaintedWithIntTag)
 			ret.val = ((TaintedWithIntTag) obj).getPHOSPHOR_TAG();
+		return ret;
+		*/
+
+		/**
+		 * Also get taint in the fields
+		 */
+
+		int taint = 0;
+		Field[] fields = obj.getClass().getDeclaredFields();
+		for (Field f :
+				fields) {
+			try {
+				f.setAccessible(true);
+				Object ob = f.get(obj);
+				if (ob == null)
+					continue;
+				int tag;
+				if (LazyArrayIntTags.class.isAssignableFrom(ob.getClass())) {
+					LazyArrayIntTags tClass = ((LazyArrayIntTags)ob);
+					tag = (tClass.taints == null || tClass.taints.length == 0)? 0 : ((LazyArrayIntTags)ob).taints[0];
+				} else if (TaintedPrimitiveWithIntTag.class.isAssignableFrom(ob.getClass())) {
+					tag = ((TaintedPrimitiveWithIntTag)ob).taint;
+				} else if (ob instanceof TaintedWithIntTag) {
+					tag = ((TaintedWithIntTag) ob).getPHOSPHOR_TAG();
+				} else {
+					continue;
+				}
+				taint =  tag | taint;
+			} catch (IllegalAccessException e) {
+				//Ignore
+			}
+		}
+		if(obj instanceof TaintedWithIntTag)
+			ret.val = ((TaintedWithIntTag)obj).getPHOSPHOR_TAG() | taint;
+		else {
+			ret.val |=  taint;
+		}
 		return ret;
 	}
 	public static TaintedShortWithIntTag taintedShort$$PHOSPHORTAGGED(int i, short s, int z, int tag, TaintedShortWithIntTag ret)
