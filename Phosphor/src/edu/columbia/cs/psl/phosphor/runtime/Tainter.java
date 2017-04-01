@@ -1,10 +1,45 @@
 package edu.columbia.cs.psl.phosphor.runtime;
 
+import edu.columbia.cs.psl.phosphor.TaintUtils;
 import edu.columbia.cs.psl.phosphor.struct.*;
 
 import java.lang.reflect.Field;
 
 public class Tainter {
+
+	/**
+	 * fix the problem of init of obj in stream
+	*/
+
+	public static void fixStreamObject(Object obj) {
+		throw new IllegalStateException("Phosphor not engaged");
+	}
+	public static void fixStreamObject$$PHOSPHORTAGGED(Object obj) {
+		// usd declared or not
+		Class c = obj.getClass();
+		Field[] fs = c.getFields();
+		for (Field f:
+			 fs) {
+			/* we only need to modify the tag for array */
+			String field_name = f.getName();
+			if (field_name.endsWith("PHOSPHOR_TAG") && LazyArrayIntTags.class.isAssignableFrom(f.getType())) {
+				String original_name = f.getName().substring(0, field_name.length() - 12);
+				try {
+					f.setAccessible(true);
+					Field of = c.getDeclaredField(original_name);
+					of.setAccessible(true);
+					Object ob = of.get(obj);
+					// change it????
+					f.set(obj, new LazyIntArrayIntTags(((LazyIntArrayIntTags)ob).val));
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				} catch (NoSuchFieldException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
 	public static void taintedObject(Object obj, int tag)
 	{
 		throw new IllegalStateException("Phosphor not engaged");
@@ -46,6 +81,10 @@ public class Tainter {
 	{
 		throw new IllegalStateException("Phosphor not engaged");
 	}
+
+	/**
+	 * We get all tags including the tags from the subclass, we may change that to another api
+	*/
 	public static TaintedIntWithIntTag getTaint$$PHOSPHORTAGGED(Object obj,TaintedIntWithIntTag ret)
 	{
 		/*
@@ -80,6 +119,8 @@ public class Tainter {
 				}
 				taint =  tag | taint;
 			} catch (IllegalAccessException e) {
+				//Ignore
+			} catch (IllegalArgumentException e) {
 				//Ignore
 			}
 		}
