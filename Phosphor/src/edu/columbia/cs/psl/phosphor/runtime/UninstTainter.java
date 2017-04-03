@@ -27,13 +27,16 @@ public class UninstTainter {
         // usd declared or not
         if (obj == null) return;
         Class c = obj.getClass();
-        Field[] fs = c.getDeclaredFields();
+        Field[] fs = c.getFields();
         for (Field f:
                 fs) {
 			/* we only need to modify the tag for array */
             String field_name = f.getName();
             // we need to fix problem recusively
-            Class dc = f.getType();
+//            Class dc = f.getType();
+
+            /*
+             ** we do not need to do that as the de-serialization will do that
             if (!isArrayOrPrimitive(dc) && !field_name.endsWith("PHOSPHOR_TAG")) {
                 try {
                     f.setAccessible(true);
@@ -41,7 +44,7 @@ public class UninstTainter {
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
 
             if (field_name.endsWith("PHOSPHOR_TAG") && LazyArrayIntTags.class.isAssignableFrom(f.getType())) {
                 String original_name = f.getName().substring(0, field_name.length() - 12);
