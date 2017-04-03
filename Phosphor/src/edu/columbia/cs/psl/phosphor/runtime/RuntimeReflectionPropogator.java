@@ -75,7 +75,7 @@ public class RuntimeReflectionPropogator {
 		if(LazyArrayIntTags.class.isAssignableFrom(component))
 		{
 			Type t = Type.getType(ret);
-			String newType = "[";
+			String newType = "";
 			for(int i = 0; i < t.getDimensions(); i++)
 				newType += "[";
 			newType += MultiDTaintedArrayWithIntTag.getPrimitiveTypeForWrapper(component);
@@ -89,7 +89,7 @@ public class RuntimeReflectionPropogator {
 		else if(LazyArrayObjTags.class.isAssignableFrom(component))
 		{
 			Type t = Type.getType(ret);
-			String newType = "[";
+			String newType = "";
 			for(int i = 0; i < t.getDimensions(); i++)
 				newType += "[";
 			newType += MultiDTaintedArrayWithObjTag.getPrimitiveTypeForWrapper(component);

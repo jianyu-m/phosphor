@@ -146,6 +146,7 @@ public class Instrumenter {
 				//																|| owner.startsWith("java/awt/image/BufferedImage")
 				//																|| owner.equals("java/awt/Image")
 				|| (owner.startsWith("edu/columbia/cs/psl/phosphor") && ! owner.equals(Type.getInternalName(Tainter.class)))
+				|| (owner.startsWith("sun/reflect/UnsafeObjectFieldAccessorImp"))
 				||owner.startsWith("sun/awt/image/codec/")
 								|| (owner.startsWith("sun/reflect/Reflection")) //was on last
 				|| owner.equals("java/lang/reflect/Proxy") //was on last

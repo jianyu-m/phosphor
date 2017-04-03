@@ -2,6 +2,7 @@ package edu.columbia.cs.psl.phosphor.runtime;
 
 import edu.columbia.cs.psl.phosphor.TaintUtils;
 import edu.columbia.cs.psl.phosphor.struct.*;
+import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
 
@@ -11,10 +12,10 @@ public class Tainter {
 	 * fix the problem of init of obj in stream
 	*/
 
+//	public static void fixStreamObject(Object obj) {
+//		throw new IllegalStateException("Phosphor not engaged");
+//	}
 	public static void fixStreamObject(Object obj) {
-		throw new IllegalStateException("Phosphor not engaged");
-	}
-	public static void fixStreamObject$$PHOSPHORTAGGED(Object obj) {
 		// usd declared or not
 		Class c = obj.getClass();
 		Field[] fs = c.getFields();
@@ -30,7 +31,7 @@ public class Tainter {
 					of.setAccessible(true);
 					Object ob = of.get(obj);
 					// change it????
-					f.set(obj, new LazyIntArrayIntTags(((LazyIntArrayIntTags)ob).val));
+					f.set(obj, new LazyIntArrayIntTags(3));
 				} catch (IllegalAccessException e) {
 					e.printStackTrace();
 				} catch (NoSuchFieldException e) {
