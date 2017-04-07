@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import edu.columbia.cs.psl.phosphor.runtime.*;
 import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.FieldVisitor;
@@ -30,11 +31,6 @@ import edu.columbia.cs.psl.phosphor.Configuration;
 import edu.columbia.cs.psl.phosphor.Instrumenter;
 import edu.columbia.cs.psl.phosphor.TaintUtils;
 import edu.columbia.cs.psl.phosphor.instrumenter.analyzer.NeverNullArgAnalyzerAdapter;
-import edu.columbia.cs.psl.phosphor.runtime.NativeHelper;
-import edu.columbia.cs.psl.phosphor.runtime.TaintChecker;
-import edu.columbia.cs.psl.phosphor.runtime.TaintInstrumented;
-import edu.columbia.cs.psl.phosphor.runtime.TaintSentinel;
-import edu.columbia.cs.psl.phosphor.runtime.UninstrumentedTaintSentinel;
 import edu.columbia.cs.psl.phosphor.struct.ControlTaintTagStack;
 import edu.columbia.cs.psl.phosphor.struct.LazyArrayIntTags;
 import edu.columbia.cs.psl.phosphor.struct.LazyArrayObjTags;
@@ -52,6 +48,35 @@ import edu.columbia.cs.psl.phosphor.struct.multid.MultiDTaintedArrayWithObjTag;
  * @author jon
  * 
  */
+
+class StreamObjectMethodVisitor extends MethodVisitor {
+	StreamObjectMethodVisitor(MethodVisitor mv) {
+		super(Opcodes.ASM5, mv);
+	}
+
+	@Override
+	public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itfc) {
+		if (owner.equals("sun/misc/Unsafe") && name.equals("putObjectWrapper")) {
+			System.out.println(desc);
+			desc = "(Lsun/misc/Unsafe;Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Class;)V";
+			super.visitMethodInsn(Opcodes.INVOKESTATIC,
+					Type.getInternalName(StreamObjectHelper.class),
+					name, desc, itfc);
+			System.out.println("found");
+			return;
+		} else if (owner.equals("sun/misc/Unsafe") && name.equals("putObjectWrapper$$PHOSPHORTAGGED")) {
+			System.out.println(desc);
+			desc = "(Lsun/misc/Unsafe;Ljava/lang/Object;IJLjava/lang/Object;Ljava/lang/Class;)V";
+			super.visitMethodInsn(Opcodes.INVOKESTATIC,
+					Type.getInternalName(StreamObjectHelper.class),
+					name, desc, itfc);
+			System.out.println("found-tag");
+			return;
+		}
+		super.visitMethodInsn(opcode, owner, name, desc, itfc);
+	}
+}
+
 public class TaintTrackingClassVisitor extends ClassVisitor {
 	public static boolean IS_RUNTIME_INST = true;
 	public static boolean FIELDS_ONLY = false;
@@ -398,6 +423,9 @@ public class TaintTrackingClassVisitor extends ClassVisitor {
 //			if(className.equals("sun/misc/URLClassPath$JarLoader"))
 //				System.out.println("\t\t:"+name+newDesc);
 			MethodVisitor mv = super.visitMethod(access, name, newDesc, signature, exceptions);
+
+//			mv = new StreamObjectMethodVisitor(mv);
+
 			mv = new TaintTagFieldCastMV(mv);
 
 			MethodVisitor rootmV = mv;

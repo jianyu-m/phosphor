@@ -27,6 +27,39 @@ public class UninstTainter {
         // usd declared or not
         if (obj == null) return;
         Class c = obj.getClass();
+
+        Field[] fa = c.getDeclaredFields();
+        for (Field f :
+                fa) {
+            String field_name = f.getName();
+            if (field_name.endsWith("PHOSPHOR_TAG") || f.getType() != Object.class) {
+                continue;
+            }
+            boolean foundTag = false;
+            String tag_field = field_name + "PHOSPHOR_TAG";
+            try {
+                c.getField(tag_field);
+                foundTag =true;
+            } catch (NoSuchFieldException e) {
+                foundTag = false;
+            }
+            if (!foundTag) {
+                f.setAccessible(true);
+                try {
+                    Object ob = f.get(obj);
+                    Class obClass = ob.getClass();
+                    if (LazyArrayIntTags.class.isAssignableFrom(obClass)) {
+                        f.set(obj, new LazyIntArrayIntTags((int[])ob));
+                    } else if (int[].class.isAssignableFrom(obClass)) {
+                        f.set(obj, new LazyIntArrayIntTags((int[])ob));
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
         Field[] fs = c.getFields();
         for (Field f:
                 fs) {
@@ -54,7 +87,9 @@ public class UninstTainter {
                     of.setAccessible(true);
                     Object ob = of.get(obj);
                     // change it????
-                    f.set(obj, of.get(obj));
+                    if (int[].class.isAssignableFrom(ob.getClass())) {
+                        f.set(obj, new LazyIntArrayIntTags((int[])ob));
+                    }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 } catch (NoSuchFieldException e) {
