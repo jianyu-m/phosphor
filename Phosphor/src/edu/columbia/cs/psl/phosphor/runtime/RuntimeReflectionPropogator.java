@@ -1072,6 +1072,42 @@ public class RuntimeReflectionPropogator {
 		f.setAccessible(true);
 		f.set(obj, val);
 	}
+	public static Class getDeclaringClass(Field f) {
+		Class<?> ret = f.getDeclaringClass();
+		Class<?> component = ret;
+		while(component.isArray())
+			component = component.getComponentType();
+		if(LazyArrayIntTags.class.isAssignableFrom(component))
+		{
+			Type t = Type.getType(ret);
+			String newType = "";
+			for(int i = 0; i < t.getDimensions(); i++)
+				newType += "[";
+			newType += MultiDTaintedArrayWithIntTag.getPrimitiveTypeForWrapper(component);
+			try {
+				ret = Class.forName(newType);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(LazyArrayObjTags.class.isAssignableFrom(component))
+		{
+			Type t = Type.getType(ret);
+			String newType = "";
+			for(int i = 0; i < t.getDimensions(); i++)
+				newType += "[";
+			newType += MultiDTaintedArrayWithObjTag.getPrimitiveTypeForWrapper(component);
+			try {
+				ret = Class.forName(newType);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return ret;
+	}
+
 	public static void set(Field f, Object obj, Object val, boolean isObjTags) throws IllegalArgumentException, IllegalAccessException {
 		if (f.getType().isPrimitive()) {
 			if (val instanceof Integer && f.getType().equals(Integer.TYPE)) {

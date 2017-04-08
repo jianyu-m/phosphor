@@ -238,6 +238,7 @@ public class ReflectionHidingMV extends MethodVisitor implements Opcodes {
 		if (owner.equals("java/lang/reflect/Field")
 				&& opcode == Opcodes.INVOKEVIRTUAL
 				&& (name.equals("get") || name.equals("get$$PHOSPHORTAGGED") || name.equals("set$$PHOSPHORTAGGED") || name.equals("getInt$$PHOSPHORTAGGED") || name.equals("getBoolean$$PHOSPHORTAGGED") || name.equals("getChar$$PHOSPHORTAGGED")
+//						|| name.equals("getDeclaringClass")
 						|| name.equals("getDouble$$PHOSPHORTAGGED") || name.equals("getByte$$PHOSPHORTAGGED") || name.equals("getFloat$$PHOSPHORTAGGED") || name.equals("getLong$$PHOSPHORTAGGED")
 						|| name.equals("getShort$$PHOSPHORTAGGED") || name.equals("setAccessible$$PHOSPHORTAGGED") || name.equals("set") || name.equals("setInt$$PHOSPHORTAGGED")
 						|| name.equals("setBoolean$$PHOSPHORTAGGED") || name.equals("setChar$$PHOSPHORTAGGED") || name.equals("setDouble$$PHOSPHORTAGGED") || name.equals("setByte$$PHOSPHORTAGGED")
@@ -286,7 +287,6 @@ public class ReflectionHidingMV extends MethodVisitor implements Opcodes {
 		} else if (owner.equals("java/lang/Object") && name.equals("getClass")) {
 			super.visitInsn((Configuration.MULTI_TAINTING ? ICONST_1 : ICONST_0));
 			super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(ReflectionMasker.class), "removeTaintClass", "(Ljava/lang/Class;Z)Ljava/lang/Class;", false);
-
 		}
 
 		if ((owner.equals("java/lang/reflect/Method") || owner.equals("java/lang/reflect/Constructor")) && !(className.equals("java/lang/Class")) && 

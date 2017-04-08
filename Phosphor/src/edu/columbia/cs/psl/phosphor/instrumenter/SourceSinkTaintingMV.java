@@ -85,26 +85,36 @@ public class SourceSinkTaintingMV extends MethodVisitor implements Opcodes {
 			if (!isStatic)
 				idx++;
 			boolean skipNextPrimitive = false;
-			for (int i = 0; i < args.length; i++) {
-				if ((args[i].getSort() == Type.OBJECT && !args[i].getDescriptor().equals(Configuration.TAINT_TAG_DESC)) || args[i].getSort() == Type.ARRAY) {
-					if (args[i].getSort() == Type.ARRAY && (args[i].getElementType().getSort() != Type.OBJECT || args[i].getDescriptor().equals(Configuration.TAINT_TAG_ARRAYDESC))
-							&& args[i].getDimensions() == 1) {
-						if (!skipNextPrimitive) {
-							super.visitVarInsn(ALOAD, idx);
-							super.visitMethodInsn(INVOKESTATIC, Type.getInternalName(TaintChecker.class), "checkTaint", "(Ljava/lang/Object;)V", false);
-						}
-						skipNextPrimitive = !skipNextPrimitive;
+			for (Type arg: args) {
+				/*
+				 ** for a tainted method, it always comes with a taint first, then
+				  * comes the object, for the general object, it does not have any
+				  * taint
+				*/
+
+				if ((arg.getSort() == Type.OBJECT && !arg.getDescriptor().equals(Configuration.TAINT_TAG_DESC))) {
+				// is object, keep the next one
+					super.visitVarInsn(ALOAD, idx);
+					super.visitMethodInsn(INVOKESTATIC, Type.getInternalName(TaintChecker.class), "checkTaint", "(Ljava/lang/Object;)V", false);
+					if (arg.getInternalName().startsWith("edu/columbia/cs/psl/phosphor/struct")) {
+						skipNextPrimitive = true;
 					} else {
-						super.visitVarInsn(ALOAD, idx);
-						super.visitMethodInsn(INVOKESTATIC, Type.getInternalName(TaintChecker.class), "checkTaint", "(Ljava/lang/Object;)V", false);
+						skipNextPrimitive = false;
 					}
-				} else if (!skipNextPrimitive) {
+				}
+				else if (arg.getDescriptor().equals(Configuration.TAINT_TAG_DESC) && !skipNextPrimitive) {
+					// is the taint, skip next one
 					super.visitVarInsn(Configuration.TAINT_LOAD_OPCODE, idx);
 					super.visitMethodInsn(INVOKESTATIC, Type.getInternalName(TaintChecker.class), "checkTaint", "(" + Configuration.TAINT_TAG_DESC + ")V", false);
 					skipNextPrimitive = true;
-				} else if (skipNextPrimitive)
+				} else if (skipNextPrimitive) {
+					// should be the primitive, skip
 					skipNextPrimitive = false;
-				idx += args[i].getSize();
+				} else {
+					// should be the primitive but not skip, throw error
+					throw new IllegalArgumentException("primitive not skip");
+				}
+				idx += arg.getSize();
 			}
 		}
 	}

@@ -64,18 +64,15 @@ public abstract class SourceSinkManager {
 		boolean isSkipping = false;
 		for (Type t : Type.getArgumentTypes(desc)) {
 			if (t.getSort() == Type.ARRAY) {
-				if (!isSkipping)
-					isSkipping = true;
-				else {
-					r += t.getDescriptor();
-					isSkipping = !isSkipping;
-				}
+				r += t.getDescriptor();
 			} else if (t.getSort() != Type.OBJECT) {
-				if (!isSkipping)
-					isSkipping = true;
-				else {
+				// is a primitive, then there will be a tag before
+				if (isSkipping) {
 					r += t.getDescriptor();
-					isSkipping = !isSkipping;
+					isSkipping = false;
+				} else {
+					// this may be the tag, then skip it
+					isSkipping = true;
 				}
 			} else if (t.getInternalName().startsWith("edu/columbia/cs/psl/phosphor/struct/multid")) {
 				r += MultiDTaintedArrayWithIntTag.getPrimitiveTypeForWrapper(t.getDescriptor()).getDescriptor();
