@@ -15,6 +15,7 @@ import java.security.MessageDigest;
 import java.security.ProtectionDomain;
 import java.util.List;
 
+import edu.columbia.cs.psl.phosphor.runtime.TaintChecker;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
@@ -464,6 +465,18 @@ public class PreMain {
 					Instrumenter.sourcesFile = s.substring(13);
 				} else if (s.startsWith("taintSinks=")) {
 					Instrumenter.sinksFile = s.substring(11);
+				} else if (s.startsWith("checkTaint=")) {
+					if (s.substring(11).equals("true")) {
+						TaintChecker.setCheckTaintOn(true);
+					} else {
+						TaintChecker.setCheckTaintOn(false);
+					}
+				} else if (s.startsWith("checkTaintIgnore=")) {
+					int checkTaintIgnore = Integer.valueOf(s.substring(17));
+					TaintChecker.setIgnoreTags(checkTaintIgnore);
+				} else if (s.startsWith("checkTaintIgnoreAll=")) {
+					int checkTaintIgnoreAll = Integer.valueOf(s.substring(20));
+					TaintChecker.setIgnoreAllTags(checkTaintIgnoreAll);
 				}
 			}
 		}

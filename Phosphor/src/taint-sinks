@@ -1,6 +1,6 @@
-#java/io/OutputStream.write(I)V
-#java/io/OutputStream.write([B)V
-#java/io/OutputStream.write([BII)V
+java/io/OutputStream.write(I)V
+java/io/OutputStream.write([B)V
+java/io/OutputStream.write([BII)V
 #java/io/PrintStream.println(Ljava/lang/String;)V
 #java/io/PrintStream.println(Ljava/lang/Object;)V
 #phosphor/test/SourceSinkTest.sink(Ljava/lang/Object;)V

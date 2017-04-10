@@ -8,10 +8,59 @@ import edu.columbia.cs.psl.phosphor.struct.LazyCharArrayObjTags;
 import edu.columbia.cs.psl.phosphor.struct.TaintedWithIntTag;
 import edu.columbia.cs.psl.phosphor.struct.TaintedWithObjTag;
 
+import java.io.*;
+import java.util.HashSet;
+
 public class TaintChecker {
+
+	// ignore the tag in specific location
+	static private int ignoreTags = ~0;
+
+	// ignore all tags if specific tag appears
+	static private int ignoreAllTags = 0;
+
+	static private boolean checkTaintOn = false;
+
+	public static void setCheckTaintOn(Boolean on) {
+		checkTaintOn = on;
+	}
+
+	public static void setIgnoreAllTags(int tags) {
+		ignoreAllTags = tags;
+	}
+
+	public static void setIgnoreTags(int ignore) {
+		ignoreTags = ~ignore;
+	}
+
+	public static void setIgnoreTags$$PHOSPHORTAGGED(int tag, int ignore) {
+		ignoreTags = ~ignore;
+	}
+
+	public static void addIgnoreTags(int position) {
+		ignoreTags &= ~(1 << position);
+	}
+
+	public static void addIgnoreTags$$PHOSPHORTAGGED(int tag, int position) {
+		ignoreTags &= ~(1 << position);
+	}
+
+	private static int removeIgnores(int tag) {
+		if ((tag & ignoreAllTags) != 0) {
+			return 0;
+		}
+		return tag & ignoreTags;
+	}
+
+	static Taint removeIgnores(Taint t) {
+		throw new IllegalAccessError("not support");
+	}
+
 	public static void checkTaint(int tag)
 	{
-		if(tag != 0)
+		if (!checkTaintOn)
+			return;
+		if (removeIgnores(tag) != 0)
 			throw new IllegalAccessError("Argument carries taint " + tag);
 	}
 	public static void checkTaint(Taint tag)
@@ -20,10 +69,13 @@ public class TaintChecker {
 			throw new IllegalAccessError("Argument carries taint " + tag);
 	}
 	public static void checkTaint(Object obj) {
+		if (!checkTaintOn) {
+			return;
+		}
 		if(obj == null)
 			return;
 		if (obj instanceof TaintedWithIntTag) {
-			if (((TaintedWithIntTag) obj).getPHOSPHOR_TAG() != 0)
+			if (removeIgnores(((TaintedWithIntTag) obj).getPHOSPHOR_TAG()) != 0)
 				throw new IllegalAccessError("Argument carries taint " + ((TaintedWithIntTag) obj).getPHOSPHOR_TAG());
 		}
 		else if (obj instanceof TaintedWithObjTag) {
@@ -35,7 +87,7 @@ public class TaintChecker {
 		{
 			for(int i : ((int[])obj))
 			{
-				if(i > 0)
+				if(removeIgnores(i) > 0)
 					throw new IllegalAccessError("Argument carries taints - example: " +i);
 			}
 		}
@@ -44,7 +96,7 @@ public class TaintChecker {
 			LazyArrayIntTags tags = ((LazyArrayIntTags) obj);
 			if (tags.taints != null)
 				for (int i : tags.taints) {
-					if (i > 0)
+					if (removeIgnores(i) > 0)
 						throw new IllegalAccessError("Argument carries taints - example: " + i);
 				}
 		}
