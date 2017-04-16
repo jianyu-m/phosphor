@@ -59,7 +59,7 @@ public class Tainter {
 		 */
 
 		int taint = 0;
-		Field[] fields = obj.getClass().getDeclaredFields();
+/*		Field[] fields = obj.getClass().getDeclaredFields();
 		for (Field f :
 				fields) {
 			try {
@@ -82,7 +82,7 @@ public class Tainter {
 			} catch (IllegalAccessException e) {
 				//Ignore
 			}
-		}
+		}*/
 		if(obj instanceof TaintedWithIntTag)
 			ret.val = ((TaintedWithIntTag)obj).getPHOSPHOR_TAG() | taint;
 		else {
