@@ -401,6 +401,8 @@ public class TaintTrackingClassVisitor extends ClassVisitor {
 
 			mv = new StreamObjectMV(mv);
 
+			mv = new ArrayObjectMV(mv);
+
 			mv = new TaintTagFieldCastMV(mv);
 
 			MethodVisitor rootmV = mv;

@@ -1,2178 +1,201 @@
 // class version 52.0 (52)
-// access flags 0x20
-class java/io/ObjectStreamClass$FieldReflector implements edu/columbia/cs/psl/phosphor/struct/TaintedWithObjTag  {
+// access flags 0x30
+// signature Ljava/lang/Object;Lsun/security/util/Cache$CacheVisitor<Lsun/security/ssl/SessionId;Lsun/security/ssl/SSLSessionImpl;>;Ledu/columbia/cs/psl/phosphor/struct/TaintedWithIntTag;
+// declaration: sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor implements sun.security.util.Cache$CacheVisitor<sun.security.ssl.SessionId, sun.security.ssl.SSLSessionImpl>, edu.columbia.cs.psl.phosphor.struct.TaintedWithIntTag
+final class sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor implements sun/security/util/Cache$CacheVisitor edu/columbia/cs/psl/phosphor/struct/TaintedWithIntTag  {
 
 
   @Ledu/columbia/cs/psl/phosphor/runtime/TaintInstrumented;() // invisible
-  // compiled from: ObjectStreamClass.java
-  // access flags 0xA
-  private static INNERCLASS java/io/ObjectStreamClass$FieldReflector java/io/ObjectStreamClass FieldReflector
-
-  // access flags 0x1A
-  private final static Lsun/misc/Unsafe; unsafe
-
-  // access flags 0x12
-  private final [Ljava/io/ObjectStreamField; fields
-
-  // access flags 0x12
-  private final I numPrimFields
-
-  // access flags 0x12
-  private final [J readKeys
-
-  // access flags 0x12
-  private final [J writeKeys
-
-  // access flags 0x12
-  private final [I offsets
-
-  // access flags 0x12
-  private final [C typeCodes
-
-  // access flags 0x12
-  // signature [Ljava/lang/Class<*>;
-  // declaration: java.lang.Class<?>[]
-  private final [Ljava/lang/Class; types
+  // compiled from: SSLSessionContextImpl.java
+  // access flags 0x609
+  public static abstract INNERCLASS sun/security/util/Cache$CacheVisitor sun/security/util/Cache CacheVisitor
+  // access flags 0x10
+  final INNERCLASS sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor sun/security/ssl/SSLSessionContextImpl SessionCacheVisitor
 
   // access flags 0x0
-  <init>([Ljava/io/ObjectStreamField;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
+  // signature Ljava/util/Vector<[B>;
+  // declaration: java.util.Vector<byte[]>
+  Ljava/util/Vector; ids
+
+  // access flags 0x1010
+  final synthetic Lsun/security/ssl/SSLSessionContextImpl; this$0
+
+  // access flags 0x0
+  <init>(Lsun/security/ssl/SSLSessionContextImpl;)V
    L0
    L1
-    ACONST_NULL
-    ASTORE 4
-    ACONST_NULL
-    ASTORE 5
-    ACONST_NULL
-    ASTORE 6
-    ACONST_NULL
-    ASTORE 7
-    ACONST_NULL
-    ASTORE 8
-    ACONST_NULL
-    ASTORE 9
    L2
    L3
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.<init> ()V
-    ASTORE 10
-   L4
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.<init> ()V
-    ASTORE 11
-   L5
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.<init> ()V
-    ASTORE 12
-   L6
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.<init> ()V
-    ASTORE 13
-   L7
-   L8
-    LINENUMBER 1928 L8
+    LINENUMBER 231 L3
+    ALOAD 0
+    ALOAD 1
+    PUTFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.this$0 : Lsun/security/ssl/SSLSessionContextImpl;
     ALOAD 0
     INVOKESPECIAL java/lang/Object.<init> ()V
-   L9
-    LINENUMBER 1929 L9
-    ALOAD 0
-    ALOAD 1
-    PUTFIELD java/io/ObjectStreamClass$FieldReflector.fields : [Ljava/io/ObjectStreamField;
-   L10
-    LINENUMBER 1930 L10
-    ALOAD 1
-    DUP
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/TaintUtils.getTaintObj (Ljava/lang/Object;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    ARRAYLENGTH
-    SWAP
-    ALOAD 2
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-   L11
-    ISTORE 14
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.copyTaint (Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 15
-   L12
-    LINENUMBER 1931 L12
-    ALOAD 0
-    ILOAD 14
-    NEWARRAY T_LONG
-    DUP
-   L13
-    NEW edu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags
-    DUP_X1
-    SWAP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags.<init> ([J)V
-    SWAP
-    DUP2_X1
-    POP2
-    DUP_X2
-    SWAP
-    PUTFIELD java/io/ObjectStreamClass$FieldReflector.readKeys : [J
-    PUTFIELD java/io/ObjectStreamClass$FieldReflector.readKeysPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags;
-   L14
-    LINENUMBER 1932 L14
-    ALOAD 0
-    ILOAD 14
-    NEWARRAY T_LONG
-    DUP
-   L15
-    NEW edu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags
-    DUP_X1
-    SWAP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags.<init> ([J)V
-    SWAP
-    DUP2_X1
-    POP2
-    DUP_X2
-    SWAP
-    PUTFIELD java/io/ObjectStreamClass$FieldReflector.writeKeys : [J
-    PUTFIELD java/io/ObjectStreamClass$FieldReflector.writeKeysPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags;
-   L16
-    LINENUMBER 1933 L16
-    ALOAD 0
-    ILOAD 14
-    NEWARRAY T_INT
-    DUP
-   L17
-    NEW edu/columbia/cs/psl/phosphor/struct/LazyIntArrayObjTags
-    DUP_X1
-    SWAP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/LazyIntArrayObjTags.<init> ([I)V
-    SWAP
-    DUP2_X1
-    POP2
-    DUP_X2
-    SWAP
-    PUTFIELD java/io/ObjectStreamClass$FieldReflector.offsets : [I
-    PUTFIELD java/io/ObjectStreamClass$FieldReflector.offsetsPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyIntArrayObjTags;
-   L18
-    LINENUMBER 1934 L18
-    ALOAD 0
-    ILOAD 14
-    NEWARRAY T_CHAR
-    DUP
-   L19
-    NEW edu/columbia/cs/psl/phosphor/struct/LazyCharArrayObjTags
-    DUP_X1
-    SWAP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/LazyCharArrayObjTags.<init> ([C)V
-    SWAP
-    DUP2_X1
-    POP2
-    DUP_X2
-    SWAP
-    PUTFIELD java/io/ObjectStreamClass$FieldReflector.typeCodes : [C
-    PUTFIELD java/io/ObjectStreamClass$FieldReflector.typeCodesPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyCharArrayObjTags;
-   L20
-    LINENUMBER 1935 L20
-    NEW java/util/ArrayList
-    DUP
-    ALOAD 2
-    ACONST_NULL
-    INVOKESPECIAL java/util/ArrayList.<init> (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
-    ASTORE 16
-   L21
-    LINENUMBER 1936 L21
-    NEW java/util/HashSet
-    DUP
-    ALOAD 2
-    ACONST_NULL
-    INVOKESPECIAL java/util/HashSet.<init> (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
-    ASTORE 17
-   L22
-    LINENUMBER 1939 L22
-    ALOAD 2
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.copyTag ()Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ICONST_0
-    SWAP
-    ALOAD 2
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-   L23
-    ISTORE 18
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.copyTaint (Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 19
-   L24
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector [Ljava/io/ObjectStreamField; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack T edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint java/util/ArrayList java/util/Set I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 2
-    ALOAD 6
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 2
-    ALOAD 9
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 2
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 2
-    ALOAD 8
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-   L25
-    ALOAD 19
-    ILOAD 18
-   L26
-    ALOAD 15
-    ILOAD 14
-   L27
-    SWAP
-    ASTORE 20
-    DUP2_X1
-    POP2
-    ALOAD 2
-    SWAP
-    ALOAD 2
-    ALOAD 20
-   L28
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 4
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 5
-    IF_ICMPGE L29
-   L30
-   L31
-    LINENUMBER 1940 L31
-    ALOAD 1
-    ILOAD 18
-    AALOAD
-    ASTORE 21
-   L32
-    LINENUMBER 1941 L32
-    ALOAD 21
-    ALOAD 2
-    INVOKEVIRTUAL java/io/ObjectStreamField.getField$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/reflect/Field;
-    ASTORE 22
-   L33
-    LINENUMBER 1942 L33
-    ALOAD 22
-    IFNULL L34
-   L35
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 22
-   L36
-    LINENUMBER 1943 L36
-    ALOAD 2
-    ALOAD 10
-    INVOKEVIRTUAL sun/misc/Unsafe.objectFieldOffset$$PHOSPHORTAGGED (Ljava/lang/reflect/Field;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.val : J
-    GOTO L37
-   L38
-   L34
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector [Ljava/io/ObjectStreamField; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack T edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint java/util/ArrayList java/util/Set I edu/columbia/cs/psl/phosphor/runtime/Taint T java/io/ObjectStreamField java/lang/reflect/Field] []
-    ALOAD 2
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.copyTag ()Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    LDC -1
-   L37
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector [Ljava/io/ObjectStreamField; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack T edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint java/util/ArrayList java/util/Set I edu/columbia/cs/psl/phosphor/runtime/Taint T java/io/ObjectStreamField java/lang/reflect/Field] [edu/columbia/cs/psl/phosphor/runtime/Taint J]
-    DUP2_X1
-    POP2
-    ALOAD 2
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    DUP_X2
-    POP
-   L39
-    LSTORE 23
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.copyTaint (Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 25
-   L40
-    LINENUMBER 1944 L40
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.readKeysPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.readKeys : [J
-    ILOAD 18
-   L41
-    ALOAD 25
-    LLOAD 23
-    ALOAD 2
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags.setImplicit ([JILedu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L42
-    LINENUMBER 1945 L42
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.writeKeysPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.writeKeys : [J
-    ILOAD 18
-    ALOAD 17
-   L43
-    ALOAD 25
-    LLOAD 23
-    ALOAD 2
-    INVOKESTATIC java/lang/Long.valueOf$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/Long;
-    ALOAD 2
-    ALOAD 13
-    INVOKEINTERFACE java/util/Set.add$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.val : Z
-    SWAP
-    ALOAD 2
-    SWAP
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 7
-    IFEQ L44
-   L45
-   L46
-    ALOAD 25
-    LLOAD 23
-    GOTO L47
-   L48
-   L44
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector [Ljava/io/ObjectStreamField; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack T edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint java/util/ArrayList java/util/Set I edu/columbia/cs/psl/phosphor/runtime/Taint T java/io/ObjectStreamField java/lang/reflect/Field J edu/columbia/cs/psl/phosphor/runtime/Taint] [edu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags [J I]
-    ALOAD 2
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.copyTag ()Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    LDC -1
-   L47
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector [Ljava/io/ObjectStreamField; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack T edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint java/util/ArrayList java/util/Set I edu/columbia/cs/psl/phosphor/runtime/Taint T java/io/ObjectStreamField java/lang/reflect/Field J edu/columbia/cs/psl/phosphor/runtime/Taint] [edu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags [J I edu/columbia/cs/psl/phosphor/runtime/Taint J]
-    ALOAD 2
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags.setImplicit ([JILedu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L49
-    LINENUMBER 1947 L49
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.offsetsPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyIntArrayObjTags;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.offsets : [I
-    ILOAD 18
-    ALOAD 21
-    ALOAD 2
-    ALOAD 11
-    INVOKEVIRTUAL java/io/ObjectStreamField.getOffset$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.val : I
-    ALOAD 2
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyIntArrayObjTags.setImplicit ([IILedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L50
-    LINENUMBER 1948 L50
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.typeCodesPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyCharArrayObjTags;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.typeCodes : [C
-    ILOAD 18
-    ALOAD 21
-    ALOAD 2
-    ALOAD 12
-    INVOKEVIRTUAL java/io/ObjectStreamField.getTypeCode$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.val : C
-    ALOAD 2
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyCharArrayObjTags.setImplicit ([CILedu/columbia/cs/psl/phosphor/runtime/Taint;CLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L51
-    LINENUMBER 1949 L51
-    ALOAD 21
-    ALOAD 2
-    ALOAD 13
-    INVOKEVIRTUAL java/io/ObjectStreamField.isPrimitive$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.val : Z
-    SWAP
-    ALOAD 2
-    SWAP
-    ALOAD 8
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 8
-    IFNE L52
-   L53
-   L54
-    LINENUMBER 1950 L54
-    ALOAD 16
-    ALOAD 22
-    IFNULL L55
-   L56
-    ALOAD 22
-    ALOAD 2
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/RuntimeReflectionPropogator.getType$$PHOSPHORTAGGED (Ljava/lang/reflect/Field;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/Class;
-    GOTO L57
-   L58
-   L55
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector [Ljava/io/ObjectStreamField; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack T edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint java/util/ArrayList java/util/Set I edu/columbia/cs/psl/phosphor/runtime/Taint T java/io/ObjectStreamField java/lang/reflect/Field J edu/columbia/cs/psl/phosphor/runtime/Taint] [java/util/ArrayList]
-    ACONST_NULL
-   L57
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector [Ljava/io/ObjectStreamField; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack T edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint java/util/ArrayList java/util/Set I edu/columbia/cs/psl/phosphor/runtime/Taint T java/io/ObjectStreamField java/lang/reflect/Field J edu/columbia/cs/psl/phosphor/runtime/Taint] [java/util/ArrayList java/lang/Class]
-    ALOAD 2
-    ALOAD 13
-    INVOKEVIRTUAL java/util/ArrayList.add$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag;
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.val : Z
-    POP
-   L52
-    LINENUMBER 1939 L52
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector [Ljava/io/ObjectStreamField; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack T edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint java/util/ArrayList java/util/Set I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 19
-    ALOAD 2
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 19
-    IINC 18 1
-    GOTO L24
-   L59
-   L29
-    LINENUMBER 1954 L29
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector [Ljava/io/ObjectStreamField; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack T edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint java/util/ArrayList java/util/Set] []
-    ALOAD 0
-    ALOAD 16
-    ALOAD 16
-    ALOAD 2
-    ALOAD 11
-    INVOKEVIRTUAL java/util/ArrayList.size$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag;
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.val : I
-    ANEWARRAY java/lang/Class
-    ALOAD 2
-    INVOKEVIRTUAL java/util/ArrayList.toArray$$PHOSPHORTAGGED ([Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)[Ljava/lang/Object;
-    CHECKCAST [Ljava/lang/Class;
-    PUTFIELD java/io/ObjectStreamClass$FieldReflector.types : [Ljava/lang/Class;
-   L60
-    LINENUMBER 1955 L60
-    ALOAD 0
-   L61
-    ALOAD 15
-    ILOAD 14
-    ALOAD 0
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.types : [Ljava/lang/Class;
-    DUP
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/TaintUtils.getTaintObj (Ljava/lang/Object;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    ARRAYLENGTH
-    ISTORE 20
-    SWAP
-    ILOAD 20
-   L62
-    ISUB
-    DUP_X2
-    POP
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    SWAP
-    ALOAD 2
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    DUP2_X1
-    POP2
-    DUP_X2
-    SWAP
-    PUTFIELD java/io/ObjectStreamClass$FieldReflector.numPrimFields : I
-    PUTFIELD java/io/ObjectStreamClass$FieldReflector.numPrimFieldsPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-   L63
-    LINENUMBER 1956 L63
-    ALOAD 2
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 2
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    RETURN
-   L64
-    MAXSTACK = 8
-    MAXLOCALS = 26
-
-  // access flags 0x0
-  getFields$$PHOSPHORTAGGED(Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)[Ljava/io/ObjectStreamField;
-   L0
-   L1
-   L2
-   L3
-    LINENUMBER 1965 L3
-    ALOAD 0
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.fields : [Ljava/io/ObjectStreamField;
-    ARETURN
    L4
-    MAXSTACK = 1
+    LINENUMBER 233 L4
+    ALOAD 0
+    ACONST_NULL
+    PUTFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.ids : Ljava/util/Vector;
+    RETURN
+   L5
+    MAXSTACK = 2
     MAXLOCALS = 2
 
-  // access flags 0x0
-  getPrimFieldValues$$PHOSPHORTAGGED(Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
+  // access flags 0x1
+  // signature (Ljava/util/Map<Lsun/security/ssl/SessionId;Lsun/security/ssl/SSLSessionImpl;>;)V
+  // declaration: void visit(java.util.Map<sun.security.ssl.SessionId, sun.security.ssl.SSLSessionImpl>)
+  public visit(Ljava/util/Map;)V
    L0
    L1
-    ACONST_NULL
-    ASTORE 5
-    ACONST_NULL
-    ASTORE 6
-    ACONST_NULL
-    ASTORE 7
-    ACONST_NULL
-    ASTORE 8
    L2
+    NEW edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag
+    DUP
+    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag.<init> ()V
+    ASTORE 2
    L3
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag
+    NEW edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag
     DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.<init> ()V
-    ASTORE 9
+    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag.<init> ()V
+    ASTORE 3
    L4
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag.<init> ()V
-    ASTORE 10
    L5
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag.<init> ()V
-    ASTORE 11
+    LINENUMBER 238 L5
+    ALOAD 0
    L6
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag
+    NEW java/util/Vector
     DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.<init> ()V
-    ASTORE 12
+    ALOAD 1
+    ALOAD 2
+    INVOKEINTERFACE java/util/Map.size$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag;
+    DUP
+    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag.taint : I
+    SWAP
+    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag.val : I
+    ACONST_NULL
+    INVOKESPECIAL java/util/Vector.<init> (IILedu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
+    PUTFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.ids : Ljava/util/Vector;
    L7
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag.<init> ()V
-    ASTORE 13
-   L8
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.<init> ()V
-    ASTORE 14
-   L9
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag.<init> ()V
-    ASTORE 15
-   L10
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.<init> ()V
-    ASTORE 16
-   L11
-   L12
-    LINENUMBER 1974 L12
+    LINENUMBER 240 L7
     ALOAD 1
-    IFNONNULL L13
-   L14
-   L15
-    LINENUMBER 1975 L15
-    NEW java/lang/NullPointerException
-    DUP
-    ALOAD 4
-    ACONST_NULL
-    INVOKESPECIAL java/lang/NullPointerException.<init> (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
-    DUP
-    ALOAD 4
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTagsOnObject (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-    ALOAD 4
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ATHROW
-   L13
-    LINENUMBER 1981 L13
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag] []
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.copyTag ()Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ICONST_0
-    SWAP
-    ALOAD 4
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-   L16
-    ISTORE 17
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.copyTaint (Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 18
-   L17
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-   L18
-    ALOAD 18
-    ILOAD 17
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.numPrimFieldsPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.numPrimFields : I
-   L19
-    SWAP
-    ASTORE 19
-    DUP2_X1
-    POP2
-    ALOAD 4
-    SWAP
-    ALOAD 4
-    ALOAD 19
-   L20
-    ALOAD 6
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 6
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 7
-    IF_ICMPGE L21
-   L22
-   L23
-    LINENUMBER 1982 L23
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.readKeysPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.readKeys : [J
-    ILOAD 17
-    ALOAD 9
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags.getImplicit ([JILedu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.val : J
-    DUP2_X1
-    POP2
-    ALOAD 4
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    DUP_X2
-    POP
-   L24
-    LSTORE 20
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.copyTaint (Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 22
-   L25
-    LINENUMBER 1983 L25
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.offsetsPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyIntArrayObjTags;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.offsets : [I
-    ILOAD 17
-    ALOAD 12
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyIntArrayObjTags.getImplicit ([IILedu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.val : I
-    SWAP
-    ALOAD 4
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-   L26
-    ISTORE 23
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.copyTaint (Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 24
-   L27
-    LINENUMBER 1984 L27
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.typeCodesPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyCharArrayObjTags;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.typeCodes : [C
-    ILOAD 17
-    ALOAD 14
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyCharArrayObjTags.getImplicit ([CILedu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.val : C
-    SWAP
-    ALOAD 4
-    SWAP
-    ALOAD 8
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 8
-    TABLESWITCH
-      66: L28
-      67: L29
-      68: L30
-      69: L31
-      70: L32
-      71: L31
-      72: L31
-      73: L33
-      74: L34
-      75: L31
-      76: L31
-      77: L31
-      78: L31
-      79: L31
-      80: L31
-      81: L31
-      82: L31
-      83: L35
-      84: L31
-      85: L31
-      86: L31
-      87: L31
-      88: L31
-      89: L31
-      90: L36
-      default: L31
-   L36
-    LINENUMBER 1986 L36
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 2
-    ALOAD 3
-   L37
-    ALOAD 24
-    ILOAD 23
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L38
-    ALOAD 22
-    LLOAD 20
-    ALOAD 4
-    ALOAD 16
-    INVOKEVIRTUAL sun/misc/Unsafe.getBoolean$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.val : Z
-    ALOAD 4
-    INVOKESTATIC java/io/Bits.putBoolean$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/runtime/Taint;ZLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L39
-    LINENUMBER 1987 L39
-    GOTO L40
-   L41
-   L28
-    LINENUMBER 1990 L28
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 2
-    ALOAD 3
-    ILOAD 23
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L42
-    ALOAD 22
-    LLOAD 20
-    ALOAD 4
-    ALOAD 13
-    INVOKEVIRTUAL sun/misc/Unsafe.getByte$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag.val : B
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags.setImplicit ([BILedu/columbia/cs/psl/phosphor/runtime/Taint;BLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L43
-    LINENUMBER 1991 L43
-    GOTO L40
-   L44
-   L29
-    LINENUMBER 1994 L29
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 2
-    ALOAD 3
-   L45
-    ALOAD 24
-    ILOAD 23
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L46
-    ALOAD 22
-    LLOAD 20
-    ALOAD 4
-    ALOAD 14
-    INVOKEVIRTUAL sun/misc/Unsafe.getChar$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.val : C
-    ALOAD 4
-    INVOKESTATIC java/io/Bits.putChar$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/runtime/Taint;CLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L47
-    LINENUMBER 1995 L47
-    GOTO L40
-   L48
-   L35
-    LINENUMBER 1998 L35
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 2
-    ALOAD 3
-   L49
-    ALOAD 24
-    ILOAD 23
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L50
-    ALOAD 22
-    LLOAD 20
-    ALOAD 4
-    ALOAD 15
-    INVOKEVIRTUAL sun/misc/Unsafe.getShort$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag.val : S
-    ALOAD 4
-    INVOKESTATIC java/io/Bits.putShort$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/runtime/Taint;SLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L51
-    LINENUMBER 1999 L51
-    GOTO L40
-   L52
-   L33
-    LINENUMBER 2002 L33
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 2
-    ALOAD 3
-   L53
-    ALOAD 24
-    ILOAD 23
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L54
-    ALOAD 22
-    LLOAD 20
-    ALOAD 4
-    ALOAD 12
-    INVOKEVIRTUAL sun/misc/Unsafe.getInt$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.val : I
-    ALOAD 4
-    INVOKESTATIC java/io/Bits.putInt$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L55
-    LINENUMBER 2003 L55
-    GOTO L40
-   L56
-   L32
-    LINENUMBER 2006 L32
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 2
-    ALOAD 3
-   L57
-    ALOAD 24
-    ILOAD 23
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L58
-    ALOAD 22
-    LLOAD 20
-    ALOAD 4
-    ALOAD 11
-    INVOKEVIRTUAL sun/misc/Unsafe.getFloat$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag.val : F
-    ALOAD 4
-    INVOKESTATIC java/io/Bits.putFloat$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/runtime/Taint;FLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L59
-    LINENUMBER 2007 L59
-    GOTO L40
-   L60
-   L34
-    LINENUMBER 2010 L34
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 2
-    ALOAD 3
-   L61
-    ALOAD 24
-    ILOAD 23
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L62
-    ALOAD 22
-    LLOAD 20
-    ALOAD 4
-    ALOAD 9
-    INVOKEVIRTUAL sun/misc/Unsafe.getLong$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.val : J
-    ALOAD 4
-    INVOKESTATIC java/io/Bits.putLong$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L63
-    LINENUMBER 2011 L63
-    GOTO L40
-   L64
-   L30
-    LINENUMBER 2014 L30
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 2
-    ALOAD 3
-   L65
-    ALOAD 24
-    ILOAD 23
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L66
-    ALOAD 22
-    LLOAD 20
-    ALOAD 4
-    ALOAD 10
-    INVOKEVIRTUAL sun/misc/Unsafe.getDouble$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag.val : D
-    ALOAD 4
-    INVOKESTATIC java/io/Bits.putDouble$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/runtime/Taint;DLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L67
-    LINENUMBER 2015 L67
-    GOTO L40
-   L68
-   L31
-    LINENUMBER 2018 L31
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    NEW java/lang/InternalError
-    DUP
-    ALOAD 4
-    ACONST_NULL
-    INVOKESPECIAL java/lang/InternalError.<init> (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
-    DUP
-    ALOAD 4
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTagsOnObject (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-    ALOAD 4
-    ALOAD 6
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 4
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 4
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 4
-    ALOAD 8
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ATHROW
-   L40
-    LINENUMBER 1981 L40
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 18
-    ALOAD 4
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 18
-    IINC 17 1
-    GOTO L17
-   L69
-   L21
-    LINENUMBER 2021 L21
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag] []
-    ALOAD 4
-    ALOAD 6
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 4
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 4
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 4
-    ALOAD 8
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    RETURN
-   L70
-    MAXSTACK = 11
-    MAXLOCALS = 25
-
-  // access flags 0x0
-  setPrimFieldValues$$PHOSPHORTAGGED(Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L0
-   L1
-    ACONST_NULL
-    ASTORE 5
-    ACONST_NULL
-    ASTORE 6
-    ACONST_NULL
-    ASTORE 7
-    ACONST_NULL
-    ASTORE 8
-    ACONST_NULL
-    ASTORE 9
-   L2
-   L3
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.<init> ()V
-    ASTORE 10
-   L4
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag.<init> ()V
-    ASTORE 11
-   L5
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag.<init> ()V
-    ASTORE 12
-   L6
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.<init> ()V
-    ASTORE 13
-   L7
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag.<init> ()V
-    ASTORE 14
-   L8
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.<init> ()V
-    ASTORE 15
-   L9
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag.<init> ()V
-    ASTORE 16
-   L10
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.<init> ()V
-    ASTORE 17
-   L11
-   L12
-    LINENUMBER 2029 L12
-    ALOAD 1
-    IFNONNULL L13
-   L14
-   L15
-    LINENUMBER 2030 L15
-    NEW java/lang/NullPointerException
-    DUP
-    ALOAD 4
-    ACONST_NULL
-    INVOKESPECIAL java/lang/NullPointerException.<init> (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
-    DUP
-    ALOAD 4
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTagsOnObject (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-    ALOAD 4
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ATHROW
-   L13
-    LINENUMBER 2032 L13
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag] []
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.copyTag ()Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ICONST_0
-    SWAP
-    ALOAD 4
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-   L16
-    ISTORE 18
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.copyTaint (Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 19
-   L17
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-   L18
-    ALOAD 19
-    ILOAD 18
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.numPrimFieldsPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.numPrimFields : I
-   L19
-    SWAP
-    ASTORE 20
-    DUP2_X1
-    POP2
-    ALOAD 4
-    SWAP
-    ALOAD 4
-    ALOAD 20
-   L20
-    ALOAD 6
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 6
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 7
-    IF_ICMPGE L21
-   L22
-   L23
-    LINENUMBER 2033 L23
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.writeKeysPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.writeKeys : [J
-    ILOAD 18
-    ALOAD 10
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags.getImplicit ([JILedu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.val : J
-    DUP2_X1
-    POP2
-    ALOAD 4
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    DUP_X2
-    POP
-   L24
-    LSTORE 21
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.copyTaint (Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 23
-   L25
-    LINENUMBER 2034 L25
-   L26
-    ALOAD 23
-    LLOAD 21
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.copyTag ()Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    LDC -1
-   L27
-    LSTORE 24
-    DUP_X2
-    POP
-    LLOAD 24
-   L28
-    LCMP
-    DUP_X2
-    POP
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    SWAP
-    ALOAD 4
-    SWAP
-    ALOAD 8
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 8
-    IFNE L29
-   L30
-   L31
-    LINENUMBER 2035 L31
-    GOTO L32
-   L33
-   L29
-    LINENUMBER 2037 L29
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.offsetsPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyIntArrayObjTags;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.offsets : [I
-    ILOAD 18
-    ALOAD 13
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyIntArrayObjTags.getImplicit ([IILedu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.val : I
-    SWAP
-    ALOAD 4
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-   L34
-    ISTORE 26
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.copyTaint (Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 27
-   L35
-    LINENUMBER 2038 L35
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.typeCodesPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyCharArrayObjTags;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.typeCodes : [C
-    ILOAD 18
-    ALOAD 15
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyCharArrayObjTags.getImplicit ([CILedu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.val : C
-    SWAP
-    ALOAD 4
-    SWAP
-    ALOAD 9
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 9
-    TABLESWITCH
-      66: L36
-      67: L37
-      68: L38
-      69: L39
-      70: L40
-      71: L39
-      72: L39
-      73: L41
-      74: L42
-      75: L39
-      76: L39
-      77: L39
-      78: L39
-      79: L39
-      80: L39
-      81: L39
-      82: L39
-      83: L43
-      84: L39
-      85: L39
-      86: L39
-      87: L39
-      88: L39
-      89: L39
-      90: L44
-      default: L39
-   L44
-    LINENUMBER 2040 L44
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint T T I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L45
-    ALOAD 23
-    LLOAD 21
-    ALOAD 2
-    ALOAD 3
-   L46
-    ALOAD 27
-    ILOAD 26
-    ALOAD 4
-    ALOAD 17
-    INVOKESTATIC java/io/Bits.getBoolean$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.val : Z
-    ALOAD 4
-    INVOKEVIRTUAL sun/misc/Unsafe.putBoolean$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/runtime/Taint;ZLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L47
-    LINENUMBER 2041 L47
-    GOTO L32
-   L48
-   L36
-    LINENUMBER 2044 L36
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint T T I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L49
-    ALOAD 23
-    LLOAD 21
-    ALOAD 2
-    ALOAD 3
-    ILOAD 26
-    ALOAD 14
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags.getImplicit ([BILedu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag.val : B
-    ALOAD 4
-    INVOKEVIRTUAL sun/misc/Unsafe.putByte$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/runtime/Taint;BLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L50
-    LINENUMBER 2045 L50
-    GOTO L32
-   L51
-   L37
-    LINENUMBER 2048 L37
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint T T I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L52
-    ALOAD 23
-    LLOAD 21
-    ALOAD 2
-    ALOAD 3
-   L53
-    ALOAD 27
-    ILOAD 26
-    ALOAD 4
-    ALOAD 15
-    INVOKESTATIC java/io/Bits.getChar$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.val : C
-    ALOAD 4
-    INVOKEVIRTUAL sun/misc/Unsafe.putChar$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/runtime/Taint;CLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L54
-    LINENUMBER 2049 L54
-    GOTO L32
-   L55
-   L43
-    LINENUMBER 2052 L43
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint T T I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L56
-    ALOAD 23
-    LLOAD 21
-    ALOAD 2
-    ALOAD 3
-   L57
-    ALOAD 27
-    ILOAD 26
-    ALOAD 4
-    ALOAD 16
-    INVOKESTATIC java/io/Bits.getShort$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag.val : S
-    ALOAD 4
-    INVOKEVIRTUAL sun/misc/Unsafe.putShort$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/runtime/Taint;SLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L58
-    LINENUMBER 2053 L58
-    GOTO L32
-   L59
-   L41
-    LINENUMBER 2056 L41
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint T T I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L60
-    ALOAD 23
-    LLOAD 21
-    ALOAD 2
-    ALOAD 3
-   L61
-    ALOAD 27
-    ILOAD 26
-    ALOAD 4
-    ALOAD 13
-    INVOKESTATIC java/io/Bits.getInt$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.val : I
-    ALOAD 4
-    INVOKEVIRTUAL sun/misc/Unsafe.putInt$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L62
-    LINENUMBER 2057 L62
-    GOTO L32
-   L63
-   L40
-    LINENUMBER 2060 L40
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint T T I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L64
-    ALOAD 23
-    LLOAD 21
-    ALOAD 2
-    ALOAD 3
-   L65
-    ALOAD 27
-    ILOAD 26
-    ALOAD 4
-    ALOAD 12
-    INVOKESTATIC java/io/Bits.getFloat$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag.val : F
-    ALOAD 4
-    INVOKEVIRTUAL sun/misc/Unsafe.putFloat$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/runtime/Taint;FLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L66
-    LINENUMBER 2061 L66
-    GOTO L32
-   L67
-   L42
-    LINENUMBER 2064 L42
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint T T I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L68
-    ALOAD 23
-    LLOAD 21
-    ALOAD 2
-    ALOAD 3
-   L69
-    ALOAD 27
-    ILOAD 26
-    ALOAD 4
-    ALOAD 10
-    INVOKESTATIC java/io/Bits.getLong$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.val : J
-    ALOAD 4
-    INVOKEVIRTUAL sun/misc/Unsafe.putLong$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L70
-    LINENUMBER 2065 L70
-    GOTO L32
-   L71
-   L38
-    LINENUMBER 2068 L38
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint T T I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L72
-    ALOAD 23
-    LLOAD 21
-    ALOAD 2
-    ALOAD 3
-   L73
-    ALOAD 27
-    ILOAD 26
-    ALOAD 4
-    ALOAD 11
-    INVOKESTATIC java/io/Bits.getDouble$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/runtime/Taint;ILedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag.val : D
-    ALOAD 4
-    INVOKEVIRTUAL sun/misc/Unsafe.putDouble$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/runtime/Taint;DLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L74
-    LINENUMBER 2069 L74
-    GOTO L32
-   L75
-   L39
-    LINENUMBER 2072 L39
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint T T I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    NEW java/lang/InternalError
-    DUP
-    ALOAD 4
-    ACONST_NULL
-    INVOKESPECIAL java/lang/InternalError.<init> (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
-    DUP
-    ALOAD 4
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTagsOnObject (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-    ALOAD 4
-    ALOAD 6
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 4
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 4
-    ALOAD 8
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 4
-    ALOAD 9
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 4
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ATHROW
-   L32
-    LINENUMBER 2032 L32
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 19
-    ALOAD 4
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 19
-    IINC 18 1
-    GOTO L17
-   L76
-   L21
-    LINENUMBER 2075 L21
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedDoubleWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedFloatWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedByteWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedShortWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag] []
-    ALOAD 4
-    ALOAD 6
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 4
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 4
-    ALOAD 8
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 4
-    ALOAD 9
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 4
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    RETURN
-   L77
-    MAXSTACK = 11
-    MAXLOCALS = 28
-
-  // access flags 0x0
-  getObjFieldValues$$PHOSPHORTAGGED(Ljava/lang/Object;[Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L0
-   L1
-    ACONST_NULL
+    INVOKEINTERFACE java/util/Map.keySet ()Ljava/util/Set;
+    INVOKEINTERFACE java/util/Set.iterator ()Ljava/util/Iterator;
     ASTORE 4
-    ACONST_NULL
-    ASTORE 5
-    ACONST_NULL
-    ASTORE 6
-    ACONST_NULL
-    ASTORE 7
-   L2
-   L3
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.<init> ()V
-    ASTORE 8
-   L4
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.<init> ()V
-    ASTORE 9
-   L5
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.<init> ()V
-    ASTORE 10
-   L6
-   L7
-    LINENUMBER 2083 L7
-    ALOAD 1
-    IFNONNULL L8
-   L9
-   L10
-    LINENUMBER 2084 L10
-    NEW java/lang/NullPointerException
-    DUP
-    ALOAD 3
-    ACONST_NULL
-    INVOKESPECIAL java/lang/NullPointerException.<init> (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
-    DUP
-    ALOAD 3
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTagsOnObject (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-    ALOAD 3
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ATHROW
    L8
-    LINENUMBER 2090 L8
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [Ljava/lang/Object; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag] []
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.numPrimFieldsPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.numPrimFields : I
-    SWAP
+   FRAME FULL [sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor java/util/Map edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag java/util/Iterator] []
+    ALOAD 4
     ALOAD 3
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-   L11
-    ISTORE 11
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.copyTaint (Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 12
-   L12
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [Ljava/lang/Object; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-   L13
-    ALOAD 12
-    ILOAD 11
-    ALOAD 0
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.fields : [Ljava/io/ObjectStreamField;
-    DUP
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/TaintUtils.getTaintObj (Ljava/lang/Object;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    ARRAYLENGTH
-   L14
-    SWAP
-    ASTORE 13
-    DUP2_X1
-    POP2
-    ALOAD 3
-    SWAP
-    ALOAD 3
-    ALOAD 13
-   L15
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
+    INVOKEINTERFACE java/util/Iterator.hasNext$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag;
+    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag.val : Z
+    IFEQ L9
+   L10
+    ALOAD 4
+    INVOKEINTERFACE java/util/Iterator.next ()Ljava/lang/Object;
+    CHECKCAST sun/security/ssl/SessionId
     ASTORE 5
-    ALOAD 6
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 6
-    IF_ICMPGE L16
-   L17
-   L18
-    LINENUMBER 2091 L18
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.typeCodesPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyCharArrayObjTags;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.typeCodes : [C
-    ILOAD 11
-    ALOAD 10
-    ALOAD 3
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyCharArrayObjTags.getImplicit ([CILedu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.val : C
-    SWAP
-    ALOAD 3
-    SWAP
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 7
-    LOOKUPSWITCH
-      76: L19
-      91: L19
-      default: L20
-   L19
-    LINENUMBER 2094 L19
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [Ljava/lang/Object; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 2
-    ALOAD 0
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.offsets : [I
-    ILOAD 11
-    IALOAD
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
+   L11
+    LINENUMBER 241 L11
     ALOAD 1
+    ALOAD 5
+    INVOKEINTERFACE java/util/Map.get (Ljava/lang/Object;)Ljava/lang/Object;
+    CHECKCAST sun/security/ssl/SSLSessionImpl
+    ASTORE 6
+   L12
+    LINENUMBER 242 L12
     ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.readKeysPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.readKeys : [J
-    ILOAD 11
-    ALOAD 8
-    ALOAD 3
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags.getImplicit ([JILedu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.val : J
-    ALOAD 3
-    INVOKEVIRTUAL sun/misc/Unsafe.getObject$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/Object;
-    DUP
-    ALOAD 3
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTagsOnObject (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-    AASTORE
-   L21
-    LINENUMBER 2095 L21
-    GOTO L22
-   L23
-   L20
-    LINENUMBER 2098 L20
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [Ljava/lang/Object; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    NEW java/lang/InternalError
-    DUP
-    ALOAD 3
-    ACONST_NULL
-    INVOKESPECIAL java/lang/InternalError.<init> (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
-    DUP
-    ALOAD 3
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTagsOnObject (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-    ALOAD 3
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
+    GETFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.this$0 : Lsun/security/ssl/SSLSessionContextImpl;
     ALOAD 6
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
     ALOAD 3
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ATHROW
-   L22
-    LINENUMBER 2090 L22
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [Ljava/lang/Object; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 12
-    ALOAD 3
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 12
-    IINC 11 1
-    GOTO L12
-   L24
+    INVOKEVIRTUAL sun/security/ssl/SSLSessionContextImpl.isTimedout$$PHOSPHORTAGGED (Ljavax/net/ssl/SSLSession;Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag;
+    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag.val : Z
+    IFNE L13
+   L14
+   L15
+    LINENUMBER 243 L15
+    ALOAD 0
+    GETFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.ids : Ljava/util/Vector;
+    ALOAD 5
+    INVOKEVIRTUAL sun/security/ssl/SessionId.getId$$PHOSPHORTAGGED ()Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayIntTags;
+    DUP
+    IFNULL L16
+    DUP
+    GETFIELD edu/columbia/cs/psl/phosphor/struct/LazyByteArrayIntTags.val : [B
+    GOTO L17
    L16
-    LINENUMBER 2101 L16
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [Ljava/lang/Object; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag] []
-    ALOAD 3
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 6
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
+   FRAME FULL [sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor java/util/Map edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag java/util/Iterator sun/security/ssl/SessionId sun/security/ssl/SSLSessionImpl] [java/util/Vector edu/columbia/cs/psl/phosphor/struct/LazyByteArrayIntTags]
+    ACONST_NULL
+    CHECKCAST [B
+   L17
+   FRAME FULL [sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor java/util/Map edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag java/util/Iterator sun/security/ssl/SessionId sun/security/ssl/SSLSessionImpl] [java/util/Vector edu/columbia/cs/psl/phosphor/struct/LazyByteArrayIntTags [B]
+    SWAP
+    DUP
+    IFNULL L18
+    DUP_X1
+    SWAP
+    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyByteArrayIntTags.ensureVal ([B)V
+    GOTO L19
+   L18
+   FRAME FULL [sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor java/util/Map edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag java/util/Iterator sun/security/ssl/SessionId sun/security/ssl/SSLSessionImpl] [java/util/Vector [B edu/columbia/cs/psl/phosphor/struct/LazyByteArrayIntTags]
+    SWAP
+    POP
+   L19
+   FRAME FULL [sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor java/util/Map edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag java/util/Iterator sun/security/ssl/SessionId sun/security/ssl/SSLSessionImpl] [java/util/Vector edu/columbia/cs/psl/phosphor/struct/LazyByteArrayIntTags]
+    INVOKEVIRTUAL java/util/Vector.addElement (Ljava/lang/Object;)V
+   L13
+    LINENUMBER 245 L13
+   FRAME FULL [sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor java/util/Map edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag java/util/Iterator] []
+    GOTO L8
+   L20
+   L9
+    LINENUMBER 246 L9
+   FRAME FULL [sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor java/util/Map edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag] []
     RETURN
-   L25
-    MAXSTACK = 9
-    MAXLOCALS = 14
+   L21
+    MAXSTACK = 6
+    MAXLOCALS = 7
 
-  // access flags 0x0
-  setObjFieldValues$$PHOSPHORTAGGED(Ljava/lang/Object;[Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
+  // access flags 0x1
+  // signature ()Ljava/util/Enumeration<[B>;
+  // declaration: java.util.Enumeration<byte[]> getSessionIds()
+  public getSessionIds()Ljava/util/Enumeration;
    L0
    L1
-    ACONST_NULL
-    ASTORE 4
-    ACONST_NULL
-    ASTORE 5
-    ACONST_NULL
-    ASTORE 6
-    ACONST_NULL
-    ASTORE 7
-    ACONST_NULL
-    ASTORE 8
-    ACONST_NULL
-    ASTORE 9
-    ACONST_NULL
-    ASTORE 10
    L2
    L3
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.<init> ()V
-    ASTORE 11
-   L4
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.<init> ()V
-    ASTORE 12
+    LINENUMBER 249 L3
+    ALOAD 0
+    GETFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.ids : Ljava/util/Vector;
+    IFNULL L4
    L5
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.<init> ()V
-    ASTORE 13
-   L6
-    NEW edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.<init> ()V
-    ASTORE 14
+    ALOAD 0
+    GETFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.ids : Ljava/util/Vector;
+    INVOKEVIRTUAL java/util/Vector.elements ()Ljava/util/Enumeration;
+    GOTO L6
    L7
-   L8
-    LINENUMBER 2111 L8
-    ALOAD 1
-    IFNONNULL L9
-   L10
-   L11
-    LINENUMBER 2112 L11
-    NEW java/lang/NullPointerException
-    DUP
-    ALOAD 3
-    ACONST_NULL
-    INVOKESPECIAL java/lang/NullPointerException.<init> (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
-    DUP
-    ALOAD 3
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTagsOnObject (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-    ALOAD 3
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ATHROW
-   L9
-    LINENUMBER 2114 L9
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [Ljava/lang/Object; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag] []
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.numPrimFieldsPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.numPrimFields : I
-    SWAP
-    ALOAD 3
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-   L12
-    ISTORE 15
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.copyTaint (Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 16
-   L13
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [Ljava/lang/Object; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-   L14
-    ALOAD 16
-    ILOAD 15
-    ALOAD 0
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.fields : [Ljava/io/ObjectStreamField;
-    DUP
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/TaintUtils.getTaintObj (Ljava/lang/Object;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    ARRAYLENGTH
-   L15
-    SWAP
-    ASTORE 17
-    DUP2_X1
-    POP2
-    ALOAD 3
-    SWAP
-    ALOAD 3
-    ALOAD 17
-   L16
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 5
-    ALOAD 6
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 6
-    IF_ICMPGE L17
-   L18
-   L19
-    LINENUMBER 2115 L19
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.writeKeysPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.writeKeys : [J
-    ILOAD 15
-    ALOAD 11
-    ALOAD 3
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags.getImplicit ([JILedu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag.val : J
-    DUP2_X1
-    POP2
-    ALOAD 3
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    DUP_X2
-    POP
-   L20
-    LSTORE 18
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.copyTaint (Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 20
-   L21
-    LINENUMBER 2116 L21
-   L22
-    ALOAD 20
-    LLOAD 18
-    ALOAD 3
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.copyTag ()Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    LDC -1
-   L23
-    LSTORE 21
-    DUP_X2
-    POP
-    LLOAD 21
-   L24
-    LCMP
-    DUP_X2
-    POP
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/runtime/Taint;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    SWAP
-    ALOAD 3
-    SWAP
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 7
-    IFNE L25
-   L26
-   L27
-    LINENUMBER 2117 L27
-    GOTO L28
-   L29
-   L25
-    LINENUMBER 2119 L25
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [Ljava/lang/Object; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 0
-    DUP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.typeCodesPHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/struct/LazyCharArrayObjTags;
-    SWAP
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.typeCodes : [C
-    ILOAD 15
-    ALOAD 13
-    ALOAD 3
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/LazyCharArrayObjTags.getImplicit ([CILedu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag.val : C
-    SWAP
-    ALOAD 3
-    SWAP
-    ALOAD 8
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 8
-    LOOKUPSWITCH
-      76: L30
-      91: L30
-      default: L31
-   L30
-    LINENUMBER 2122 L30
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [Ljava/lang/Object; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 2
-    ALOAD 0
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.offsets : [I
-    ILOAD 15
-    IALOAD
-    AALOAD
-    ASTORE 23
-   L32
-    LINENUMBER 2123 L32
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 23
-    ALOAD 0
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.types : [Ljava/lang/Class;
-    ILOAD 15
-    ALOAD 0
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.numPrimFields : I
-    ISUB
-    AALOAD
-    ALOAD 3
-    INVOKEVIRTUAL sun/misc/Unsafe.getCastObject$$PHOSPHORTAGGED (Ljava/lang/Object;Ljava/lang/Class;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/Object;
-    ASTORE 23
-   L33
-    LINENUMBER 2124 L33
-    ALOAD 23
-    IFNULL L34
-   L35
-    ALOAD 0
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.types : [Ljava/lang/Class;
-    ILOAD 15
-    ALOAD 0
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.numPrimFields : I
-    ISUB
-    AALOAD
-    ALOAD 23
-   L36
-    LINENUMBER 2125 L36
-    ALOAD 3
-    ALOAD 14
-    INVOKEVIRTUAL java/lang/Class.isInstance$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag;
-    DUP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    SWAP
-    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.val : Z
-    SWAP
-    ALOAD 3
-    SWAP
-    ALOAD 10
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.push (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;
-    ASTORE 10
-    IFNE L34
-   L37
-   L38
-    LINENUMBER 2127 L38
-    ALOAD 0
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.fields : [Ljava/io/ObjectStreamField;
-    ILOAD 15
-    AALOAD
-    ALOAD 3
-    INVOKEVIRTUAL java/io/ObjectStreamField.getField$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/reflect/Field;
-    ASTORE 24
-   L39
-    LINENUMBER 2128 L39
-    NEW java/lang/ClassCastException
-    DUP
-   L40
-    NEW java/lang/StringBuilder
-    DUP
-    ALOAD 3
-    ACONST_NULL
-    INVOKESPECIAL java/lang/StringBuilder.<init> (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
-    LDC "cannot assign instance of "
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/StringBuilder.append$$PHOSPHORTAGGED (Ljava/lang/String;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/StringBuilder;
-    ALOAD 23
-   L41
-    LINENUMBER 2130 L41
-    INVOKEVIRTUAL java/lang/Object.getClass ()Ljava/lang/Class;
-    ICONST_1
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/ReflectionMasker.removeTaintClass (Ljava/lang/Class;Z)Ljava/lang/Class;
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/Class.getName$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/String;
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/StringBuilder.append$$PHOSPHORTAGGED (Ljava/lang/String;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/StringBuilder;
-    LDC " to field "
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/StringBuilder.append$$PHOSPHORTAGGED (Ljava/lang/String;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/StringBuilder;
-    ALOAD 24
-   L42
-    LINENUMBER 2131 L42
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/reflect/Field.getDeclaringClass$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/Class;
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/Class.getName$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/String;
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/StringBuilder.append$$PHOSPHORTAGGED (Ljava/lang/String;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/StringBuilder;
-    LDC "."
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/StringBuilder.append$$PHOSPHORTAGGED (Ljava/lang/String;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/StringBuilder;
-    ALOAD 24
-   L43
-    LINENUMBER 2132 L43
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/reflect/Field.getName$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/String;
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/StringBuilder.append$$PHOSPHORTAGGED (Ljava/lang/String;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/StringBuilder;
-    LDC " of type "
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/StringBuilder.append$$PHOSPHORTAGGED (Ljava/lang/String;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/StringBuilder;
-    ALOAD 24
-   L44
-    LINENUMBER 2133 L44
-    ALOAD 3
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/RuntimeReflectionPropogator.getType$$PHOSPHORTAGGED (Ljava/lang/reflect/Field;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/Class;
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/Class.getName$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/String;
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/StringBuilder.append$$PHOSPHORTAGGED (Ljava/lang/String;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/StringBuilder;
-    LDC " in instance of "
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/StringBuilder.append$$PHOSPHORTAGGED (Ljava/lang/String;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/StringBuilder;
-    ALOAD 1
-   L45
-    LINENUMBER 2134 L45
-    INVOKEVIRTUAL java/lang/Object.getClass ()Ljava/lang/Class;
-    ICONST_1
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/ReflectionMasker.removeTaintClass (Ljava/lang/Class;Z)Ljava/lang/Class;
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/Class.getName$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/String;
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/StringBuilder.append$$PHOSPHORTAGGED (Ljava/lang/String;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/StringBuilder;
-    ALOAD 3
-    INVOKEVIRTUAL java/lang/StringBuilder.toString$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/String;
-    ALOAD 3
-    ACONST_NULL
-    INVOKESPECIAL java/lang/ClassCastException.<init> (Ljava/lang/String;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
-    DUP
-    ALOAD 3
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTagsOnObject (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-    ALOAD 3
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 9
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 10
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 6
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 8
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ATHROW
-   L34
-    LINENUMBER 2136 L34
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [Ljava/lang/Object; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint T T java/lang/Object] []
-    GETSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    ALOAD 1
-   L46
-    ALOAD 20
-    LLOAD 18
-    ALOAD 23
-    ALOAD 0
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.types : [Ljava/lang/Class;
-    ILOAD 15
-    ALOAD 0
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.numPrimFields : I
-    ISUB
-    AALOAD
-    ALOAD 3
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/instrumenter/StreamObjectHelper.putObjectWrapper$$PHOSPHORTAGGED (Lsun/misc/Unsafe;Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/runtime/Taint;JLjava/lang/Object;Ljava/lang/Class;)V
-   L47
-    LINENUMBER 2138 L47
-    GOTO L28
-   L48
-   L31
-    LINENUMBER 2141 L31
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [Ljava/lang/Object; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint T J edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    NEW java/lang/InternalError
-    DUP
-    ALOAD 3
-    ACONST_NULL
-    INVOKESPECIAL java/lang/InternalError.<init> (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
-    DUP
-    ALOAD 3
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTagsOnObject (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-    ALOAD 3
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 9
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 6
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 10
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 8
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ATHROW
-   L28
-    LINENUMBER 2114 L28
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [Ljava/lang/Object; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag I edu/columbia/cs/psl/phosphor/runtime/Taint] []
-    ALOAD 16
-    ALOAD 3
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTags (Ledu/columbia/cs/psl/phosphor/runtime/Taint;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ASTORE 16
-    IINC 15 1
-    GOTO L13
-   L49
-   L17
-    LINENUMBER 2144 L17
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [Ljava/lang/Object; edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/EnqueuedTaint edu/columbia/cs/psl/phosphor/struct/TaintedLongWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedCharWithObjTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag] []
-    ALOAD 3
-    ALOAD 4
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 9
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 7
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 5
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 6
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 10
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    ALOAD 3
-    ALOAD 8
-    INVOKEVIRTUAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.pop (Ledu/columbia/cs/psl/phosphor/struct/EnqueuedTaint;)V
-    RETURN
-   L50
-    MAXSTACK = 9
-    MAXLOCALS = 25
-
-  // access flags 0x8
-  static <clinit>()V
-   L0
-   L1
-    NEW edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack
-    DUP
-    BIPUSH 0
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.<init> (I)V
-    ASTORE 0
-   L2
-   L3
    L4
-    LINENUMBER 1904 L4
-    ALOAD 0
-    INVOKESTATIC sun/misc/Unsafe.getUnsafe$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Lsun/misc/Unsafe;
+   FRAME FULL [sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor] []
+    NEW java/util/Vector
     DUP
-    ALOAD 0
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/runtime/Taint.combineTagsOnObject (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-    PUTSTATIC java/io/ObjectStreamClass$FieldReflector.unsafe : Lsun/misc/Unsafe;
-    RETURN
-   L5
-    MAXSTACK = 3
+    INVOKESPECIAL java/util/Vector.<init> ()V
+   L8
+    LINENUMBER 250 L8
+    INVOKEVIRTUAL java/util/Vector.elements ()Ljava/util/Enumeration;
+   L6
+    LINENUMBER 249 L6
+   FRAME FULL [sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor] [java/util/Enumeration]
+    ARETURN
+   L9
+    MAXSTACK = 2
     MAXLOCALS = 1
 
   // access flags 0x18
-  final static J serialVersionUID = 4928903979747039856
+  final static J serialVersionUID = -3674856580863620744
 
   // access flags 0x1
-  public Ledu/columbia/cs/psl/phosphor/runtime/Taint; PHOSPHOR_TAG
-
-  // access flags 0x1
-  public Ledu/columbia/cs/psl/phosphor/runtime/Taint; numPrimFieldsPHOSPHOR_TAG
-
-  // access flags 0x1
-  public Ledu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags; readKeysPHOSPHOR_TAG
-
-  // access flags 0x1
-  public Ledu/columbia/cs/psl/phosphor/struct/LazyLongArrayObjTags; writeKeysPHOSPHOR_TAG
-
-  // access flags 0x1
-  public Ledu/columbia/cs/psl/phosphor/struct/LazyIntArrayObjTags; offsetsPHOSPHOR_TAG
-
-  // access flags 0x1
-  public Ledu/columbia/cs/psl/phosphor/struct/LazyCharArrayObjTags; typeCodesPHOSPHOR_TAG
+  public I PHOSPHOR_TAG = 0
 
   // access flags 0x9
-  public static Ledu/columbia/cs/psl/phosphor/runtime/Taint; serialVersionUIDPHOSPHOR_TAG
+  public static I serialVersionUIDPHOSPHOR_TAG = 0
 
   // access flags 0x1
   public equals(Ljava/lang/Object;)Z
@@ -2182,7 +205,7 @@ class java/io/ObjectStreamClass$FieldReflector implements edu/columbia/cs/psl/ph
     INVOKESPECIAL java/lang/Object.equals (Ljava/lang/Object;)Z
    L1
     IRETURN
-    LOCALVARIABLE this Ljava/io/ObjectStreamClass$FieldReflector; L0 L1 0
+    LOCALVARIABLE this Lsun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor; L0 L1 0
     LOCALVARIABLE other Ljava/lang/Object; L0 L1 1
     MAXSTACK = 0
     MAXLOCALS = 0
@@ -2194,259 +217,247 @@ class java/io/ObjectStreamClass$FieldReflector implements edu/columbia/cs/psl/ph
     INVOKESPECIAL java/lang/Object.hashCode ()I
    L1
     IRETURN
-    LOCALVARIABLE this Ljava/io/ObjectStreamClass$FieldReflector; L0 L1 0
+    LOCALVARIABLE this Lsun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor; L0 L1 0
     MAXSTACK = 0
     MAXLOCALS = 0
 
   // access flags 0x1
-  public getPHOSPHOR_TAG()Ljava/lang/Object;
+  public getPHOSPHOR_TAG()I
     ALOAD 0
-    GETFIELD java/io/ObjectStreamClass$FieldReflector.PHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ARETURN
+    GETFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.PHOSPHOR_TAG : I
+    IRETURN
     MAXSTACK = 0
     MAXLOCALS = 0
 
   // access flags 0x1
-  public setPHOSPHOR_TAG(Ljava/lang/Object;)V
+  public setPHOSPHOR_TAG(I)V
     ALOAD 0
-    ALOAD 1
-    CHECKCAST edu/columbia/cs/psl/phosphor/runtime/Taint
-    PUTFIELD java/io/ObjectStreamClass$FieldReflector.PHOSPHOR_TAG : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
+    ILOAD 1
+    PUTFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.PHOSPHOR_TAG : I
     RETURN
     MAXSTACK = 0
     MAXLOCALS = 0
 
-  // access flags 0x0
-  <init>([Ljava/io/ObjectStreamField;)V
-   L0
-   L1
-    LINENUMBER 0 L1
-    ALOAD 0
-    ALOAD 1
-   L2
-    NEW edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.<init> ()V
-    ACONST_NULL
-    INVOKESPECIAL java/io/ObjectStreamClass$FieldReflector.<init> ([Ljava/io/ObjectStreamField;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
-   L3
-    RETURN
-   L4
-    MAXSTACK = 4
-    MAXLOCALS = 2
-
-  // access flags 0x0
-  getFields()[Ljava/io/ObjectStreamField;
-   L0
-   L1
-    LINENUMBER 0 L1
-    ALOAD 0
-   L2
-    NEW edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.<init> ()V
-    INVOKESPECIAL java/io/ObjectStreamClass$FieldReflector.getFields$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)[Ljava/io/ObjectStreamField;
-   L3
-    ARETURN
-   L4
-    MAXSTACK = 3
-    MAXLOCALS = 1
-
-  // access flags 0x0
-  getPrimFieldValues(Ljava/lang/Object;[B)V
-   L0
-   L1
-    LINENUMBER 0 L1
-    ALOAD 0
-    ALOAD 1
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/struct/multid/MultiDTaintedArray.boxIfNecessary (Ljava/lang/Object;)Ljava/lang/Object;
-    CHECKCAST java/lang/Object
-    ALOAD 2
-    DUP
-    IFNULL L2
-    DUP
-   L3
-    NEW edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags
-    DUP_X1
-    SWAP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags.<init> ([B)V
-    SWAP
-    GOTO L4
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [B] [java/io/ObjectStreamClass$FieldReflector java/lang/Object [B]
-   L2
-    ACONST_NULL
-    SWAP
-   L4
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [B] [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B]
-    NEW edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.<init> ()V
-    INVOKESPECIAL java/io/ObjectStreamClass$FieldReflector.getPrimFieldValues$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L5
-    RETURN
-   L6
-    MAXSTACK = 6
-    MAXLOCALS = 3
-
-  // access flags 0x0
-  setPrimFieldValues(Ljava/lang/Object;[B)V
-   L0
-   L1
-    LINENUMBER 0 L1
-    ALOAD 0
-    ALOAD 1
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/struct/multid/MultiDTaintedArray.boxIfNecessary (Ljava/lang/Object;)Ljava/lang/Object;
-    CHECKCAST java/lang/Object
-    ALOAD 2
-    DUP
-    IFNULL L2
-    DUP
-   L3
-    NEW edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags
-    DUP_X1
-    SWAP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags.<init> ([B)V
-    SWAP
-    GOTO L4
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [B] [java/io/ObjectStreamClass$FieldReflector java/lang/Object [B]
-   L2
-    ACONST_NULL
-    SWAP
-   L4
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object [B] [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags [B]
-    NEW edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.<init> ()V
-    INVOKESPECIAL java/io/ObjectStreamClass$FieldReflector.setPrimFieldValues$$PHOSPHORTAGGED (Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayObjTags;[BLedu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L5
-    RETURN
-   L6
-    MAXSTACK = 6
-    MAXLOCALS = 3
-
-  // access flags 0x0
-  getObjFieldValues(Ljava/lang/Object;[Ljava/lang/Object;)V
-   L0
-   L1
-    LINENUMBER 0 L1
-    ALOAD 0
-    ALOAD 1
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/struct/multid/MultiDTaintedArray.boxIfNecessary (Ljava/lang/Object;)Ljava/lang/Object;
-    CHECKCAST java/lang/Object
-    ALOAD 2
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/struct/multid/MultiDTaintedArray.boxIfNecessary (Ljava/lang/Object;)Ljava/lang/Object;
-    CHECKCAST [Ljava/lang/Object;
-   L2
-    NEW edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.<init> ()V
-    INVOKESPECIAL java/io/ObjectStreamClass$FieldReflector.getObjFieldValues$$PHOSPHORTAGGED (Ljava/lang/Object;[Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L3
-    RETURN
-   L4
-    MAXSTACK = 5
-    MAXLOCALS = 3
-
-  // access flags 0x0
-  setObjFieldValues(Ljava/lang/Object;[Ljava/lang/Object;)V
-   L0
-   L1
-    LINENUMBER 0 L1
-    ALOAD 0
-    ALOAD 1
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/struct/multid/MultiDTaintedArray.boxIfNecessary (Ljava/lang/Object;)Ljava/lang/Object;
-    CHECKCAST java/lang/Object
-    ALOAD 2
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/struct/multid/MultiDTaintedArray.boxIfNecessary (Ljava/lang/Object;)Ljava/lang/Object;
-    CHECKCAST [Ljava/lang/Object;
-   L2
-    NEW edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack
-    DUP
-    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack.<init> ()V
-    INVOKESPECIAL java/io/ObjectStreamClass$FieldReflector.setObjFieldValues$$PHOSPHORTAGGED (Ljava/lang/Object;[Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)V
-   L3
-    RETURN
-   L4
-    MAXSTACK = 5
-    MAXLOCALS = 3
-
   // access flags 0x1
-  public equals$$PHOSPHORTAGGED(Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag;
+  public equals$$PHOSPHORTAGGED(Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag;
    L0
    L1
     ALOAD 0
     ALOAD 1
     DUP
     DUP
-    INSTANCEOF [Ledu/columbia/cs/psl/phosphor/struct/LazyArrayObjTags;
+    INSTANCEOF [Ledu/columbia/cs/psl/phosphor/struct/LazyArrayIntTags;
     SWAP
-    INSTANCEOF edu/columbia/cs/psl/phosphor/struct/LazyArrayObjTags
+    INSTANCEOF edu/columbia/cs/psl/phosphor/struct/LazyArrayIntTags
     IOR
     IFEQ L2
-    INVOKESTATIC edu/columbia/cs/psl/phosphor/struct/multid/MultiDTaintedArrayWithObjTag.unboxRaw (Ljava/lang/Object;)Ljava/lang/Object;
+    INVOKESTATIC edu/columbia/cs/psl/phosphor/struct/multid/MultiDTaintedArrayWithIntTag.unboxRaw (Ljava/lang/Object;)Ljava/lang/Object;
    L2
-   FRAME FULL [java/io/ObjectStreamClass$FieldReflector java/lang/Object edu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag] [java/io/ObjectStreamClass$FieldReflector java/lang/Object]
-    INVOKESPECIAL java/io/ObjectStreamClass$FieldReflector.equals (Ljava/lang/Object;)Z
-    ALOAD 3
+   FRAME FULL [sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor java/lang/Object edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag] [sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor java/lang/Object]
+    INVOKESPECIAL sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.equals (Ljava/lang/Object;)Z
+    ALOAD 2
     SWAP
-    PUTFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.val : Z
-    ALOAD 3
-    ACONST_NULL
-    PUTFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ALOAD 3
+    PUTFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag.val : Z
+    ALOAD 2
+    ICONST_0
+    PUTFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag.taint : I
+    ALOAD 2
    L3
     ARETURN
-    LOCALVARIABLE this Ljava/io/ObjectStreamClass$FieldReflector; L1 L3 0
+    LOCALVARIABLE this Lsun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor; L1 L3 0
     LOCALVARIABLE phosphorNativeWrapArg1 Ljava/lang/Object; L1 L3 1
-    LOCALVARIABLE phosphorReturnHolder Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithObjTag; L1 L3 3
+    LOCALVARIABLE phosphorReturnHolder Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag; L1 L3 2
    L4
     MAXSTACK = 4
-    MAXLOCALS = 4
-
-  // access flags 0x1
-  public hashCode$$PHOSPHORTAGGED(Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag;
-   L0
-   L1
-    ALOAD 0
-    INVOKESPECIAL java/io/ObjectStreamClass$FieldReflector.hashCode ()I
-    ALOAD 2
-    SWAP
-    PUTFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.val : I
-    ALOAD 2
-    ACONST_NULL
-    PUTFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag.taint : Ledu/columbia/cs/psl/phosphor/runtime/Taint;
-    ALOAD 2
-   L2
-    ARETURN
-    LOCALVARIABLE this Ljava/io/ObjectStreamClass$FieldReflector; L1 L2 0
-    LOCALVARIABLE phosphorReturnHolder Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithObjTag; L1 L2 2
-   L3
-    MAXSTACK = 2
     MAXLOCALS = 3
 
   // access flags 0x1
-  public getClass$$PHOSPHORTAGGED(Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/Class;
+  public hashCode$$PHOSPHORTAGGED(Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag;
    L0
    L1
     ALOAD 0
-    INVOKESPECIAL java/io/ObjectStreamClass$FieldReflector.getClass ()Ljava/lang/Class;
+    INVOKESPECIAL sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.hashCode ()I
+    ALOAD 1
+    SWAP
+    PUTFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag.val : I
+    ALOAD 1
+    ICONST_0
+    PUTFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag.taint : I
+    ALOAD 1
    L2
     ARETURN
-    LOCALVARIABLE this Ljava/io/ObjectStreamClass$FieldReflector; L1 L2 0
+    LOCALVARIABLE this Lsun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor; L1 L2 0
+    LOCALVARIABLE phosphorReturnHolder Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag; L1 L2 1
    L3
-    MAXSTACK = 1
+    MAXSTACK = 2
     MAXLOCALS = 2
 
   // access flags 0x1
-  public toString$$PHOSPHORTAGGED(Ledu/columbia/cs/psl/phosphor/struct/ControlTaintTagStack;)Ljava/lang/String;
+  public getClass$$PHOSPHORTAGGED()Ljava/lang/Class;
    L0
    L1
     ALOAD 0
-    INVOKESPECIAL java/io/ObjectStreamClass$FieldReflector.toString ()Ljava/lang/String;
+    INVOKESPECIAL sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.getClass ()Ljava/lang/Class;
    L2
     ARETURN
-    LOCALVARIABLE this Ljava/io/ObjectStreamClass$FieldReflector; L1 L2 0
+    LOCALVARIABLE this Lsun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor; L1 L2 0
    L3
     MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public getClass$$PHOSPHORUNTAGGED()Ljava/lang/Class;
+    ALOAD 0
+    INVOKESPECIAL sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.getClass ()Ljava/lang/Class;
+    ARETURN
+    MAXSTACK = 0
+    MAXLOCALS = 0
+
+  // access flags 0x1
+  public toString$$PHOSPHORTAGGED()Ljava/lang/String;
+   L0
+   L1
+    ALOAD 0
+    INVOKESPECIAL sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.toString ()Ljava/lang/String;
+   L2
+    ARETURN
+    LOCALVARIABLE this Lsun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor; L1 L2 0
+   L3
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public toString$$PHOSPHORUNTAGGED()Ljava/lang/String;
+    ALOAD 0
+    INVOKESPECIAL sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.toString ()Ljava/lang/String;
+    ARETURN
+    MAXSTACK = 0
+    MAXLOCALS = 0
+
+  // access flags 0x0
+  <init>(Lsun/security/ssl/SSLSessionContextImpl;Ledu/columbia/cs/psl/phosphor/runtime/UninstrumentedTaintSentinel;)V
+   L0
+   L1
+    LINENUMBER 231 L1
+    ALOAD 0
+    ALOAD 1
+    PUTFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.this$0 : Lsun/security/ssl/SSLSessionContextImpl;
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+   L2
+    LINENUMBER 233 L2
+    ALOAD 0
+    ACONST_NULL
+    PUTFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.ids : Ljava/util/Vector;
+    RETURN
+   L3
+    MAXSTACK = 2
     MAXLOCALS = 2
-}
+
+  // access flags 0x1
+  // signature ()Ljava/util/Enumeration<[B>;
+  // declaration: java.util.Enumeration<byte[]> getSessionIds$$PHOSPHORUNTAGGED()
+  public getSessionIds$$PHOSPHORUNTAGGED()Ljava/util/Enumeration;
+   L0
+   L1
+    LINENUMBER 249 L1
+    ALOAD 0
+    GETFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.ids : Ljava/util/Vector;
+    IFNULL L2
+    ALOAD 0
+    GETFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.ids : Ljava/util/Vector;
+    INVOKEVIRTUAL java/util/Vector.elements ()Ljava/util/Enumeration;
+    GOTO L3
+   L2
+   FRAME FULL [sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor] []
+    NEW java/util/Vector
+    DUP
+    INVOKESPECIAL java/util/Vector.<init> ()V
+   L4
+    LINENUMBER 250 L4
+    INVOKEVIRTUAL java/util/Vector.elements ()Ljava/util/Enumeration;
+   L3
+    LINENUMBER 249 L3
+   FRAME FULL [sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor] [java/util/Enumeration]
+    ARETURN
+   L5
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  // signature (Ljava/util/Map<Lsun/security/ssl/SessionId;Lsun/security/ssl/SSLSessionImpl;>;)V
+  // declaration: void visit$$PHOSPHORUNTAGGED(java.util.Map<sun.security.ssl.SessionId, sun.security.ssl.SSLSessionImpl>)
+  public visit$$PHOSPHORUNTAGGED(Ljava/util/Map;)V
+   L0
+   L1
+    NEW edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag
+    DUP
+    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag.<init> ()V
+    ASTORE 2
+   L2
+    NEW edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag
+    DUP
+    INVOKESPECIAL edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag.<init> ()V
+    ASTORE 3
+   L3
+    LINENUMBER 238 L3
+    ALOAD 0
+   L4
+    NEW java/util/Vector
+    DUP
+    ALOAD 1
+    ALOAD 2
+    INVOKEINTERFACE java/util/Map.size$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag;
+    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag.val : I
+   L5
+    ISTORE 4
+    ICONST_0
+    ILOAD 4
+   L6
+    ACONST_NULL
+    INVOKESPECIAL java/util/Vector.<init> (IILedu/columbia/cs/psl/phosphor/runtime/TaintSentinel;)V
+    PUTFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.ids : Ljava/util/Vector;
+   L7
+    LINENUMBER 240 L7
+    ALOAD 1
+    INVOKEINTERFACE java/util/Map.keySet ()Ljava/util/Set;
+    INVOKEINTERFACE java/util/Set.iterator ()Ljava/util/Iterator;
+    ASTORE 5
+   L8
+   FRAME FULL [sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor java/util/Map edu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag T java/util/Iterator] []
+    ALOAD 5
+    ALOAD 3
+    INVOKEINTERFACE java/util/Iterator.hasNext$$PHOSPHORTAGGED (Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag;
+    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag.val : Z
+    IFEQ L9
+    ALOAD 5
+    INVOKEINTERFACE java/util/Iterator.next ()Ljava/lang/Object;
+    CHECKCAST sun/security/ssl/SessionId
+    ASTORE 6
+   L10
+    LINENUMBER 241 L10
+    ALOAD 1
+    ALOAD 6
+    INVOKESTATIC edu/columbia/cs/psl/phosphor/struct/multid/MultiDTaintedArray.boxIfNecessary (Ljava/lang/Object;)Ljava/lang/Object;
+    CHECKCAST java/lang/Object
+    INVOKEINTERFACE java/util/Map.get (Ljava/lang/Object;)Ljava/lang/Object;
+    CHECKCAST sun/security/ssl/SSLSessionImpl
+    ASTORE 7
+   L11
+    LINENUMBER 242 L11
+    ALOAD 0
+    GETFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.this$0 : Lsun/security/ssl/SSLSessionContextImpl;
+    ALOAD 7
+   L12
+    ASTORE 4
+    ALOAD 4
+   L13
+    ALOAD 3
+    INVOKEVIRTUAL sun/security/ssl/SSLSessionContextImpl.isTimedout$$PHOSPHORTAGGED (Ljavax/net/ssl/SSLSession;Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag;
+    GETFIELD edu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag.val : Z
+    IFNE L14
+   L15
+    LINENUMBER 243 L15
+    ALOAD 0
+    GETFIELD sun/security/ssl/SSLSessionContextImpl$SessionCacheVisitor.ids : Ljava/util/Vector;
+    ALOAD 6

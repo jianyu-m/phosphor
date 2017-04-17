@@ -8,3 +8,4 @@ experiments
 *.jar
 *.war
 *.ear
+.idea/*

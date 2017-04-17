@@ -20,13 +20,13 @@ public class StreamObjectHelper {
         return o;
     }
     public static void putObjectWrapper(Unsafe unsafe, Object o, long key, Object val, Class c) {
-        if (c == Object.class && int[].class.isAssignableFrom(o.getClass())) {
-            val = new LazyIntArrayIntTags((int[])val);
+        if (c != null && val != null && !c.isAssignableFrom(val.getClass())) {
+            val = ((LazyArrayIntTags)val).getVal();
         }
         unsafe.putObject(o, key, val);
     }
     public static void putObjectWrapper$$PHOSPHORTAGGED(Unsafe unsafe, Object o, int key_tag, long key, Object val, Class c) {
-        if (val != null && !c.isAssignableFrom(val.getClass())) {
+        if (c != null && val != null && !c.isAssignableFrom(val.getClass())) {
             val = ((LazyArrayIntTags)val).getVal();
         }
         unsafe.putObject(o, key, val);
@@ -44,6 +44,9 @@ public class StreamObjectHelper {
     }
 
     public static void resolveObjectWrapper(ObjectInputStream ois, Object obj) {
+        if (obj == null)
+            return;
+
         Class c = obj.getClass();
         Field[] fs = c.getFields();
         for (Field f:
@@ -57,6 +60,8 @@ public class StreamObjectHelper {
                     Field of = c.getDeclaredField(original_name);
                     of.setAccessible(true);
                     Object ob = of.get(obj);
+                    if (ob == null) continue;
+                    if (f.get(obj) != null) continue;
                     if (!LazyArrayIntTags.class.isAssignableFrom(ob.getClass())) {
                         Class tc = ob.getClass();
                         Object to = null;
@@ -79,9 +84,9 @@ public class StreamObjectHelper {
                         } else {
                             throw new IllegalAccessException("wrong type");
                         }
-                        f.set(obj, to);
+                        f.setObjectWrapper(obj, to);
                     } else {
-                        f.set(obj, ob);
+                        f.setObjectWrapper(obj, ob);
                     }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
