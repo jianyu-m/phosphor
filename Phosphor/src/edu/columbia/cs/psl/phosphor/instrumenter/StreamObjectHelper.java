@@ -1,5 +1,6 @@
 package edu.columbia.cs.psl.phosphor.instrumenter;
 
+import edu.columbia.cs.psl.phosphor.Configuration;
 import edu.columbia.cs.psl.phosphor.runtime.Taint;
 import edu.columbia.cs.psl.phosphor.runtime.Tainter;
 import edu.columbia.cs.psl.phosphor.struct.*;
@@ -12,6 +13,10 @@ import java.lang.reflect.Field;
  * Created by jianyu on 4/7/17.
  */
 public class StreamObjectHelper {
+
+    static private Class<?> taintedArraySupperClass =
+            (Configuration.MULTI_TAINTING) ? LazyArrayObjTags.class : LazyArrayIntTags.class;
+
     public static Object getCastObject(Unsafe unsafe, Object o, Class c) {
         // check if it is array
         if (c == Object.class && int[].class.isAssignableFrom(o.getClass())) {
@@ -32,7 +37,7 @@ public class StreamObjectHelper {
         unsafe.putObject(o, key, val);
     }
     public static void putObjectWrapper$$PHOSPHORTAGGED(Unsafe unsafe, Object o, Taint tag, long key, Object val, Class c) {
-        if (val != null && !c.isAssignableFrom(val.getClass())) {
+        if (c != null && !c.isAssignableFrom(val.getClass())) {
             val = ((LazyArrayObjTags)val).getVal();
         }
         unsafe.putObject(o, key, val);
@@ -53,7 +58,8 @@ public class StreamObjectHelper {
                 fs) {
 			/* we only need to modify the tag for array */
             String field_name = f.getName();
-            if (field_name.endsWith("PHOSPHOR_TAG") && LazyArrayIntTags.class.isAssignableFrom(f.getType())) {
+            if (field_name.endsWith("PHOSPHOR_TAG") &&
+                    taintedArraySupperClass.isAssignableFrom(f.getType())) {
                 String original_name = f.getName().substring(0, field_name.length() - 12);
                 try {
                     f.setAccessible(true);
@@ -62,7 +68,9 @@ public class StreamObjectHelper {
                     Object ob = of.get(obj);
                     if (ob == null) continue;
                     if (f.get(obj) != null) continue;
-                    if (!LazyArrayIntTags.class.isAssignableFrom(ob.getClass())) {
+                    if (taintedArraySupperClass.isAssignableFrom(ob.getClass())) {
+                        f.setObjectWrapper(obj, ob);
+                    } else if (taintedArraySupperClass == LazyArrayIntTags.class) {
                         Class tc = ob.getClass();
                         Object to = null;
                         if (int[].class.isAssignableFrom(tc)) {
@@ -85,8 +93,31 @@ public class StreamObjectHelper {
                             throw new IllegalAccessException("wrong type");
                         }
                         f.setObjectWrapper(obj, to);
+                    } else if (taintedArraySupperClass == LazyArrayObjTags.class) {
+                        Class tc = ob.getClass();
+                        Object to = null;
+                        if (int[].class.isAssignableFrom(tc)) {
+                            to = new LazyIntArrayObjTags((int[])ob);
+                        } else if (short[].class.isAssignableFrom(tc)) {
+                            to = new LazyShortArrayObjTags((short[])ob);
+                        } else if (long[].class.isAssignableFrom(tc)) {
+                            to = new LazyLongArrayObjTags((long[])ob);
+                        } else if (double[].class.isAssignableFrom(tc)) {
+                            to = new LazyDoubleArrayObjTags((double[])ob);
+                        } else if (float[].class.isAssignableFrom(tc)) {
+                            to = new LazyFloatArrayObjTags((float[])ob);
+                        } else if (char[].class.isAssignableFrom(tc)) {
+                            to = new LazyCharArrayObjTags((char[])ob);
+                        } else if (byte[].class.isAssignableFrom(tc)) {
+                            to = new LazyByteArrayObjTags((byte[])ob);
+                        } else if (boolean[].class.isAssignableFrom(tc)) {
+                            to = new LazyBooleanArrayObjTags((boolean[])ob);
+                        } else {
+                            throw new IllegalAccessException("wrong type");
+                        }
+                        f.setObjectWrapper(obj, to);
                     } else {
-                        f.setObjectWrapper(obj, ob);
+                        throw new IllegalAccessException("error array taint type");
                     }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
