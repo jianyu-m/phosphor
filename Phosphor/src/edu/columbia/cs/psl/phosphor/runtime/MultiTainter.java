@@ -30,6 +30,30 @@ public final class MultiTainter {
 	{
 		return ctrl;
 	}
+	public static boolean taintedBoolean(boolean in, Taint t) {
+		throw new IllegalStateException("Calling uninstrumented Phosphor stubs!");
+	}
+	public static char taintedChar(char in, Taint t) {
+		throw new IllegalStateException("Calling uninstrumented Phosphor stubs!");
+	}
+	public static byte taintedByte(byte in, Taint t) {
+		throw new IllegalStateException("Calling uninstrumented Phosphor stubs!");
+	}
+	public static int taintedInt(int in, Taint t) {
+		throw new IllegalStateException("Calling uninstrumented Phosphor stubs!");
+	}
+	public static long taintedLong(long in, Taint t) {
+		throw new IllegalStateException("Calling uninstrumented Phosphor stubs!");
+	}
+	public static short taintedShort(short in, Taint t) {
+		throw new IllegalStateException("Calling uninstrumented Phosphor stubs!");
+	}
+	public static double taintedDouble(double in, Taint t) {
+		throw new IllegalStateException("Calling uninstrumented Phosphor stubs!");
+	}
+	public static float taintedFloat(float in, Taint t) {
+		throw new IllegalStateException("Calling uninstrumented Phosphor stubs!");
+	}
 	public static boolean taintedBoolean(boolean in, Object lbl)
 	{
 		throw new IllegalStateException("Calling uninstrumented Phosphor stubs!");
@@ -270,6 +294,54 @@ public final class MultiTainter {
 			ret.taints = new Taint[in.length];
 		for(int i =0 ; i < in.length; i++)
 			ret.taints[i] = new Taint(lbl);
+		return ret;
+	}
+	public static TaintedBooleanWithObjTag taintedBoolean$$PHOSPHORTAGGED(Taint oldTag, boolean in, Taint t, TaintedBooleanWithObjTag ret)
+	{
+		ret.taint = t.copy();
+		ret.val = in;
+		return ret;
+	}
+	public static TaintedCharWithObjTag taintedChar$$PHOSPHORTAGGED(Taint oldTag, char in, Taint t, TaintedCharWithObjTag ret)
+	{
+		ret.taint = t.copy();
+		ret.val = in;
+		return ret;
+	}
+	public static TaintedByteWithObjTag taintedByte$$PHOSPHORTAGGED(Taint oldTag, byte in, Taint t, TaintedByteWithObjTag ret)
+	{
+		ret.taint = t.copy();
+		ret.val = in;
+		return ret;
+	}
+	public static TaintedIntWithObjTag taintedInt$$PHOSPHORTAGGED(Taint oldTag, int in, Taint t, TaintedIntWithObjTag ret)
+	{
+		ret.taint = t.copy();
+		ret.val = in;
+		return ret;
+	}
+	public static TaintedLongWithObjTag taintedLong$$PHOSPHORTAGGED(Taint oldTag, long in, Taint t, TaintedLongWithObjTag ret)
+	{
+		ret.taint = t.copy();
+		ret.val = in;
+		return ret;
+	}
+	public static TaintedShortWithObjTag taintedShort$$PHOSPHORTAGGED(Taint oldTag, short in, Taint t, TaintedShortWithObjTag ret)
+	{
+		ret.taint = t.copy();
+		ret.val = in;
+		return ret;
+	}
+	public static TaintedDoubleWithObjTag taintedDouble$$PHOSPHORTAGGED(Taint oldTag, double in, Taint t, TaintedDoubleWithObjTag ret)
+	{
+		ret.taint = t.copy();
+		ret.val = in;
+		return ret;
+	}
+	public static TaintedFloatWithObjTag taintedFloat$$PHOSPHORTAGGED(Taint oldTag, float in, Taint t, TaintedFloatWithObjTag ret)
+	{
+		ret.taint = t.copy();
+		ret.val = in;
 		return ret;
 	}
 	public static Taint getTaint$$PHOSPHORTAGGED(Object obj)

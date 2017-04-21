@@ -442,6 +442,18 @@ public class TaintUtils {
 	public static boolean OKtoDebug = false;
 	public static int OKtoDebugPHOSPHOR_TAG;
 
+	public static void arraycopy(Object srcTaint, Object src, Object srcPostTaint, int srcPos, Object dest, Object destPosTaint, int destPos, Object lengthTaint, int length) {
+		if (!src.getClass().isArray() && !dest.getClass().isArray()) {
+			System.arraycopy(((LazyArrayObjTags)src).getVal(), srcPos, ((LazyArrayIntTags)dest).getVal(), destPos, length);
+		} else if (!dest.getClass().isArray()) {
+			System.arraycopy(src, srcPos, ((LazyArrayObjTags)dest).getVal(), destPos, length);
+			if (((LazyArrayObjTags)dest).taints == null)
+				((LazyArrayObjTags)dest).taints = new Taint[((LazyArrayObjTags)dest).getLength()];
+		} else {
+			System.arraycopy(src, srcPos, dest, destPos, length);
+		}
+	}
+
 	public static void arraycopy(Object src, int srcPosTaint, int srcPos, Object dest, int destPosTaint, int destPos, int lengthTaint, int length) {
 		try {
 			if (src instanceof LazyArrayIntTags) {

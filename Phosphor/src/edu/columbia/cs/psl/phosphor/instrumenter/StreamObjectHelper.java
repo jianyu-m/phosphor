@@ -37,7 +37,7 @@ public class StreamObjectHelper {
         unsafe.putObject(o, key, val);
     }
     public static void putObjectWrapper$$PHOSPHORTAGGED(Unsafe unsafe, Object o, Taint tag, long key, Object val, Class c) {
-        if (c != null && !c.isAssignableFrom(val.getClass())) {
+        if (c != null && val != null && !c.isAssignableFrom(val.getClass())) {
             val = ((LazyArrayObjTags)val).getVal();
         }
         unsafe.putObject(o, key, val);

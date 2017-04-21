@@ -9,7 +9,12 @@ import edu.columbia.cs.psl.phosphor.struct.LinkedList.Node;
 import edu.columbia.cs.psl.phosphor.struct.TaintedBooleanWithObjTag;
 import edu.columbia.cs.psl.phosphor.struct.TaintedWithObjTag;
 
-public class Taint<T> {
+import java.io.Serializable;
+
+public class Taint<T> implements Serializable {
+
+	private static final long serialVersionUID = 0x1111;
+
 	public static boolean IGNORE_TAINTING;
 
 	public static final <T> Taint<T> copyTaint(Taint<T> in)
