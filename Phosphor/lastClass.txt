@@ -1,0 +1,129 @@
+// class version 52.0 (52)
+// access flags 0x601
+public abstract interface com/sun/jarsigner/ContentSignerParameters {
+
+
+  @Ledu/columbia/cs/psl/phosphor/runtime/TaintInstrumented;() // invisible
+  // compiled from: ContentSignerParameters.java
+
+  @Ljdk/Exported;()
+
+  // access flags 0x401
+  public abstract getCommandLine$$PHOSPHORUNTAGGED()[Ljava/lang/String;
+
+  // access flags 0x401
+  public abstract getTimestampingAuthority$$PHOSPHORUNTAGGED()Ljava/net/URI;
+
+  // access flags 0x401
+  public abstract getTimestampingAuthorityCertificate$$PHOSPHORUNTAGGED()Ljava/security/cert/X509Certificate;
+
+  // access flags 0x1
+  public default getTSAPolicyID$$PHOSPHORUNTAGGED()Ljava/lang/String;
+   L0
+   L1
+    LINENUMBER 68 L1
+    ACONST_NULL
+    ARETURN
+   L2
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x401
+  public abstract getSignature$$PHOSPHORUNTAGGED()[B
+
+  // access flags 0x401
+  public abstract getSignatureAlgorithm$$PHOSPHORUNTAGGED()Ljava/lang/String;
+
+  // access flags 0x401
+  public abstract getSignerCertificateChain$$PHOSPHORUNTAGGED()[Ljava/security/cert/X509Certificate;
+
+  // access flags 0x401
+  public abstract getContent$$PHOSPHORUNTAGGED()[B
+
+  // access flags 0x401
+  public abstract getSource$$PHOSPHORUNTAGGED()Ljava/util/zip/ZipFile;
+
+  // access flags 0x401
+  public abstract getPHOSPHOR_TAG()I
+
+  // access flags 0x401
+  public abstract setPHOSPHOR_TAG(I)V
+
+  // access flags 0x401
+  public abstract hashCode$$PHOSPHORTAGGED(Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedIntWithIntTag;
+
+  // access flags 0x401
+  public abstract hashCode$$PHOSPHORUNTAGGED()I
+
+  // access flags 0x401
+  public abstract equals$$PHOSPHORTAGGED(Ljava/lang/Object;Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag;)Ledu/columbia/cs/psl/phosphor/struct/TaintedBooleanWithIntTag;
+
+  // access flags 0x401
+  public abstract equals$$PHOSPHORUNTAGGED(Ljava/lang/Object;)Z
+
+  // access flags 0x401
+  public abstract getClass$$PHOSPHORTAGGED()Ljava/lang/Class;
+
+  // access flags 0x401
+  public abstract getClass$$PHOSPHORUNTAGGED()Ljava/lang/Class;
+
+  // access flags 0x401
+  public abstract toString$$PHOSPHORTAGGED()Ljava/lang/String;
+
+  // access flags 0x401
+  public abstract toString$$PHOSPHORUNTAGGED()Ljava/lang/String;
+
+  // access flags 0x401
+  public abstract getCommandLine$$PHOSPHORTAGGED()[Ljava/lang/String;
+
+  // access flags 0x401
+  public abstract getCommandLine()[Ljava/lang/String;
+
+  // access flags 0x401
+  public abstract getTimestampingAuthority$$PHOSPHORTAGGED()Ljava/net/URI;
+
+  // access flags 0x401
+  public abstract getTimestampingAuthority()Ljava/net/URI;
+
+  // access flags 0x401
+  public abstract getTimestampingAuthorityCertificate$$PHOSPHORTAGGED()Ljava/security/cert/X509Certificate;
+
+  // access flags 0x401
+  public abstract getTimestampingAuthorityCertificate()Ljava/security/cert/X509Certificate;
+
+  // access flags 0x1
+  public default getTSAPolicyID$$PHOSPHORTAGGED()Ljava/lang/String;
+
+  // access flags 0x1
+  public default getTSAPolicyID()Ljava/lang/String;
+
+  // access flags 0x401
+  public abstract getSignature$$PHOSPHORTAGGED()Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayIntTags;
+
+  // access flags 0x401
+  public abstract getSignature()[B
+
+  // access flags 0x401
+  public abstract getSignatureAlgorithm$$PHOSPHORTAGGED()Ljava/lang/String;
+
+  // access flags 0x401
+  public abstract getSignatureAlgorithm()Ljava/lang/String;
+
+  // access flags 0x401
+  public abstract getSignerCertificateChain$$PHOSPHORTAGGED()[Ljava/security/cert/X509Certificate;
+
+  // access flags 0x401
+  public abstract getSignerCertificateChain()[Ljava/security/cert/X509Certificate;
+
+  // access flags 0x401
+  public abstract getContent$$PHOSPHORTAGGED()Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayIntTags;
+
+  // access flags 0x401
+  public abstract getContent()[B
+
+  // access flags 0x401
+  public abstract getSource$$PHOSPHORTAGGED()Ljava/util/zip/ZipFile;
+
+  // access flags 0x401
+  public abstract getSource()Ljava/util/zip/ZipFile;
+}

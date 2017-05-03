@@ -154,7 +154,14 @@ public class Instrumenter {
 				|| owner.startsWith("org/apache/jasper/runtime/JspSourceDependent")
 				|| owner.startsWith("sun/reflect/ConstructorAccessor") //was on last
 				|| owner.startsWith("sun/reflect/SerializationConstructorAccessor")
-
+				|| owner.startsWith("java/net/IDN")
+				|| owner.startsWith("java/text/Bidi")
+				|| owner.startsWith("javax/naming/ldap")
+				|| owner.startsWith("sun/rmi/server/DeserializationChecker") // this may not be neccessary
+				|| owner.startsWith("sun/swing/LightweightContent")
+				|| owner.startsWith("javax/swing/text")
+				|| owner.startsWith("sun/java2d/opengl")
+				|| owner.startsWith("java/util/Date")
 				|| owner.startsWith("sun/reflect/GeneratedMethodAccessor") || owner.startsWith("sun/reflect/GeneratedConstructorAccessor")
 				|| owner.startsWith("sun/reflect/GeneratedSerializationConstructor") || owner.startsWith("sun/awt/image/codec/")
 				|| owner.startsWith("java/lang/invoke/LambdaForm")
@@ -786,6 +793,17 @@ public class Instrumenter {
 	}
 
 	public static boolean isIgnoredMethodFromOurAnalysis(String owner, String name, String desc) {
+		if (owner.startsWith("scala")) {
+			return false;
+		}
+		if (owner.startsWith("org/apache/spark") && !name.startsWith("<init>")) {
+			return true;
+		}
+//		if (owner.startsWith("com/sun/xml/internal") || owner.startsWith("com/sun/jdi/")
+//				|| owner.startsWith("com/sun/tools") || owner.startsWith("com/sun/jarsigner")
+//				|| true) {
+//			return false;
+//		}
 		if (!owner.startsWith("edu/columbia/cs/psl/phosphor") &&!owner.startsWith("[")
 			&& !owner.startsWith("java")
 				&& !SelectiveInstrumentationManager.methodsToInstrument.contains(new MethodDescriptor(name, owner, desc))) {

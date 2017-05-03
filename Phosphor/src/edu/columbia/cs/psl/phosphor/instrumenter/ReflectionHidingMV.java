@@ -234,6 +234,9 @@ public class ReflectionHidingMV extends MethodVisitor implements Opcodes {
 		}
 		if (owner.equals("java/lang/reflect/Array") && !owner.equals(className)) {
 			owner = Type.getInternalName(ArrayReflectionMasker.class);
+			if (name.endsWith("$$PHOSPHORUNTAGGED")) {
+				name = name.replace("$$PHOSPHORUNTAGGED", "");
+			}
 		}
 		if (owner.equals("java/lang/reflect/Field")
 				&& opcode == Opcodes.INVOKEVIRTUAL

@@ -1,25 +1,10 @@
 package edu.columbia.cs.psl.phosphor.runtime;
 
 import edu.columbia.cs.psl.phosphor.Configuration;
-import edu.columbia.cs.psl.phosphor.struct.ControlTaintTagStack;
-import edu.columbia.cs.psl.phosphor.struct.LazyBooleanArrayObjTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyByteArrayObjTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyCharArrayObjTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyDoubleArrayObjTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyFloatArrayObjTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyIntArrayObjTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyLongArrayObjTags;
-import edu.columbia.cs.psl.phosphor.struct.LazyShortArrayObjTags;
-import edu.columbia.cs.psl.phosphor.struct.TaintedBooleanWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedByteWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedCharWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedDoubleWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedFloatWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedIntWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedLongWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedShortWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedWithObjTag;
+import edu.columbia.cs.psl.phosphor.struct.*;
 import edu.columbia.cs.psl.phosphor.struct.multid.MultiDTaintedArrayWithObjTag;
+
+import java.lang.reflect.Field;
 
 public final class MultiTainter {
 	public static ControlTaintTagStack getControlFlow()
@@ -376,8 +361,35 @@ public final class MultiTainter {
 	{
 		if(obj instanceof MultiDTaintedArrayWithObjTag)
 			obj = ((MultiDTaintedArrayWithObjTag) obj).getVal();
-		if(obj instanceof TaintedWithObjTag)
+		if(obj instanceof TaintedWithObjTag) {
 			((TaintedWithObjTag) obj).setPHOSPHOR_TAG(tag);
+			Field[] fields = obj.getClass().getDeclaredFields();
+			for (Field f:
+					fields) {
+				try {
+					f.setAccessible(true);
+					Object ob = f.get(obj);
+
+					if (ob == null) continue;
+
+					// Do nothing for normal fields
+					if (f.getName().contains("PHOSPHOR_TAG")) {
+						Class t = f.getType();
+						if (t == Taint.class) {
+							f.set(obj, tag);
+						} else if (LazyArrayObjTags.class.isAssignableFrom(t)) {
+							((LazyArrayObjTags)ob).setTaints(tag);
+							f.set(obj, ob);
+						}
+//						Object m = f.get(obj);
+					}
+				} catch (IllegalAccessException e) {
+					//ignore
+				} catch (IllegalArgumentException k) {
+					//ignore
+				}
+			}
+		}
 		else if(obj != null && ArrayHelper.engaged == 1)
 			ArrayHelper.setTag(obj, tag);
 	}

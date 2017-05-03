@@ -48,6 +48,14 @@ public class StreamObjectHelper {
         resolveObjectWrapper(ois, obj);
     }
 
+    public static int userPropogationFunc$$PHOSPHORTAGGED(int tag_a, int tag_b) {
+        return tag_a;
+    }
+
+    public static int userPropogationFunc(int tag_a, int tag_b) {
+        return tag_a;
+    }
+
     public static void resolveObjectWrapper(ObjectInputStream ois, Object obj) {
         if (obj == null)
             return;
