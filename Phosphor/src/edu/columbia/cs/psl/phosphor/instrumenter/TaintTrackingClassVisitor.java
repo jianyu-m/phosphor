@@ -532,8 +532,10 @@ public class TaintTrackingClassVisitor extends ClassVisitor {
 		if (TaintUtils.getShadowTaintType(desc) != null) {
 			if(TaintAdapter.canRawTaintAccess(className))
 				extraFieldsToVisit.add(new FieldNode(access, name + TaintUtils.TAINT_FIELD, TaintUtils.getShadowTaintType(desc), null, null));
-			else
-				extraFieldsToVisit.add(new FieldNode(access,  name+TaintUtils.TAINT_FIELD, "I", null, null));
+			else {
+//				extraFieldsToVisit.add(new FieldNode(access,  name+TaintUtils.TAINT_FIELD, "Ljava/lang/Object;", null, null));
+				extraFieldsToVisit.add(new FieldNode(access, name + TaintUtils.TAINT_FIELD, "I", null, null));
+				}
 		} else if (!FIELDS_ONLY && fieldType.getSort() == Type.ARRAY && fieldType.getElementType().getSort() != Type.OBJECT && fieldType.getDimensions() > 1) {
 			desc = MultiDTaintedArray.getTypeForType(fieldType).getDescriptor();
 		}

@@ -1,47 +1,58 @@
 // class version 52.0 (52)
 // access flags 0x601
-public abstract interface com/sun/jarsigner/ContentSignerParameters {
+// signature <T:Ljava/lang/Object;C:Ljava/lang/Object;>Ljava/lang/Object;Lcom/sun/xml/internal/bind/v2/model/core/Element<TT;TC;>;
+// declaration: com/sun/xml/internal/bind/v2/model/core/ElementInfo<T, C> extends com.sun.xml.internal.bind.v2.model.core.Element<T, C>
+public abstract interface com/sun/xml/internal/bind/v2/model/core/ElementInfo implements com/sun/xml/internal/bind/v2/model/core/Element  {
 
 
   @Ledu/columbia/cs/psl/phosphor/runtime/TaintInstrumented;() // invisible
-  // compiled from: ContentSignerParameters.java
-
-  @Ljdk/Exported;()
+  // compiled from: ElementInfo.java
 
   // access flags 0x401
-  public abstract getCommandLine$$PHOSPHORUNTAGGED()[Ljava/lang/String;
+  // signature ()Lcom/sun/xml/internal/bind/v2/model/core/ElementPropertyInfo<TT;TC;>;
+  // declaration: com.sun.xml.internal.bind.v2.model.core.ElementPropertyInfo<T, C> getProperty$$PHOSPHORUNTAGGED()
+  public abstract getProperty$$PHOSPHORUNTAGGED()Lcom/sun/xml/internal/bind/v2/model/core/ElementPropertyInfo;
 
   // access flags 0x401
-  public abstract getTimestampingAuthority$$PHOSPHORUNTAGGED()Ljava/net/URI;
+  // signature ()Lcom/sun/xml/internal/bind/v2/model/core/NonElement<TT;TC;>;
+  // declaration: com.sun.xml.internal.bind.v2.model.core.NonElement<T, C> getContentType$$PHOSPHORUNTAGGED()
+  public abstract getContentType$$PHOSPHORUNTAGGED()Lcom/sun/xml/internal/bind/v2/model/core/NonElement;
 
   // access flags 0x401
-  public abstract getTimestampingAuthorityCertificate$$PHOSPHORUNTAGGED()Ljava/security/cert/X509Certificate;
+  // signature ()TT;
+  // declaration: T getContentInMemoryType$$PHOSPHORUNTAGGED()
+  public abstract getContentInMemoryType$$PHOSPHORUNTAGGED()Ljava/lang/Object;
 
-  // access flags 0x1
-  public default getTSAPolicyID$$PHOSPHORUNTAGGED()Ljava/lang/String;
+  // access flags 0x401
+  // signature ()TT;
+  // declaration: T getType$$PHOSPHORUNTAGGED()
+  public abstract getType$$PHOSPHORUNTAGGED()Ljava/lang/Object;
+
+  // access flags 0x401
+  // signature ()Lcom/sun/xml/internal/bind/v2/model/core/ElementInfo<TT;TC;>;
+  // declaration: com.sun.xml.internal.bind.v2.model.core.ElementInfo<T, C> getSubstitutionHead$$PHOSPHORUNTAGGED()
+  public abstract getSubstitutionHead$$PHOSPHORUNTAGGED()Lcom/sun/xml/internal/bind/v2/model/core/ElementInfo;
+
+  // access flags 0x401
+  // signature ()Ljava/util/Collection<+Lcom/sun/xml/internal/bind/v2/model/core/ElementInfo<TT;TC;>;>;
+  // declaration: java.util.Collection<? extends com.sun.xml.internal.bind.v2.model.core.ElementInfo<T, C>> getSubstitutionMembers$$PHOSPHORUNTAGGED()
+  public abstract getSubstitutionMembers$$PHOSPHORUNTAGGED()Ljava/util/Collection;
+
+  // access flags 0x1041
+  public synthetic bridge default getSubstitutionHead$$PHOSPHORUNTAGGED()Lcom/sun/xml/internal/bind/v2/model/core/Element;
    L0
    L1
-    LINENUMBER 68 L1
-    ACONST_NULL
+    LINENUMBER 39 L1
+    ALOAD 0
+    INVOKEINTERFACE com/sun/xml/internal/bind/v2/model/core/ElementInfo.getSubstitutionHead$$PHOSPHORUNTAGGED ()Lcom/sun/xml/internal/bind/v2/model/core/ElementInfo;
     ARETURN
    L2
+    LOCALVARIABLE this Lcom/sun/xml/internal/bind/v2/model/core/ElementInfo; L1 L2 0
+    // signature Lcom/sun/xml/internal/bind/v2/model/core/ElementInfo<TT;TC;>;
+    // declaration: com.sun.xml.internal.bind.v2.model.core.ElementInfo<T, C>
+   L3
     MAXSTACK = 1
     MAXLOCALS = 1
-
-  // access flags 0x401
-  public abstract getSignature$$PHOSPHORUNTAGGED()[B
-
-  // access flags 0x401
-  public abstract getSignatureAlgorithm$$PHOSPHORUNTAGGED()Ljava/lang/String;
-
-  // access flags 0x401
-  public abstract getSignerCertificateChain$$PHOSPHORUNTAGGED()[Ljava/security/cert/X509Certificate;
-
-  // access flags 0x401
-  public abstract getContent$$PHOSPHORUNTAGGED()[B
-
-  // access flags 0x401
-  public abstract getSource$$PHOSPHORUNTAGGED()Ljava/util/zip/ZipFile;
 
   // access flags 0x401
   public abstract getPHOSPHOR_TAG()I
@@ -74,56 +85,68 @@ public abstract interface com/sun/jarsigner/ContentSignerParameters {
   public abstract toString$$PHOSPHORUNTAGGED()Ljava/lang/String;
 
   // access flags 0x401
-  public abstract getCommandLine$$PHOSPHORTAGGED()[Ljava/lang/String;
+  // signature ()Lcom/sun/xml/internal/bind/v2/model/core/ElementPropertyInfo<TT;TC;>;
+  // declaration: com.sun.xml.internal.bind.v2.model.core.ElementPropertyInfo<T, C> getProperty$$PHOSPHORTAGGED()
+  public abstract getProperty$$PHOSPHORTAGGED()Lcom/sun/xml/internal/bind/v2/model/core/ElementPropertyInfo;
 
   // access flags 0x401
-  public abstract getCommandLine()[Ljava/lang/String;
+  // signature ()Lcom/sun/xml/internal/bind/v2/model/core/ElementPropertyInfo<TT;TC;>;
+  // declaration: com.sun.xml.internal.bind.v2.model.core.ElementPropertyInfo<T, C> getProperty()
+  public abstract getProperty()Lcom/sun/xml/internal/bind/v2/model/core/ElementPropertyInfo;
 
   // access flags 0x401
-  public abstract getTimestampingAuthority$$PHOSPHORTAGGED()Ljava/net/URI;
+  // signature ()Lcom/sun/xml/internal/bind/v2/model/core/NonElement<TT;TC;>;
+  // declaration: com.sun.xml.internal.bind.v2.model.core.NonElement<T, C> getContentType$$PHOSPHORTAGGED()
+  public abstract getContentType$$PHOSPHORTAGGED()Lcom/sun/xml/internal/bind/v2/model/core/NonElement;
 
   // access flags 0x401
-  public abstract getTimestampingAuthority()Ljava/net/URI;
+  // signature ()Lcom/sun/xml/internal/bind/v2/model/core/NonElement<TT;TC;>;
+  // declaration: com.sun.xml.internal.bind.v2.model.core.NonElement<T, C> getContentType()
+  public abstract getContentType()Lcom/sun/xml/internal/bind/v2/model/core/NonElement;
 
   // access flags 0x401
-  public abstract getTimestampingAuthorityCertificate$$PHOSPHORTAGGED()Ljava/security/cert/X509Certificate;
+  // signature ()TT;
+  // declaration: T getContentInMemoryType$$PHOSPHORTAGGED()
+  public abstract getContentInMemoryType$$PHOSPHORTAGGED()Ljava/lang/Object;
 
   // access flags 0x401
-  public abstract getTimestampingAuthorityCertificate()Ljava/security/cert/X509Certificate;
-
-  // access flags 0x1
-  public default getTSAPolicyID$$PHOSPHORTAGGED()Ljava/lang/String;
-
-  // access flags 0x1
-  public default getTSAPolicyID()Ljava/lang/String;
+  // signature ()TT;
+  // declaration: T getContentInMemoryType()
+  public abstract getContentInMemoryType()Ljava/lang/Object;
 
   // access flags 0x401
-  public abstract getSignature$$PHOSPHORTAGGED()Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayIntTags;
+  // signature ()TT;
+  // declaration: T getType$$PHOSPHORTAGGED()
+  public abstract getType$$PHOSPHORTAGGED()Ljava/lang/Object;
 
   // access flags 0x401
-  public abstract getSignature()[B
+  // signature ()TT;
+  // declaration: T getType()
+  public abstract getType()Ljava/lang/Object;
 
   // access flags 0x401
-  public abstract getSignatureAlgorithm$$PHOSPHORTAGGED()Ljava/lang/String;
+  // signature ()Lcom/sun/xml/internal/bind/v2/model/core/ElementInfo<TT;TC;>;
+  // declaration: com.sun.xml.internal.bind.v2.model.core.ElementInfo<T, C> getSubstitutionHead$$PHOSPHORTAGGED()
+  public abstract getSubstitutionHead$$PHOSPHORTAGGED()Lcom/sun/xml/internal/bind/v2/model/core/ElementInfo;
 
   // access flags 0x401
-  public abstract getSignatureAlgorithm()Ljava/lang/String;
+  // signature ()Lcom/sun/xml/internal/bind/v2/model/core/ElementInfo<TT;TC;>;
+  // declaration: com.sun.xml.internal.bind.v2.model.core.ElementInfo<T, C> getSubstitutionHead()
+  public abstract getSubstitutionHead()Lcom/sun/xml/internal/bind/v2/model/core/ElementInfo;
 
   // access flags 0x401
-  public abstract getSignerCertificateChain$$PHOSPHORTAGGED()[Ljava/security/cert/X509Certificate;
+  // signature ()Ljava/util/Collection<+Lcom/sun/xml/internal/bind/v2/model/core/ElementInfo<TT;TC;>;>;
+  // declaration: java.util.Collection<? extends com.sun.xml.internal.bind.v2.model.core.ElementInfo<T, C>> getSubstitutionMembers$$PHOSPHORTAGGED()
+  public abstract getSubstitutionMembers$$PHOSPHORTAGGED()Ljava/util/Collection;
 
   // access flags 0x401
-  public abstract getSignerCertificateChain()[Ljava/security/cert/X509Certificate;
+  // signature ()Ljava/util/Collection<+Lcom/sun/xml/internal/bind/v2/model/core/ElementInfo<TT;TC;>;>;
+  // declaration: java.util.Collection<? extends com.sun.xml.internal.bind.v2.model.core.ElementInfo<T, C>> getSubstitutionMembers()
+  public abstract getSubstitutionMembers()Ljava/util/Collection;
 
-  // access flags 0x401
-  public abstract getContent$$PHOSPHORTAGGED()Ledu/columbia/cs/psl/phosphor/struct/LazyByteArrayIntTags;
+  // access flags 0x1041
+  public synthetic bridge default getSubstitutionHead$$PHOSPHORTAGGED()Lcom/sun/xml/internal/bind/v2/model/core/Element;
 
-  // access flags 0x401
-  public abstract getContent()[B
-
-  // access flags 0x401
-  public abstract getSource$$PHOSPHORTAGGED()Ljava/util/zip/ZipFile;
-
-  // access flags 0x401
-  public abstract getSource()Ljava/util/zip/ZipFile;
+  // access flags 0x1041
+  public synthetic bridge default getSubstitutionHead()Lcom/sun/xml/internal/bind/v2/model/core/Element;
 }

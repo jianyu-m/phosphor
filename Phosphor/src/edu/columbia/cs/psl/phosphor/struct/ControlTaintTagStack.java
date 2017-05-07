@@ -59,7 +59,7 @@ public final class ControlTaintTagStack {
 		//Ensure not already enqueued in this thread's control flow
 		if(tag.enqueuedInControlFlow == null)
 			tag.enqueuedInControlFlow = new LinkedList<EnqueuedTaint>();
-		LinkedList.Node<EnqueuedTaint> e = tag.enqueuedInControlFlow.getFirst();
+		LinkedList.Node<EnqueuedTaint> e = null;
 		while (e != null) {
 			if (e.entry != null && e.entry.controlTag == this)
 				return prev; //already have this taint tag in this controlflowtainttagstack
@@ -87,7 +87,7 @@ public final class ControlTaintTagStack {
 
 		Taint tag = enq.taint;
 		boolean recalc = tag.lbl != null || !tag.hasNoDependencies();
-		LinkedList.Node<EnqueuedTaint> e = tag.enqueuedInControlFlow.getFirst();
+		LinkedList.Node<EnqueuedTaint> e = null;
 		LinkedList.Node<EnqueuedTaint> p = null;
 		while(e != null)
 		{

@@ -442,6 +442,22 @@ public class TaintUtils {
 	public static boolean OKtoDebug = false;
 	public static int OKtoDebugPHOSPHOR_TAG;
 
+//	public static void arraycopy(Object src, Object srcPostTaint, int srcPos, Object destTaint, Object dest, Object destPostTaint, int destPos, Object lengthTaint, int length) {
+//		System.out.println("arr " + src + " " + dest);
+//		if (!src.getClass().isArray() && !dest.getClass().isArray()) {
+//			System.arraycopy(((LazyArrayObjTags)src).getVal(), srcPos, ((LazyArrayIntTags)dest).getVal(), destPos, length);
+//		} else if (!dest.getClass().isArray()) {
+//			System.arraycopy(src, srcPos, ((LazyArrayObjTags) dest).getVal(), destPos, length);
+//			if (((LazyArrayObjTags) dest).taints == null)
+//				((LazyArrayObjTags) dest).taints = new Taint[((LazyArrayObjTags) dest).getLength()];
+//		} else if (!src.getClass().isArray()) {
+//			System.arraycopy(((LazyArrayObjTags)src).getVal(), srcPos, dest, destPos, length);
+//		} else {
+//			System.arraycopy(src, srcPos, dest, destPos, length);
+//		}
+//		System.out.println("finish");
+//	}
+
 	public static void arraycopy(Object srcTaint, Object src, Object srcPostTaint, int srcPos, Object dest, Object destPosTaint, int destPos, Object lengthTaint, int length) {
 		if (!src.getClass().isArray() && !dest.getClass().isArray()) {
 			System.arraycopy(((LazyArrayObjTags)src).getVal(), srcPos, ((LazyArrayIntTags)dest).getVal(), destPos, length);

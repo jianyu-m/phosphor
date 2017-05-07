@@ -10,6 +10,7 @@ import edu.columbia.cs.psl.phosphor.struct.TaintedBooleanWithObjTag;
 import edu.columbia.cs.psl.phosphor.struct.TaintedWithObjTag;
 
 import java.io.Serializable;
+import java.util.HashSet;
 
 public class Taint<T> implements Serializable {
 
@@ -20,7 +21,7 @@ public class Taint<T> implements Serializable {
 	public static final <T> Taint<T> copyTaint(Taint<T> in)
 	{
 		if(in == null)
-			return null;			
+			return null;
 		Taint<T> ret = new Taint<T>();
 		ret.copyFrom(in);
 		return ret;
@@ -53,22 +54,22 @@ public class Taint<T> implements Serializable {
 //			return null;
 //		}
 //	}
-	@Override
-	public String toString() {
-		String depStr=" deps = [";
-		if(dependencies != null)
-		{
-			Node<T> dep = dependencies.getFirst();
-			while(dep != null)
-			{
-				if(dep.entry != null)
-				depStr += dep.entry + " ";
-				dep = dep.next;
-			}
-		}
-		depStr += "]";
-		return "Taint [lbl=" + lbl + " "+depStr+"]";
-	}
+//	@Override
+//	public String toString() {
+//		String depStr=" deps = [";
+//		if(dependencies != null)
+//		{
+//			Node<T> dep = dependencies.getFirst();
+//			while(dep != null)
+//			{
+//				if(dep.entry != null)
+//				depStr += dep.entry + " ";
+//				dep = dep.next;
+//			}
+//		}
+//		depStr += "]";
+//		return "Taint [lbl=" + lbl + " "+depStr+"]";
+//	}
 	public Object debug;
 	public T lbl;
 	public LinkedList<T> dependencies;
@@ -138,7 +139,7 @@ public class Taint<T> implements Serializable {
 		return ret;
 	}
 	public boolean hasNoDependencies() {
-		return dependencies.getFirst() == null || dependencies.getFirst().entry == null;
+		return dependencies.getFirst() == null;
 	}
 	public static <T> void combineTagsInPlace(Object obj, Taint<T> t1)
 	{

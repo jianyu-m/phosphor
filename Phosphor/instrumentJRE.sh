@@ -2,6 +2,9 @@
 if [ -z "$INST_HOME" ]; then
 	INST_HOME=$JAVA_HOME;
 fi
+
+INST_INT=0
+
 if [ -z "$JAVA_HOME" ]; then
 	echo "Error: Please set \$JAVA_HOME";
 else
@@ -9,6 +12,7 @@ else
 	if [ ! -d "target/jre-inst-int" ]; then
 		echo "Creating int tag instrumented JRE\n";
 		java -Xmx6g -jar target/Phosphor-0.0.3-SNAPSHOT.jar -forceUnboxAcmpEq -withEnumsByValue $INST_HOME target/jre-inst-int;
+		# java -Xmx6g -jar target/Phosphor-0.0.3-SNAPSHOT.jar -withSelectiveInst /tmp/selective -forceUnboxAcmpEq -withEnumsByValue $INST_HOME target/jre-inst-int;
 		chmod +x target/jre-inst-int/bin/*;
 		chmod +x target/jre-inst-int/lib/*;
 		chmod +x target/jre-inst-int/jre/bin/*;
