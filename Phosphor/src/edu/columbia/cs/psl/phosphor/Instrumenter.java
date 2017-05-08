@@ -792,11 +792,18 @@ public class Instrumenter {
 		return false;
 	}
 
+	public static boolean isIgnoredMethodAll(String owner, String name, String desc) {
+		if (owner.startsWith("org/apache/hadoop/util/Shell") || owner.startsWith("io/netty/util/concurrent/DefaultPromise")) {
+			return false;
+		}
+		return true;
+	}
+
 	public static boolean isIgnoredMethodFromOurAnalysis(String owner, String name, String desc) {
 //		if (owner.startsWith("scala")) {
 //			return false;
 //		}
-		if (owner.startsWith("io/netty")) {
+		if (owner.startsWith("org/apache/spark") || name.endsWith("UNTAG")) {
 			return true;
 		}
 		if (owner.startsWith("com/sun/xml/internal") || owner.startsWith("com/sun/jdi/")

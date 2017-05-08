@@ -11,8 +11,8 @@ else
 	echo "Ensuring instrumented JREs exist for tests... to refresh, do mvn clean\n";
 	if [ ! -d "target/jre-inst-int" ]; then
 		echo "Creating int tag instrumented JRE\n";
-		java -Xmx6g -jar target/Phosphor-0.0.3-SNAPSHOT.jar -forceUnboxAcmpEq -withEnumsByValue $INST_HOME target/jre-inst-int;
-		# java -Xmx6g -jar target/Phosphor-0.0.3-SNAPSHOT.jar -withSelectiveInst /tmp/selective -forceUnboxAcmpEq -withEnumsByValue $INST_HOME target/jre-inst-int;
+		# java -Xmx6g -jar target/Phosphor-0.0.3-SNAPSHOT.jar -forceUnboxAcmpEq -withEnumsByValue $INST_HOME target/jre-inst-int;
+		java -Xmx6g -jar target/Phosphor-0.0.3-SNAPSHOT.jar -withSelectiveInst /tmp/selective -forceUnboxAcmpEq -withEnumsByValue $INST_HOME target/jre-inst-int;
 		chmod +x target/jre-inst-int/bin/*;
 		chmod +x target/jre-inst-int/lib/*;
 		chmod +x target/jre-inst-int/jre/bin/*;
@@ -22,7 +22,8 @@ else
 	fi
 	if [ ! -d "target/jre-inst-obj" ]; then
 			echo "Creating obj tag instrumented JRE\n";
-		java -Xmx6g -jar target/Phosphor-0.0.3-SNAPSHOT.jar -multiTaint -forceUnboxAcmpEq -withEnumsByValue $INST_HOME target/jre-inst-obj;
+		# java -Xmx6g -jar target/Phosphor-0.0.3-SNAPSHOT.jar -multiTaint -forceUnboxAcmpEq -withEnumsByValue $INST_HOME target/jre-inst-obj;
+		java -Xmx6g -jar target/Phosphor-0.0.3-SNAPSHOT.jar -multiTaint -withSelectiveInst /tmp/selective -forceUnboxAcmpEq -withEnumsByValue $INST_HOME target/jre-inst-obj;
 		chmod +x target/jre-inst-obj/bin/*;
 		chmod +x target/jre-inst-obj/lib/*;
 		chmod +x target/jre-inst-obj/jre/bin/*;

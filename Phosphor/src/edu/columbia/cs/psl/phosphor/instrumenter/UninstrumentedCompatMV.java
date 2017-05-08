@@ -1,7 +1,10 @@
 package edu.columbia.cs.psl.phosphor.instrumenter;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
+import edu.columbia.cs.psl.phosphor.struct.multid.MultiDTaintedArrayWithIntTag;
+import edu.columbia.cs.psl.phosphor.struct.multid.MultiDTaintedArrayWithObjTag;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -16,16 +19,23 @@ import edu.columbia.cs.psl.phosphor.instrumenter.analyzer.NeverNullArgAnalyzerAd
 import edu.columbia.cs.psl.phosphor.runtime.TaintSentinel;
 import edu.columbia.cs.psl.phosphor.runtime.UninstrumentedTaintSentinel;
 import edu.columbia.cs.psl.phosphor.struct.multid.MultiDTaintedArray;
-import edu.columbia.cs.psl.phosphor.struct.multid.MultiDTaintedArrayWithIntTag;
-import edu.columbia.cs.psl.phosphor.struct.multid.MultiDTaintedArrayWithObjTag;
 
 public class UninstrumentedCompatMV extends TaintAdapter {
 	private NeverNullArgAnalyzerAdapter analyzer;
 	private boolean skipFrames;
 
+	HashMap<Integer, Object> varTypes = new HashMap<Integer, Object>();
+
+	Type[] args = null;
+
 	public UninstrumentedCompatMV(int access, String className, String name, String desc, String signature, String[] exceptions, MethodVisitor mv, NeverNullArgAnalyzerAdapter analyzer,
 								  boolean skipFrames) {
 		super(access, className, name, desc, signature, exceptions, mv, analyzer);
+		args = Type.getArgumentTypes(desc);
+		for (int i = 1; i < args.length; i++) {
+			varTypes.put(i, args[i].toString());
+//			System.out.println("store " + args[i] + " " + i);
+		}
 		this.analyzer = analyzer;
 		this.skipFrames = skipFrames;
 	}
@@ -70,12 +80,12 @@ public class UninstrumentedCompatMV extends TaintAdapter {
 		switch (opcode) {
 			case Opcodes.GETFIELD:
 			case Opcodes.GETSTATIC:
-				if (desc.equals("Ljava/lang/Object;")) {
-					// make sure a array is unboxed
-//					System.out.println("unbox one " + owner + " " + name + " " + desc);
-					super.visitFieldInsn(opcode, owner, name, desc);
-					super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(MultiDTaintedArray.class), "maybeUnbox", "(Ljava/lang/Object;)Ljava/lang/Object;", false);
-				} else
+//				if (desc.equals("Ljava/lang/Object;")) {
+//					// make sure a array is unboxed
+////					System.out.println("unbox one " + owner + " " + name + " " + desc);
+//					super.visitFieldInsn(opcode, owner, name, desc);
+//					super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(MultiDTaintedArray.class), "maybeUnbox", "(Ljava/lang/Object;)Ljava/lang/Object;", false);
+//				} else
 					super.visitFieldInsn(opcode, owner, name, desc);
 				break;
 			case Opcodes.PUTFIELD:
@@ -173,10 +183,31 @@ public class UninstrumentedCompatMV extends TaintAdapter {
 			else if(t.getSort() == Type.ARRAY && t.getDimensions() == 1 && t.getElementType().getSort() != Type.OBJECT
 					&& getTopOfStackObject().equals("java/lang/Object"))
 			{
+				super.visitInsn(Opcodes.DUP);
+				super.visitTypeInsn(opcode, type);
+				super.visitInsn(Opcodes.SWAP);
 				type = MultiDTaintedArray.getTypeForType(t).getInternalName();
+				super.visitTypeInsn(opcode, type);
+				super.visitInsn(Opcodes.IOR);
+				return;
 			}
 		}
 		super.visitTypeInsn(opcode, type);
+	}
+
+	@Override
+	public void visitVarInsn(int opcode, int var) {
+		switch (opcode) {
+			case Opcodes.ISTORE:
+			case Opcodes.DSTORE:
+			case Opcodes.FSTORE:
+			case Opcodes.ASTORE:
+			case Opcodes.LSTORE:
+				varTypes.put(var, analyzer.stack.get(analyzer.stack.size() - 1));
+			default:
+				break;
+		}
+		super.visitVarInsn(opcode, var);
 	}
 
 	@Override
@@ -263,6 +294,74 @@ public class UninstrumentedCompatMV extends TaintAdapter {
 				super.visitInsn(opcode);
 
 				break;
+/*
+			case Opcodes.IASTORE:
+			case Opcodes.DASTORE:
+			case Opcodes.FASTORE:
+			case Opcodes.CASTORE:
+			case Opcodes.BASTORE:
+			case Opcodes.LASTORE:
+			case Opcodes.SASTORE:
+				// unpack
+				String arrType = analyzer.stack.get(analyzer.stack.size() - 3).toString();
+				String storeType = analyzer.stack.get(analyzer.stack.size() - 1).toString();
+				Pattern p = Pattern.compile("[0-9]+");
+				if (p.matcher(arrType).matches()) {
+					// local variable
+					arrType = varTypes.get(Integer.valueOf(arrType)).toString();
+				}
+				if (p.matcher(storeType).matches()) {
+//					storeType = varTypes.get(Integer.valueOf(storeType)).toString();
+//					storeType = varTypes.get(Integer.valueOf(storeType)).toString();
+				}
+				if (arrType.startsWith("Ledu/columbia/cs/psl/phosphor/struct/Lazy")) {
+					// this should never happen
+					throw new IllegalArgumentException("oh this happen");
+				}
+				System.out.println("catch " + arrType + " " + storeType);
+				Type arrT = Type.getObjectType(arrType);
+				if (arrT.getSort() == Type.ARRAY) {
+					// do nothing, but when it is a multi array???
+					super.visitInsn(opcode);
+					break;
+				} else {
+//					super.visitInsn(opcode);
+//					super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(StreamObjectHelper.class),
+//							"astore", "(Ljava/lang/Object;ILjava/lang/Object;)Ljava/lang/Object;", false);
+				}
+				switch (opcode) {
+					case Opcodes.IASTORE:
+						super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(StreamObjectHelper.class),
+							"astore", "(Ljava/lang/Object;II)V", false);
+						break;
+					case Opcodes.DASTORE:
+						super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(StreamObjectHelper.class),
+								"astore", "(Ljava/lang/Object;ID)V", false);
+						break;
+					case Opcodes.FASTORE:
+						super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(StreamObjectHelper.class),
+								"astore", "(Ljava/lang/Object;IF)V", false);
+						break;
+					case Opcodes.CASTORE:
+						super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(StreamObjectHelper.class),
+								"astore", "(Ljava/lang/Object;IC)V", false);
+						break;
+					case Opcodes.BASTORE:
+						super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(StreamObjectHelper.class),
+								"astore", "(Ljava/lang/Object;IB)V", false);
+						break;
+					case Opcodes.LASTORE:
+						super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(StreamObjectHelper.class),
+								"astore", "(Ljava/lang/Object;IJ)V", false);
+						break;
+					case Opcodes.SASTORE:
+						super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(StreamObjectHelper.class),
+								"astore", "(Ljava/lang/Object;IS)V", false);
+						break;
+					default:
+						break;
+				}
+				break;*/
 			default:
 				super.visitInsn(opcode);
 				break;
@@ -356,7 +455,7 @@ public class UninstrumentedCompatMV extends TaintAdapter {
 			}
 		}
 
-		if (!isCalledOnArrayType && Configuration.WITH_SELECTIVE_INST && !owner.startsWith("[")) {
+		if (!isCalledOnArrayType && Configuration.WITH_SELECTIVE_INST && !owner.startsWith("[") && Instrumenter.isIgnoredMethodAll(owner, name, desc)) {
 			if (name.equals("<init>")) {
 				super.visitInsn(Opcodes.ACONST_NULL);
 				desc = desc.substring(0, desc.indexOf(')')) + Type.getDescriptor(UninstrumentedTaintSentinel.class) + ")" + desc.substring(desc.indexOf(')') + 1);

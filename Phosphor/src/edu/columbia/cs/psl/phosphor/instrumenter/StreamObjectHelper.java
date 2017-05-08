@@ -19,9 +19,98 @@ public class StreamObjectHelper {
 
     public static Object getCastObject(Unsafe unsafe, Object o, Class c) {
         // check if it is array
-        if (c == Object.class && int[].class.isAssignableFrom(o.getClass())) {
-            return new LazyIntArrayIntTags((int[])o);
+        if (o != null && !c.isAssignableFrom(o.getClass())) {
+            Class oc = o.getClass();
+            // c is pack, need to unpack
+            if (LazyArrayIntTags.class.isAssignableFrom(oc)) {
+                return ((LazyArrayIntTags)o).getVal();
+            } else if (LazyArrayObjTags.class.isAssignableFrom(oc)) {
+                return ((LazyArrayObjTags)o).getVal();
+            } else {
+                if (!Configuration.MULTI_TAINTING) {
+                    if (int[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyIntArrayIntTags((int[]) o);
+                    } else if (char[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyCharArrayIntTags((char[]) o);
+                    } else if (double[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyDoubleArrayIntTags((double[]) o);
+                    } else if (float[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyFloatArrayIntTags((float[]) o);
+                    } else if (byte[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyByteArrayIntTags((byte[]) o);
+                    } else if (short[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyShortArrayIntTags((short[]) o);
+                    } else if (long[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyLongArrayIntTags((long[]) o);
+                    } else if (boolean[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyBooleanArrayIntTags((boolean[]) o);
+                    } else {
+                        throw new IllegalArgumentException("can not cast");
+                    }
+                } else {
+                    if (int[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyIntArrayObjTags((int[]) o);
+                    } else if (char[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyCharArrayObjTags((char[]) o);
+                    } else if (double[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyDoubleArrayObjTags((double[]) o);
+                    } else if (float[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyFloatArrayObjTags((float[]) o);
+                    } else if (byte[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyByteArrayObjTags((byte[]) o);
+                    } else if (short[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyShortArrayObjTags((short[]) o);
+                    } else if (long[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyLongArrayObjTags((long[]) o);
+                    } else if (boolean[].class.isAssignableFrom(o.getClass())) {
+                        return new LazyBooleanArrayObjTags((boolean[]) o);
+                    } else {
+                        throw new IllegalArgumentException("can not cast");
+                    }
+                }
+            }
         }
+        // need to pack the array
+        if (o != null && c == Object.class) {
+            if (!Configuration.MULTI_TAINTING) {
+                if (int[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyIntArrayIntTags((int[]) o);
+                } else if (char[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyCharArrayIntTags((char[]) o);
+                } else if (double[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyDoubleArrayIntTags((double[]) o);
+                } else if (float[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyFloatArrayIntTags((float[]) o);
+                } else if (byte[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyByteArrayIntTags((byte[]) o);
+                } else if (short[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyShortArrayIntTags((short[]) o);
+                } else if (long[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyLongArrayIntTags((long[]) o);
+                } else if (boolean[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyBooleanArrayIntTags((boolean[]) o);
+                }
+            } else {
+                if (int[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyIntArrayObjTags((int[]) o);
+                } else if (char[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyCharArrayObjTags((char[]) o);
+                } else if (double[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyDoubleArrayObjTags((double[]) o);
+                } else if (float[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyFloatArrayObjTags((float[]) o);
+                } else if (byte[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyByteArrayObjTags((byte[]) o);
+                } else if (short[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyShortArrayObjTags((short[]) o);
+                } else if (long[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyLongArrayObjTags((long[]) o);
+                } else if (boolean[].class.isAssignableFrom(o.getClass())) {
+                    return new LazyBooleanArrayObjTags((boolean[]) o);
+                }
+            }
+        }
+
         return o;
     }
     public static void putObjectWrapper(Unsafe unsafe, Object o, long key, Object val, Class c) {
@@ -134,5 +223,9 @@ public class StreamObjectHelper {
                 }
             }
         }
+    }
+
+    public static Object astore(Object obj, int index, Object value) {
+        return obj;
     }
 }

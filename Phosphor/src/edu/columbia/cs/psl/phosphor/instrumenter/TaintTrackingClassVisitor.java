@@ -282,6 +282,7 @@ public class TaintTrackingClassVisitor extends ClassVisitor {
 			}
 			newDesc = TaintUtils.remapMethodDescForUninst(newDesc);
 			MethodVisitor mv = super.visitMethod(access, newName, newDesc, signature, exceptions);
+			mv = new SelectiveStreamObjectMV(mv);
 			mv = new UninstTaintSentinalArgFixer(mv, access, newName, newDesc, desc);
 			mv = new SpecialOpcodeRemovingMV(mv, ignoreFrames, className, fixLdcClass);
 			MethodVisitor _mv = mv;
@@ -1237,6 +1238,7 @@ public class TaintTrackingClassVisitor extends ClassVisitor {
 					mv.visitMaxs(0, 0);
 					mv.visitEnd();
 				} else {
+					mv = new SelectiveStreamObjectMV(mv);
 					mv = new SpecialOpcodeRemovingMV(mv, ignoreFrames, className, fixLdcClass);
 					NeverNullArgAnalyzerAdapter analyzer = new NeverNullArgAnalyzerAdapter(className, mn.access, mn.name, mDesc, mv);
 					mv = analyzer;
