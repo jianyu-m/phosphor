@@ -43,6 +43,8 @@ public class LinkedList<T> implements Cloneable, Serializable {
 
 	Object currentValue = null;
 
+	Node n = new Node();
+
 	public static class Node<Z> implements Cloneable, Serializable{
 		public Z entry;
 		public Node<Z> next;
@@ -70,8 +72,10 @@ public class LinkedList<T> implements Cloneable, Serializable {
 			return true;
 		if (o == null)
 			return false;
-		if (currentValue == null)
+		if (currentValue == null) {
 			currentValue = o;
+			return true;
+		}
 		int key = automicId();
 		currentValue = key;
 //		storage.get().add(new Tuple(key, currentValue));
@@ -137,7 +141,8 @@ public class LinkedList<T> implements Cloneable, Serializable {
 	{
 		if (currentValue == null)
 			return null;
-		return new Node<T>();
+		n.entry = currentValue;
+		return n;
 //		return first.next;
 	}
 	public LinkedList()

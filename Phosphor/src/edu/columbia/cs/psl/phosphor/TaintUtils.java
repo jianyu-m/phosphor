@@ -523,7 +523,11 @@ public class TaintUtils {
 		if(!src.getClass().isArray() && !dest.getClass().isArray())
 		{
 			System.arraycopy(((LazyArrayObjTags)src).getVal(), srcPos, ((LazyArrayObjTags)dest).getVal(), destPos, length);
-			System.arraycopy(((LazyArrayObjTags)src).taints, srcPos, ((LazyArrayObjTags)dest).taints, destPos, length);
+			if (((LazyArrayObjTags)dest).taints == null && (((LazyArrayObjTags) src).taints != null)) {
+				((LazyArrayObjTags)dest).taints = new Taint[((LazyArrayObjTags)src).getLength()];
+			}
+			if (((LazyArrayObjTags) src).taints != null)
+				System.arraycopy(((LazyArrayObjTags)src).taints, srcPos, ((LazyArrayObjTags)dest).taints, destPos, length);
 		}
 		else if(!dest.getClass().isArray())
 		{
@@ -798,7 +802,7 @@ public class TaintUtils {
 		}
 		Type ret = Type.getReturnType(desc);
 		if(ret.getSort() == Type.ARRAY && ret.getDimensions() > 1 && ret.getElementType().getSort() != Type.OBJECT)
-			r += ")"+MultiDTaintedArrayWithIntTag.getTypeForType(ret).getDescriptor();
+			r += ")"+MultiDTaintedArray.getTypeForType(ret).getDescriptor();
 		else
 		r += ")" + ret.getDescriptor();
 		return r;
