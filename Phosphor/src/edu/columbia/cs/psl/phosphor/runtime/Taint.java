@@ -103,7 +103,7 @@ public class Taint<T> implements Serializable {
 		getHelper(return_set, this);
 		Object[] taints = return_set.toArray();
 		if (taints.length > 0)
-			lbl = LinkedList.automicId();
+			lbl = taints;
 		else
 			lbl = null;
 		dependencies = null;
