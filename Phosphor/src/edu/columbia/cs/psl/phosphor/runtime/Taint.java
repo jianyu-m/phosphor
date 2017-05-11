@@ -2,14 +2,10 @@ package edu.columbia.cs.psl.phosphor.runtime;
 
 import edu.columbia.cs.psl.phosphor.Configuration;
 import edu.columbia.cs.psl.phosphor.TaintUtils;
-import edu.columbia.cs.psl.phosphor.struct.ControlTaintTagStack;
-import edu.columbia.cs.psl.phosphor.struct.Pair;
-import edu.columbia.cs.psl.phosphor.struct.TaintedBooleanWithObjTag;
-import edu.columbia.cs.psl.phosphor.struct.TaintedWithObjTag;
+import edu.columbia.cs.psl.phosphor.struct.*;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Set;
 
 // new design of Taint
@@ -32,10 +28,8 @@ public class Taint<T> implements Serializable {
 	}
 
 	protected void copyFrom(Taint<T> in) {
-		if (in.dependencies == null)
-			lbl = in.lbl;
-		else
-			addDependency(in);
+		lbl = in.lbl;
+		dependencies = in.dependencies;
 	}
 	public Taint<T> copy()
 	{
@@ -43,7 +37,7 @@ public class Taint<T> implements Serializable {
 			return this;
 		Taint<T> ret = new Taint<T>();
 		ret.lbl = lbl;
-		ret.dependencies.addAll(dependencies);
+		ret.dependencies = dependencies;
 		return ret;
 	}
 //	public Object clone()  {
@@ -74,27 +68,59 @@ public class Taint<T> implements Serializable {
 //		depStr += "]";
 //		return "Taint [lbl=" + lbl + " "+depStr+"]";
 //	}
-	public Object debug;
-	public T lbl;
+//	public Object debug;
+	public Object lbl;
 //	public LinkedList<T> dependencies;
-//	public LinkedList<EnqueuedTaint> enqueuedInControlFlow;
-	volatile public Pair dependencies = null;
 
-	public Object seriablizedDeps = null;
+	transient public LinkedList<EnqueuedTaint> enqueuedInControlFlow;
 
-	public LinkedList<Object> getOriginalTag() {
+	public Pair<Taint> dependencies = null;
+
+	private void getHelper(HashSet<Object> return_set, Taint t) {
+		if (t.lbl != null) {
+			if (Object[].class.isInstance(t.lbl))
+				for (Object obj:
+					 (Object[])t.lbl) {
+					return_set.add(obj);
+				}
+			else
+				return_set.add(t.lbl);
+			return;
+		}
+		Pair<Taint> pair = t.dependencies;
+		if (pair == null)
+			return;
+		if (pair._1 != null) {
+			getHelper(return_set ,pair._1);
+		}
+		if (pair._2 != null) {
+			getHelper(return_set ,pair._2);
+		}
+	}
+
+	public Object[] getOriginalTag() {
 		HashSet<Object> return_set = new HashSet<Object>();
-		if (lbl != null) {
-			return_set.add(lbl);
-		} else {
-			if (dependencies._1 == null)
+		getHelper(return_set, this);
+		Object[] taints = return_set.toArray();
+		if (taints.length > 0)
+			lbl = LinkedList.automicId();
+		else
+			lbl = null;
+		dependencies = null;
+		return taints;
+	}
+
+	// put the original tag to lbl
+	public void preSerialization() {
+		if (!Object[].class.isInstance(lbl)) {
+			getOriginalTag();
 		}
 	}
 
 	public Taint(T lbl) {
 		this.lbl = lbl;
 	}
-	public T getLabel() {
+	public Object getLabel() {
 		return lbl;
 	}
 	public Pair getDependencies() {
@@ -176,7 +202,7 @@ public class Taint<T> implements Serializable {
 			return t1;
 		if(IGNORE_TAINTING)
 			return t1;
-		Taint<T> r = new Taint<T>(t1,t2);
+		Taint<T> r = new Taint<T>(t1, t2);
 		if(Configuration.derivedTaintListener != null)
 			Configuration.derivedTaintListener.doubleDepCreated(t1, t2, r);
 		return r;

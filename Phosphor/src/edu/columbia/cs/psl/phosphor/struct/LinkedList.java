@@ -33,7 +33,7 @@ public class LinkedList<T> implements Cloneable, Serializable {
 
 	private static int id = 0;
 
-	private static int automicId() {
+	public static int automicId() {
 		IntWrapper i = count.get();
 		i.count += 1;
 		return i.count;

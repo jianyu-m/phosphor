@@ -48,6 +48,10 @@ public class ReflectionMasker {
 
 	public static final boolean IS_KAFFE = false;
 
+	public static boolean isInstance(Class cc, Object obj) {
+		return cc.isInstance(obj) || cc.getName().equals(obj.getClass().getName());
+	}
+
 	public static String getPropertyHideBootClasspath(String prop)
 	{
 		if(prop.equals("sun.boot.class.path"))

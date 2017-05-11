@@ -1,9 +1,11 @@
 package edu.columbia.cs.psl.phosphor.struct;
 
-public class Pair {
-	public Object _1;
-	public Object _2;
-	public Pair(Object a, Object b) {
+import java.io.Serializable;
+
+public class Pair<T> implements Serializable {
+	public T _1;
+	public T _2;
+	public Pair(T a, T b) {
 		_1 = a;
 		_2 = b;
 	}

@@ -178,6 +178,8 @@ public class UninstrumentedReflectionHidingMV extends MethodVisitor implements O
 			super.visitInsn((Configuration.MULTI_TAINTING ? ICONST_1 : ICONST_0));
 			super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(ReflectionMasker.class), "removeTaintClass", "(Ljava/lang/Class;Z)Ljava/lang/Class;", false);
 
+		} else if (owner.equals("java/lang/Class") && name.startsWith("isInstance")) {
+			super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(ReflectionMasker.class), "isInstance", "(Ljava/lang/Class;Ljava/lang/Object;)Z", false);
 		}
 
 		Instrumenter.IS_ANDROID_INST = origAndroidInst;

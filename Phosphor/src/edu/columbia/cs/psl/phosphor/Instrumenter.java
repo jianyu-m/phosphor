@@ -795,7 +795,8 @@ public class Instrumenter {
 	public static boolean isIgnoredMethodAll(String owner, String name, String desc) {
 		if (owner.startsWith("org/apache/hadoop/util/Shell")
 				|| owner.startsWith("io/netty/util/concurrent/DefaultPromise")
-				|| owner.startsWith("edu/columbia/cs/psl/phosphor")) {
+				|| owner.startsWith("edu/columbia/cs/psl/phosphor")
+				|| owner.startsWith("org/apache/spark/rpc/netty/NettyRpcEnv")) {
 			return false;
 		}
 		return true;
