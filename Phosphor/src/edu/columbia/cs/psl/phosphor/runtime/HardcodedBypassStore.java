@@ -1,34 +1,32 @@
 package edu.columbia.cs.psl.phosphor.runtime;
 
 
-import edu.columbia.cs.psl.phosphor.struct.ArrayList;
+import edu.columbia.cs.psl.phosphor.struct.ThreadVector;
 
 import java.util.concurrent.ConcurrentHashMap;
 
 
 public class HardcodedBypassStore {
-	static ArrayList<Object> vals = new ArrayList<Object>();
+//	static ArrayList<Object> vals = new ArrayList<Object>();
 
 	static ConcurrentHashMap<Integer, Object> val = new ConcurrentHashMap<Integer, Object>();
 
-	private static int count = 0;
+	static private int count = 0;
 
-//	private static ThreadLocal<ArrayList<Object>> vals = new ThreadLocal<ArrayList<Object>>() {
-//		@Override
-//		protected ArrayList<Object> initialValue() {
-//			ArrayList<Object> arr = new ArrayList<Object>();
-//			arr.add(null);
-//			return arr;
-//		}
-//	};
+	private static ThreadLocal<ThreadVector> ex_vals = new ThreadLocal<ThreadVector>() {
+		@Override
+		protected ThreadVector initialValue() {
+			return new ThreadVector();
+		}
+	};
 
 	public static Object cast(Object obj) {
 		return null;
 	}
 
-	static{
-		vals.add(null);
-	}
+//	static{
+//		vals.add(null);
+//	}
 
 	public static synchronized int atomicOne() {
 		count += 1;
@@ -39,11 +37,18 @@ public class HardcodedBypassStore {
 	{
 		if(i <= 0)
 			return null;
+		return ex_vals.get().pop(i);
+	}
+
+	public static final Object getLazy(int i)
+	{
+		if(i <= 0)
+			return null;
 		return val.get(i);
 	}
 
 	// old_key is not 0, then it has been allocated
-	public static final int add(Object a, int old_key)
+	public static final int addLazy(Object a, int old_key)
 	{
 		if(a == null)
 			return (old_key < 0) ? old_key: -old_key;
@@ -59,5 +64,12 @@ public class HardcodedBypassStore {
 //			vals.add(a);
 //			return vals.size() - 1;
 //		}
+	}
+
+	public static final int add(Object a, int old_key)
+	{
+		if (a == null)
+			return -1;
+		return ex_vals.get().push(a);
 	}
 }

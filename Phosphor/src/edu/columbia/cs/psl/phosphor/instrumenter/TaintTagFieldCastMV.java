@@ -29,7 +29,11 @@ public class TaintTagFieldCastMV extends MethodVisitor implements Opcodes {
 				castTo = TaintUtils.getShadowTaintType(desc);
 
 				super.visitFieldInsn(opcode, owner, name, "I");
-				super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(HardcodedBypassStore.class), "get", "(I)Ljava/lang/Object;", false);
+				if (desc.startsWith("Ledu/columbia/cs/psl/phosphor/struct/Lazy")) {
+					super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(HardcodedBypassStore.class), "getLazy", "(I)Ljava/lang/Object;", false);
+				} else {
+					super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(HardcodedBypassStore.class), "get", "(I)Ljava/lang/Object;", false);
+				}
 //				super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(HardcodedBypassStore.class), "cast", "(Ljava/lang/Object;)Ljava/lang/Object;", false);
 				super.visitTypeInsn(CHECKCAST, Type.getType(desc).getInternalName());
 //			} else {
@@ -49,7 +53,11 @@ public class TaintTagFieldCastMV extends MethodVisitor implements Opcodes {
 			else {
 				super.visitFieldInsn(Opcodes.GETSTATIC, owner, name, "I");
 			}
-			super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(HardcodedBypassStore.class), "add", "(Ljava/lang/Object;I)I", false);
+			if (desc.startsWith("Ledu/columbia/cs/psl/phosphor/struct/Lazy")) {
+				super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(HardcodedBypassStore.class), "addLazy", "(Ljava/lang/Object;I)I", false);
+			} else {
+				super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(HardcodedBypassStore.class), "add", "(Ljava/lang/Object;I)I", false);
+			}
 			super.visitFieldInsn(opcode, owner, name, "I");
 //			} else {
 //				super.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(HardcodedBypassStore.class), "add", "([Ljava/lang/Object;)[I", false);

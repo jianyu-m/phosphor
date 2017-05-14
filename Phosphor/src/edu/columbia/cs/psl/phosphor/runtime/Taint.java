@@ -20,11 +20,12 @@ public class Taint<T> implements Serializable {
 
 	public static final <T> Taint<T> copyTaint(Taint<T> in)
 	{
-		if(in == null)
-			return null;
-		Taint<T> ret = new Taint<T>();
-		ret.copyFrom(in);
-		return ret;
+		return in;
+//		if(in == null)
+//			return null;
+//		Taint<T> ret = new Taint<T>();
+//		ret.copyFrom(in);
+//		return ret;
 	}
 
 	protected void copyFrom(Taint<T> in) {
@@ -33,12 +34,13 @@ public class Taint<T> implements Serializable {
 	}
 	public Taint<T> copy()
 	{
-		if(IGNORE_TAINTING)
-			return this;
-		Taint<T> ret = new Taint<T>();
-		ret.lbl = lbl;
-		ret.dependencies = dependencies;
-		return ret;
+		return this;
+//		if(IGNORE_TAINTING)
+//			return this;
+//		Taint<T> ret = new Taint<T>();
+//		ret.lbl = lbl;
+//		ret.dependencies = dependencies;
+//		return ret;
 	}
 //	public Object clone()  {
 //		try {
@@ -53,7 +55,8 @@ public class Taint<T> implements Serializable {
 //		}
 //	}
 //	@Override
-//	public String toString() {
+	public String toString() {
+		return "Taint lbl=" + lbl;
 //		String depStr=" deps = [";
 //		if(dependencies != null)
 //		{
@@ -67,14 +70,14 @@ public class Taint<T> implements Serializable {
 //		}
 //		depStr += "]";
 //		return "Taint [lbl=" + lbl + " "+depStr+"]";
-//	}
+	}
 //	public Object debug;
 	public Object lbl;
 //	public LinkedList<T> dependencies;
 
 	transient public LinkedList<EnqueuedTaint> enqueuedInControlFlow;
 
-	public Pair<Taint> dependencies = null;
+	transient public Pair<Taint> dependencies = null;
 
 	private void getHelper(HashSet<Object> return_set, Taint t) {
 		if (t.lbl != null) {
@@ -135,6 +138,8 @@ public class Taint<T> implements Serializable {
 	}
 	public Taint(Taint<T> t1, Taint<T> t2)
 	{
+//		if (true)
+//			throw new IllegalArgumentException("error " + t1.toString() + " " + t2.toString());
 		dependencies = new Pair(t1, t2);
 		if(Configuration.derivedTaintListener != null)
 			Configuration.derivedTaintListener.doubleDepCreated(t1, t2, this);
@@ -186,6 +191,15 @@ public class Taint<T> implements Serializable {
 		else
 			t.addDependency(t1);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Taint) {
+			return (lbl == null && dependencies == ((Taint)obj).dependencies) || (lbl == ((Taint)obj).lbl);
+		}
+		return false;
+	}
+
 	public static <T> Taint<T> combineTags(Taint<T> t1, Taint<T> t2)
 	{
 		if(t1 == null && t2 == null)
@@ -194,7 +208,7 @@ public class Taint<T> implements Serializable {
 			return t1;
 		if(t1 == null)
 			return t2;
-		if(t1 == t2)
+		if(t1.equals(t2))
 			return t1;
 		if(t1.lbl == null && t1.hasNoDependencies())
 			return t2;
