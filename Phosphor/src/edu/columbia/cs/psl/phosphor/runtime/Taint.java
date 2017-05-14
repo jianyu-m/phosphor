@@ -3,10 +3,10 @@ package edu.columbia.cs.psl.phosphor.runtime;
 import edu.columbia.cs.psl.phosphor.Configuration;
 import edu.columbia.cs.psl.phosphor.TaintUtils;
 import edu.columbia.cs.psl.phosphor.struct.*;
+import edu.columbia.cs.psl.phosphor.struct.LinkedList;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 // new design of Taint
 // a taint is composed of a label(null or content, if null, then it has dependency)
@@ -103,7 +103,30 @@ public class Taint<T> implements Serializable {
 
 	public Object[] getOriginalTag() {
 		HashSet<Object> return_set = new HashSet<Object>();
-		getHelper(return_set, this);
+//		getHelper(return_set, this);
+		java.util.LinkedList<Taint> toProcess = new java.util.LinkedList<>();
+		toProcess.add(this);
+		Taint top;
+		Pair pair;
+		while (!toProcess.isEmpty()) {
+			top = toProcess.pop();
+			if (top.lbl != null) {
+				if (Object[].class.isInstance(top.lbl)) {
+					for (Object obj:
+							(Object[]) top.lbl)
+						return_set.add(obj);
+				} else {
+					return_set.add(top.lbl);
+				}
+			} else {
+				pair = top.dependencies;
+				if (pair._1 != null)
+					toProcess.add((Taint)pair._1);
+				if (pair._2 != null)
+					toProcess.add((Taint)pair._2);
+			}
+		}
+
 		Object[] taints = return_set.toArray();
 		if (taints.length > 0)
 			lbl = taints;
