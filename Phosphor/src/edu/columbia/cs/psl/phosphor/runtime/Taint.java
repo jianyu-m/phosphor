@@ -215,13 +215,13 @@ public class Taint<T> implements Serializable {
 			t.addDependency(t1);
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Taint) {
-			return (lbl == null && dependencies == ((Taint)obj).dependencies) || (lbl == ((Taint)obj).lbl);
-		}
-		return false;
-	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (obj instanceof Taint) {
+//			return (lbl == null && dependencies == ((Taint)obj).dependencies) || (lbl == ((Taint)obj).lbl);
+//		}
+//		return false;
+//	}
 
 	public static <T> Taint<T> combineTags(Taint<T> t1, Taint<T> t2)
 	{
