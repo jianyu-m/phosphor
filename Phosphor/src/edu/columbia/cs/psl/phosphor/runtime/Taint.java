@@ -20,12 +20,12 @@ public class Taint<T> implements Serializable {
 
 	public static final <T> Taint<T> copyTaint(Taint<T> in)
 	{
-		return in;
-//		if(in == null)
-//			return null;
-//		Taint<T> ret = new Taint<T>();
-//		ret.copyFrom(in);
-//		return ret;
+//		return in;
+		if(in == null)
+			return null;
+		Taint<T> ret = new Taint<T>();
+		ret.copyFrom(in);
+		return ret;
 	}
 
 	protected void copyFrom(Taint<T> in) {
@@ -34,13 +34,13 @@ public class Taint<T> implements Serializable {
 	}
 	public Taint<T> copy()
 	{
-		return this;
-//		if(IGNORE_TAINTING)
-//			return this;
-//		Taint<T> ret = new Taint<T>();
-//		ret.lbl = lbl;
-//		ret.dependencies = dependencies;
-//		return ret;
+//		return this;
+		if(IGNORE_TAINTING)
+			return this;
+		Taint<T> ret = new Taint<T>();
+		ret.lbl = lbl;
+		ret.dependencies = dependencies;
+		return ret;
 	}
 //	public Object clone()  {
 //		try {
