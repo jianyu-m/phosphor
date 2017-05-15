@@ -231,7 +231,7 @@ public class Taint<T> implements Serializable {
 			return t1;
 		if(t1 == null)
 			return t2;
-		if(t1.equals(t2))
+		if(t1 == t2)
 			return t1;
 		if(t1.lbl == null && t1.hasNoDependencies())
 			return t2;
