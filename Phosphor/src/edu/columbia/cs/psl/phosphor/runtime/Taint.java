@@ -228,11 +228,11 @@ public class Taint<T> implements Serializable {
 		if(t1 == null && t2 == null)
 			return null;
 		if(t2 == null)
-			return t1;
+			return copyTaint(t1);
 		if(t1 == null)
-			return t2;
+			return copyTaint(t2);
 		if(t1 == t2)
-			return t1;
+			return copyTaint(t1);
 		if(t1.lbl == null && t1.hasNoDependencies())
 			return t2;
 		if(t2.lbl == null && t2.hasNoDependencies())
