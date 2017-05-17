@@ -38,7 +38,8 @@ public class Taint<T> implements Serializable {
 			return this;
 		Taint<T> ret = new Taint<T>();
 		ret.lbl = lbl;
-		ret.dependencies.addAll(dependencies);
+		if (dependencies != null)
+			ret.dependencies.addAll(dependencies);
 		return ret;
 	}
 //	public Object clone()  {
