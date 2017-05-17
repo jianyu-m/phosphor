@@ -111,13 +111,13 @@ public class Taint<T> implements Serializable {
 		while (!toProcess.isEmpty()) {
 			top = toProcess.pop();
 			if (top.lbl != null) {
-				if (Object[].class.isInstance(top.lbl)) {
-					for (Object obj:
-							(Object[]) top.lbl)
-						return_set.add(obj);
-				} else {
+//				if (Object[].class.isInstance(top.lbl)) {
+//					for (Object obj:
+//							(Object[]) top.lbl)
+//						return_set.add(obj);
+//				} else {
 					return_set.add(top.lbl);
-				}
+//				}
 			} else {
 				pair = top.dependencies;
 				if (pair._1 != null)
