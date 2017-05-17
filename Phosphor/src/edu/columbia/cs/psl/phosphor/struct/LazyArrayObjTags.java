@@ -26,7 +26,7 @@ public abstract class LazyArrayObjTags implements Cloneable {
 			taints = new Taint[getLength()];
 		for(int i = 0; i < taints.length; i++)
 		{
-			taints[i]=tag;
+			taints[i]=tag.copy();
 		}
 	}
 

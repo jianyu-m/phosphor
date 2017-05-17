@@ -359,45 +359,45 @@ public final class MultiTainter {
 	}
 	public static void taintedObject(Object obj, Taint tag)
 	{
-		if(obj instanceof MultiDTaintedArrayWithObjTag)
-			obj = ((MultiDTaintedArrayWithObjTag) obj).getVal();
-		if(obj instanceof TaintedWithObjTag) {
-			((TaintedWithObjTag) obj).setPHOSPHOR_TAG(tag);
-		}
-//
 //		if(obj instanceof MultiDTaintedArrayWithObjTag)
 //			obj = ((MultiDTaintedArrayWithObjTag) obj).getVal();
 //		if(obj instanceof TaintedWithObjTag) {
 //			((TaintedWithObjTag) obj).setPHOSPHOR_TAG(tag);
-//			Field[] fields = obj.getClass().getDeclaredFields();
-//			for (Field f:
-//					fields) {
-//				try {
-//					f.setAccessible(true);
-//					Object ob = f.get(obj);
-//
-//					if (ob == null) continue;
-//
-//					// Do nothing for normal fields
-//					if (f.getName().contains("PHOSPHOR_TAG")) {
-//						Class t = f.getType();
-//						if (t == Taint.class) {
-//							f.set(obj, tag);
-//						} else if (LazyArrayObjTags.class.isAssignableFrom(t)) {
-//							((LazyArrayObjTags)ob).setTaints(tag);
-//							f.set(obj, ob);
-//						}
-////						Object m = f.get(obj);
-//					}
-//				} catch (IllegalAccessException e) {
-//					//ignore
-//				} catch (IllegalArgumentException k) {
-//					//ignore
-//				}
-//			}
 //		}
-//		else if(obj != null && ArrayHelper.engaged == 1)
-//			ArrayHelper.setTag(obj, tag);
+
+		if(obj instanceof MultiDTaintedArrayWithObjTag)
+			obj = ((MultiDTaintedArrayWithObjTag) obj).getVal();
+		if(obj instanceof TaintedWithObjTag) {
+			((TaintedWithObjTag) obj).setPHOSPHOR_TAG(tag);
+			Field[] fields = obj.getClass().getDeclaredFields();
+			for (Field f:
+					fields) {
+				try {
+					f.setAccessible(true);
+					Object ob = f.get(obj);
+
+					if (ob == null) continue;
+
+					// Do nothing for normal fields
+					if (f.getName().contains("PHOSPHOR_TAG")) {
+						Class t = f.getType();
+						if (t == Taint.class) {
+							f.set(obj, tag);
+						} else if (LazyArrayObjTags.class.isAssignableFrom(t)) {
+							((LazyArrayObjTags)ob).setTaints(tag);
+							f.set(obj, ob);
+						}
+//						Object m = f.get(obj);
+					}
+				} catch (IllegalAccessException e) {
+					//ignore
+				} catch (IllegalArgumentException k) {
+					//ignore
+				}
+			}
+		}
+		else if(obj != null && ArrayHelper.engaged == 1)
+			ArrayHelper.setTag(obj, tag);
 	}
 	public static void taintedObject$$PHOSPHORTAGGED(Object obj, Taint tag, ControlTaintTagStack ctrl)
 	{

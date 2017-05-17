@@ -20,12 +20,12 @@ public class Taint<T> implements Serializable {
 
 	public static final <T> Taint<T> copyTaint(Taint<T> in)
 	{
-		return in;
-//		if(in == null)
-//			return null;
-//		Taint<T> ret = new Taint<T>();
-//		ret.copyFrom(in);
-//		return ret;
+//		return in;
+		if(in == null)
+			return null;
+		Taint<T> ret = new Taint<T>();
+		ret.copyFrom(in);
+		return ret;
 	}
 
 	protected void copyFrom(Taint<T> in) {
@@ -34,13 +34,14 @@ public class Taint<T> implements Serializable {
 	}
 	public Taint<T> copy()
 	{
-		return this;
+//		return this;
 //		if(IGNORE_TAINTING)
 //			return this;
-//		Taint<T> ret = new Taint<T>();
-//		ret.lbl = lbl;
-//		ret.dependencies = dependencies;
-//		return ret;
+		Taint<T> ret = new Taint<T>();
+		ret.lbl = lbl;
+		if (dependencies != null)
+			ret.dependencies = new Pair<>(dependencies._1, dependencies._2);
+		return ret;
 	}
 //	public Object clone()  {
 //		try {
@@ -228,15 +229,15 @@ public class Taint<T> implements Serializable {
 		if(t1 == null && t2 == null)
 			return null;
 		if(t2 == null)
-			return t1;
+			return t1.copy();
 		if(t1 == null)
-			return t2;
-		if(t1.equals(t2))
-			return t1;
+			return t2.copy();
+		if(t1 == t2)
+			return t1.copy();
 		if(t1.lbl == null && t1.hasNoDependencies())
-			return t2;
+			return t2.copy();
 		if(t2.lbl == null && t2.hasNoDependencies())
-			return t1;
+			return t1.copy();
 		if(IGNORE_TAINTING)
 			return t1;
 		Taint<T> r = new Taint<T>(t1, t2);

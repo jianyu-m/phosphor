@@ -38,7 +38,7 @@ public final class LazyByteArrayObjTags extends LazyArrayObjTags {
 		if (tag != null) {
 			if (taints == null)
 				taints = new Taint[this.val.length];
-			taints[idx] = tag;
+			taints[idx] = tag.copy();
 		}
 	}
 

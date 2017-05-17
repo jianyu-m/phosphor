@@ -36,7 +36,7 @@ public final class LazyDoubleArrayObjTags extends LazyArrayObjTags {
 		if (tag != null) {
 			if (taints == null)
 				taints = new Taint[val.length];
-			taints[idx] = tag;
+			taints[idx] = tag.copy();
 		}
 	}
 
