@@ -400,6 +400,10 @@ public class TaintTrackingClassVisitor extends ClassVisitor {
 //				System.out.println("\t\t:"+name+newDesc);
 			MethodVisitor mv = super.visitMethod(access, name, newDesc, signature, exceptions);
 
+			if (!className.startsWith("java")) {
+				mv = new ProfileMV(mv);
+			}
+
 			mv = new StreamObjectMV(mv);
 
 			mv = new ArrayObjectMV(mv);
