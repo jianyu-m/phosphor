@@ -210,6 +210,12 @@
 			<artifactId>asm-all</artifactId>
 			<version>5.0.3</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.roaringbitmap/RoaringBitmap -->
+		<dependency>
+			<groupId>org.roaringbitmap</groupId>
+			<artifactId>RoaringBitmap</artifactId>
+			<version>0.6.44</version>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
