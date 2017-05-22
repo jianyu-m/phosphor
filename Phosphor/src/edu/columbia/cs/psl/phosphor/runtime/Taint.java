@@ -156,16 +156,16 @@ public class Taint<T> implements Serializable {
 	{
 		dependencies = t1.dependencies;
 		lbl = t1.lbl;
-		if(Configuration.derivedTaintListener != null)
-			Configuration.derivedTaintListener.singleDepCreated(t1, this);
+//		if(Configuration.derivedTaintListener != null)
+//			Configuration.derivedTaintListener.singleDepCreated(t1, this);
 	}
 	public Taint(Taint<T> t1, Taint<T> t2)
 	{
 //		if (true)
 //			throw new IllegalArgumentException("error " + t1.toString() + " " + t2.toString());
 		dependencies = new Pair(t1, t2);
-		if(Configuration.derivedTaintListener != null)
-			Configuration.derivedTaintListener.doubleDepCreated(t1, t2, this);
+//		if(Configuration.derivedTaintListener != null)
+//			Configuration.derivedTaintListener.doubleDepCreated(t1, t2, this);
 	}
 	public Taint() {
 
@@ -215,33 +215,31 @@ public class Taint<T> implements Serializable {
 			t.addDependency(t1);
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Taint) {
-			return (lbl == null && dependencies == ((Taint)obj).dependencies) || (lbl == ((Taint)obj).lbl);
-		}
-		return false;
-	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (obj instanceof Taint) {
+//			return (lbl == null && dependencies == ((Taint)obj).dependencies) || (lbl == ((Taint)obj).lbl);
+//		}
+//		return false;
+//	}
 
 	public static <T> Taint<T> combineTags(Taint<T> t1, Taint<T> t2)
 	{
-		if(t1 == null && t2 == null)
-			return null;
+		if(t1 == t2)
+			return t1;
 		if(t2 == null)
 			return t1;
 		if(t1 == null)
 			return t2;
-		if(t1.equals(t2))
-			return t1;
-		if(t1.lbl == null && t1.hasNoDependencies())
-			return t2;
-		if(t2.lbl == null && t2.hasNoDependencies())
-			return t1;
-		if(IGNORE_TAINTING)
-			return t1;
+//		if(t1.lbl == null && t1.hasNoDependencies())
+//			return t2;
+//		if(t2.lbl == null && t2.hasNoDependencies())
+//			return t1;
+//		if(IGNORE_TAINTING)
+//			return t1;
 		Taint<T> r = new Taint<T>(t1, t2);
-		if(Configuration.derivedTaintListener != null)
-			Configuration.derivedTaintListener.doubleDepCreated(t1, t2, r);
+//		if(Configuration.derivedTaintListener != null)
+//			Configuration.derivedTaintListener.doubleDepCreated(t1, t2, r);
 		return r;
 	}
 	@SuppressWarnings("unchecked")
