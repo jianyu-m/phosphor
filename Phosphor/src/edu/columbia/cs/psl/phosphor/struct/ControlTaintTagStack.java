@@ -8,7 +8,7 @@ public final class ControlTaintTagStack {
 	DoubleLinkedList<EnqueuedTaint> children = new  DoubleLinkedList<EnqueuedTaint>();
 
 	public final boolean isEmpty() {
-		return taint == null || (taint.lbl == null && taint.hasNoDependencies());
+		return taint == null || (taint.lbl == Taint.RAW_DEPENDENCY && taint.hasNoDependencies());
 	}
 	public ControlTaintTagStack(int zz) {
 		this();
@@ -34,7 +34,7 @@ public final class ControlTaintTagStack {
 			while(n != null) {
 				Taint t = n.entry.taint;
 				if (t != null) {
-					if (t.lbl != null)
+					if (t.lbl != Taint.RAW_DEPENDENCY)
 						taint.addDependency(t);
 					else if (!(t.hasNoDependencies())) {
 //						taint.dependencies.addAll(t.dependencies);
@@ -86,7 +86,7 @@ public final class ControlTaintTagStack {
 		invalidated = true;
 
 		Taint tag = enq.taint;
-		boolean recalc = tag.lbl != null || !tag.hasNoDependencies();
+		boolean recalc = tag.lbl != Taint.RAW_DEPENDENCY || !tag.hasNoDependencies();
 		LinkedList.Node<EnqueuedTaint> e = null;
 		LinkedList.Node<EnqueuedTaint> p = null;
 		while(e != null)
@@ -127,7 +127,7 @@ public final class ControlTaintTagStack {
 	}
 
 	public Taint getTag() {
-		if(taint == null || (taint.hasNoDependencies() && taint.lbl == null))
+		if(taint == null || (taint.hasNoDependencies() && taint.lbl == Taint.RAW_DEPENDENCY))
 			return null;
 		return taint;
 	}

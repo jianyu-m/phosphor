@@ -12,32 +12,37 @@ import java.util.*;
 // a taint is composed of a label(null or content, if null, then it has dependency)
 // a dependency is just a list of dependent taint
 
-public class Taint<T> implements Serializable {
+public class Taint implements Serializable {
 
 	private static final long serialVersionUID = 0x1111;
 
 	public static boolean IGNORE_TAINTING;
 
-	public static final <T> Taint<T> copyTaint(Taint<T> in)
+	public static final int RAW_DEPENDENCY = -1;
+
+	public static final int RESOLVE_DEPENDENCY = -2;
+
+	public static final Taint copyTaint(Taint in)
 	{
 		return in;
 //		if(in == null)
 //			return null;
-//		Taint<T> ret = new Taint<T>();
+//		Taint ret = new Taint();
 //		ret.copyFrom(in);
 //		return ret;
 	}
 
-	protected void copyFrom(Taint<T> in) {
+	protected void copyFrom(Taint in) {
 		lbl = in.lbl;
 		dependencies = in.dependencies;
+		lbl_list = in.lbl_list;
 	}
-	public Taint<T> copy()
+	public Taint copy()
 	{
 		return this;
 //		if(IGNORE_TAINTING)
 //			return this;
-//		Taint<T> ret = new Taint<T>();
+//		Taint ret = new Taint();
 //		ret.lbl = lbl;
 //		ret.dependencies = dependencies;
 //		return ret;
@@ -60,7 +65,7 @@ public class Taint<T> implements Serializable {
 //		String depStr=" deps = [";
 //		if(dependencies != null)
 //		{
-//			Node<T> dep = dependencies.getFirst();
+//			Node dep = dependencies.getFirst();
 //			while(dep != null)
 //			{
 //				if(dep.entry != null)
@@ -71,38 +76,39 @@ public class Taint<T> implements Serializable {
 //		depStr += "]";
 //		return "Taint [lbl=" + lbl + " "+depStr+"]";
 	}
-//	public Object debug;
-	public Object lbl;
-//	public LinkedList<T> dependencies;
+
+	public int lbl = RAW_DEPENDENCY;
+
+	public Integer[] lbl_list;
 
 	transient public LinkedList<EnqueuedTaint> enqueuedInControlFlow;
 
-	transient public Pair<Taint> dependencies = null;
+	transient public Pair dependencies = null;
 
-	private void getHelper(HashSet<Object> return_set, Taint t) {
-		if (t.lbl != null) {
-			if (Object[].class.isInstance(t.lbl))
-				for (Object obj:
-					 (Object[])t.lbl) {
-					return_set.add(obj);
-				}
-			else
-				return_set.add(t.lbl);
-			return;
-		}
-		Pair<Taint> pair = t.dependencies;
-		if (pair == null)
-			return;
-		if (pair._1 != null) {
-			getHelper(return_set ,pair._1);
-		}
-		if (pair._2 != null) {
-			getHelper(return_set ,pair._2);
-		}
-	}
+//	private void getHelper(HashSet<Object> return_set, Taint t) {
+//		if (t.lbl != null) {
+//			if (Object[].class.isInstance(t.lbl))
+//				for (Object obj:
+//					 (Object[])t.lbl) {
+//					return_set.add(obj);
+//				}
+//			else
+//				return_set.add(t.lbl);
+//			return;
+//		}
+//		Pair<Taint> pair = t.dependencies;
+//		if (pair == null)
+//			return;
+//		if (pair._1 != null) {
+//			getHelper(return_set ,pair._1);
+//		}
+//		if (pair._2 != null) {
+//			getHelper(return_set ,pair._2);
+//		}
+//	}
 
-	public Object[] getOriginalTag() {
-		HashSet<Object> return_set = new HashSet<Object>();
+	public Integer[] getOriginalTag() {
+		HashSet<Integer> return_set = new HashSet<Integer>();
 //		getHelper(return_set, this);
 		java.util.LinkedList<Taint> toProcess = new java.util.LinkedList<>();
 		toProcess.add(this);
@@ -110,28 +116,32 @@ public class Taint<T> implements Serializable {
 		Pair pair;
 		while (!toProcess.isEmpty()) {
 			top = toProcess.pop();
-			if (top.lbl != null) {
+			if (top.lbl >= 0) {
 //				if (Object[].class.isInstance(top.lbl)) {
 //					for (Object obj:
 //							(Object[]) top.lbl)
 //						return_set.add(obj);
 //				} else {
-					return_set.add(top.lbl);
+				return_set.add(top.lbl);
 //				}
-			} else {
+			} else if (top.lbl == RAW_DEPENDENCY){
 				pair = top.dependencies;
 				if (pair._1 != null)
 					toProcess.add((Taint)pair._1);
 				if (pair._2 != null)
 					toProcess.add((Taint)pair._2);
+			} else {
+				for (Integer l :
+						top.lbl_list) {
+					return_set.add(l);
+				}
 			}
 		}
 
-		Object[] taints = return_set.toArray();
+		Integer[] taints = return_set.toArray(new Integer[0]);
 		if (taints.length > 0)
-			lbl = taints;
-		else
-			lbl = null;
+			lbl_list = taints;
+		lbl = RESOLVE_DEPENDENCY;
 		dependencies = null;
 		return taints;
 	}
@@ -142,35 +152,43 @@ public class Taint<T> implements Serializable {
 			getOriginalTag();
 		}
 	}
-
-	public Taint(T lbl) {
+	public Taint(Taint t, int i, TaintSentinel ts) {
+		this.lbl = i;
+	}
+	public Taint(int lbl) {
 		this.lbl = lbl;
 	}
+
+	public Taint(long lbl) {
+		this.lbl = Long.valueOf(lbl).intValue();
+	}
+
 	public Object getLabel() {
 		return lbl;
 	}
 	public Pair getDependencies() {
 		return dependencies;
 	}
-	public Taint(Taint<T> t1)
+	public Taint(Taint t1)
 	{
 		dependencies = t1.dependencies;
 		lbl = t1.lbl;
-		if(Configuration.derivedTaintListener != null)
-			Configuration.derivedTaintListener.singleDepCreated(t1, this);
+		lbl_list = t1.lbl_list;
+//		if(Configuration.derivedTaintListener != null)
+//			Configuration.derivedTaintListener.singleDepCreated(t1, this);
 	}
-	public Taint(Taint<T> t1, Taint<T> t2)
+	public Taint(Taint t1, Taint t2)
 	{
 //		if (true)
 //			throw new IllegalArgumentException("error " + t1.toString() + " " + t2.toString());
 		dependencies = new Pair(t1, t2);
-		if(Configuration.derivedTaintListener != null)
-			Configuration.derivedTaintListener.doubleDepCreated(t1, t2, this);
+//		if(Configuration.derivedTaintListener != null)
+//			Configuration.derivedTaintListener.doubleDepCreated(t1, t2, this);
 	}
 	public Taint() {
 
 	}
-	public boolean addDependency(Taint<T> d)
+	public boolean addDependency(Taint d)
 	{
 		try {
 			throw new IllegalAccessException();
@@ -201,12 +219,12 @@ public class Taint<T> implements Serializable {
 	public boolean hasNoDependencies() {
 		return dependencies == null;
 	}
-	public static <T> void combineTagsInPlace(Object obj, Taint<T> t1)
+	public static  void combineTagsInPlace(Object obj, Taint t1)
 	{
 		if(obj == null || t1 == null || IGNORE_TAINTING)
 			return;
 		@SuppressWarnings("unchecked")
-		Taint<T> t = (Taint<T>) TaintUtils.getTaintObj(obj);
+		Taint t = (Taint) TaintUtils.getTaintObj(obj);
 		if(t == null)
 		{
 			MultiTainter.taintedObject(obj, t1);
@@ -218,12 +236,12 @@ public class Taint<T> implements Serializable {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Taint) {
-			return (lbl == null && dependencies == ((Taint)obj).dependencies) || (lbl == ((Taint)obj).lbl);
+			return (lbl == RAW_DEPENDENCY && dependencies == ((Taint)obj).dependencies) || (lbl >= 0 && lbl == ((Taint)obj).lbl);
 		}
 		return false;
 	}
 
-	public static <T> Taint<T> combineTags(Taint<T> t1, Taint<T> t2)
+	public static  Taint combineTags(Taint t1, Taint t2)
 	{
 		if(t1 == null && t2 == null)
 			return null;
@@ -233,19 +251,18 @@ public class Taint<T> implements Serializable {
 			return t2;
 		if(t1.equals(t2))
 			return t1;
-		if(t1.lbl == null && t1.hasNoDependencies())
-			return t2;
-		if(t2.lbl == null && t2.hasNoDependencies())
-			return t1;
-		if(IGNORE_TAINTING)
-			return t1;
-		Taint<T> r = new Taint<T>(t1, t2);
-		if(Configuration.derivedTaintListener != null)
-			Configuration.derivedTaintListener.doubleDepCreated(t1, t2, r);
-		return r;
+//		if(t1.lbl == null && t1.hasNoDependencies())
+//			return t2;
+//		if(t2.lbl == null && t2.hasNoDependencies())
+//			return t1;
+//		if(IGNORE_TAINTING)
+//			return t1;
+//		if(Configuration.derivedTaintListener != null)
+//			Configuration.derivedTaintListener.doubleDepCreated(t1, t2, r);
+		return new Taint(t1, t2);
 	}
 	@SuppressWarnings("unchecked")
-	public static <T> Taint<T> combineTags(Taint<T> t1, ControlTaintTagStack tags){
+	public static  Taint combineTags(Taint t1, ControlTaintTagStack tags){
 		if(t1 == null && tags.isEmpty())
 			return null;
 		else if(t1 == null)
@@ -264,7 +281,7 @@ public class Taint<T> implements Serializable {
 			return t1;
 		if(IGNORE_TAINTING)
 			return t1;
-		return new Taint<T>((Taint<T>) t1, tags.taint);
+		return new Taint((Taint) t1, tags.taint);
 	}
 	@SuppressWarnings("rawtypes")
 	public static void combineTagsOnObject(Object o, ControlTaintTagStack tags)
