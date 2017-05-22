@@ -111,13 +111,13 @@ public class Taint<T> implements Serializable {
 		while (!toProcess.isEmpty()) {
 			top = toProcess.pop();
 			if (top.lbl != null) {
-//				if (Object[].class.isInstance(top.lbl)) {
-//					for (Object obj:
-//							(Object[]) top.lbl)
-//						return_set.add(obj);
-//				} else {
+				if (Object[].class.isInstance(top.lbl)) {
+					for (Object obj:
+							(Object[]) top.lbl)
+						return_set.add(obj);
+				} else {
 					return_set.add(top.lbl);
-//				}
+				}
 			} else {
 				pair = top.dependencies;
 				if (pair._1 != null)
@@ -128,8 +128,11 @@ public class Taint<T> implements Serializable {
 		}
 
 		Object[] taints = return_set.toArray();
-		if (taints.length > 0)
+		if (taints.length > 1)
 			lbl = taints;
+		else if (taints.length == 1) {
+			lbl = taints[0];
+		}
 		else
 			lbl = null;
 		dependencies = null;
