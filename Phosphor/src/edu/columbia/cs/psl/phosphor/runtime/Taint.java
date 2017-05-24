@@ -128,10 +128,8 @@ public class Taint<T> implements Serializable {
 		}
 
 		Object[] taints = return_set.toArray();
-		if (taints.length > 1)
+		if (taints.length > 0) {
 			lbl = taints;
-		else if (taints.length == 1) {
-			lbl = taints[0];
 		}
 		else
 			lbl = null;
