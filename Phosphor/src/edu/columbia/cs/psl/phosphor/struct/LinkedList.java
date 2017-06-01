@@ -1,6 +1,8 @@
 package edu.columbia.cs.psl.phosphor.struct;
 
 
+import edu.columbia.cs.psl.phosphor.runtime.Taint;
+
 import java.io.Serializable;
 
 public class LinkedList<T> implements Cloneable, Serializable {
@@ -14,22 +16,27 @@ public class LinkedList<T> implements Cloneable, Serializable {
 	}
 	private Node<T> first;
 	private Node<T> last;
-	public synchronized boolean addUnique(T o)
+	public boolean addUnique(T o)
 	{
+		int step = 0;
 		Node<T> i = first.next;
 		while(i != null)
 		{
-			if(i.entry == o)
+			step++;
+			if(i.entry == o) {
+				Taint.incStep(step);
 				return false;
+			}
 			i = i.next;
 		}
 		Node<T> n = new Node<T>();
 		n.entry = o;
 		last.next=n;
 		last = n;
+		Taint.incStep(step);
 		return true;
 	}
-	public synchronized boolean addAll(LinkedList<T> o)
+	public boolean addAll(LinkedList<T> o)
 	{
 		boolean added = false;
 		Node<T> i = o.getFirst();
@@ -45,7 +52,7 @@ public class LinkedList<T> implements Cloneable, Serializable {
 		}
 		return added;
 	}
-	public synchronized void addFast(T o)
+	public void addFast(T o)
 	{
 		Node<T> n = new Node<T>();
 		n.entry = o;
@@ -61,7 +68,7 @@ public class LinkedList<T> implements Cloneable, Serializable {
 		}
 		
 	}
-	public synchronized void add(T o)
+	public void add(T o)
 	{
 		addUnique(o);
 	}

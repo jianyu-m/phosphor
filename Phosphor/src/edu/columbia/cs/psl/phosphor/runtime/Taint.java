@@ -13,6 +13,18 @@ import java.io.Serializable;
 
 public class Taint<T> implements Serializable {
 
+	public static long total_step = 0;
+
+	public static long next_eval = 100000;
+
+	public static void incStep(int step) {
+		total_step += step;
+		if (total_step > next_eval) {
+			next_eval += 20000000;
+			System.out.println("calculate " + total_step);
+		}
+	}
+
 	private static final long serialVersionUID = 0x1111;
 
 	public static boolean IGNORE_TAINTING;
